@@ -1,0 +1,27 @@
+{
+    "name": "erp-system-simulation",
+    "version": "1.0.0",
+    "description": "Comprehensive 30-day simulation for ERP system testing and validation",
+    "main": "run-simulation.js",
+    "scripts": {
+        "simulate": "node run-simulation.js",
+        "seed": "node 01-seed-data.js",
+        "run": "node 02-simulation-runner.js",
+        "clean": "rm -rf simulation-results"
+    },
+    "keywords": [
+        "erp",
+        "simulation",
+        "testing",
+        "validation"
+    ],
+    "author": "ERP Development Team",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.6.0"
+    },
+    "devDependencies": {},
+    "engines": {
+        "node": ">=14.0.0"
+    }
+}

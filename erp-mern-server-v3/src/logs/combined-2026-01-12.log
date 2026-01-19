@@ -1,0 +1,61 @@
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"ZfdcVWIcN_NyXsrfAAAr","timestamp":"2026-01-12 16:44:32"}
+{"current":{"end":"2026-01-12T21:59:59.999Z","start":"2026-01-04T22:00:00.000Z"},"level":"debug","message":"📅 Date range:","previous":{"end":"2026-01-04T21:59:59.999Z","start":"2025-12-27T22:00:00.000Z"},"timestamp":"2026-01-12 16:56:52"}
+{"level":"info","lowStockCount":0,"message":"✅ Dashboard queries completed","timestamp":"2026-01-12 16:56:52"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-12 16:58:18"}
+{"level":"info","message":"Fetched 2 receipts (populated)","timestamp":"2026-01-12 16:58:18"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-12 16:58:18"}
+{"level":"info","message":"Fetched 2 receipts (populated)","timestamp":"2026-01-12 16:58:18"}
+{"level":"info","message":"User disconnected","socketId":"ZfdcVWIcN_NyXsrfAAAr","timestamp":"2026-01-12 17:33:05","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"qeZrYGwwe5rDEEQcAAAu","timestamp":"2026-01-12 17:33:06"}
+{"level":"info","message":"User disconnected","socketId":"qeZrYGwwe5rDEEQcAAAu","timestamp":"2026-01-12 17:54:14","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"_mNhDjh7J1qwZRPPAAAx","timestamp":"2026-01-12 17:54:14"}
+{"level":"info","message":"User disconnected","socketId":"_mNhDjh7J1qwZRPPAAAx","timestamp":"2026-01-12 18:03:05","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"ol4_G2TDlOZTFx2HAAA0","timestamp":"2026-01-12 18:03:05"}
+{"level":"info","message":"User disconnected","socketId":"ol4_G2TDlOZTFx2HAAA0","timestamp":"2026-01-12 18:16:36","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"ukPobp6h6atTl6NEAAA3","timestamp":"2026-01-12 18:16:37"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-12 18:20:53"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-12 18:20:53"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-12 18:20:53"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-12 18:20:54"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-12 18:20:54"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-12 18:20:54"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"FSCQTOuaV3g84RckAAAB","timestamp":"2026-01-12 18:20:54"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-12 18:21:15"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-12 18:21:15"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-12 18:21:15"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-12 18:21:15"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-12 18:21:15"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-12 18:21:15"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"aVKdZT7cjKJN33NtAAAB","timestamp":"2026-01-12 18:21:15"}
+{"level":"info","message":"User disconnected","socketId":"aVKdZT7cjKJN33NtAAAB","timestamp":"2026-01-12 18:29:27","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"otpEXd6iI4bSijNWAAAE","timestamp":"2026-01-12 18:29:27"}
+{"level":"info","message":"User disconnected","socketId":"otpEXd6iI4bSijNWAAAE","timestamp":"2026-01-12 18:30:08","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"yIpgY7XAViyIbGzEAAAG","timestamp":"2026-01-12 18:30:08"}
+{"level":"info","message":"User disconnected","socketId":"yIpgY7XAViyIbGzEAAAG","timestamp":"2026-01-12 18:30:08","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"yBS-ZP-aOHu90aL9AAAI","timestamp":"2026-01-12 18:30:08"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-12 18:30:29"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 696521a56f26450f7c5d39b0","timestamp":"2026-01-12 18:30:29"}
+{"level":"info","message":"✅ Sales JE Created: 696521a56f26450f7c5d39b0","timestamp":"2026-01-12 18:30:29"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 696521a56f26450f7c5d39a2","timestamp":"2026-01-12 18:30:29"}
+{"level":"info","message":"User disconnected","socketId":"yBS-ZP-aOHu90aL9AAAI","timestamp":"2026-01-12 18:33:35","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"IK_kbCT3z3Ak2Yo_AAAL","timestamp":"2026-01-12 18:33:35"}
+{"level":"info","message":"User disconnected","socketId":"IK_kbCT3z3Ak2Yo_AAAL","timestamp":"2026-01-12 18:37:36","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"sJfPlrG_T3rZPP2eAAAN","timestamp":"2026-01-12 18:37:36"}
+{"level":"info","message":"User disconnected","socketId":"sJfPlrG_T3rZPP2eAAAN","timestamp":"2026-01-12 18:37:36","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"Kgfx9uJUNGbGq_edAAAP","timestamp":"2026-01-12 18:37:36"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-12 18:44:09"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 696524d96f26450f7c5d3acf","timestamp":"2026-01-12 18:44:09"}
+{"level":"info","message":"✅ Sales JE Created: 696524d96f26450f7c5d3acf","timestamp":"2026-01-12 18:44:09"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 696524d96f26450f7c5d3ac1","timestamp":"2026-01-12 18:44:09"}
+{"level":"info","message":"User disconnected","socketId":"Kgfx9uJUNGbGq_edAAAP","timestamp":"2026-01-12 18:44:43","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"gUWXOTWQc-NEgIBpAAAR","timestamp":"2026-01-12 18:48:54"}
+{"level":"info","message":"User disconnected","socketId":"gUWXOTWQc-NEgIBpAAAR","timestamp":"2026-01-12 18:50:26","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"VCrKUmNeHaGa9oqgAAAU","timestamp":"2026-01-12 18:50:26"}
+{"level":"info","message":"User disconnected","socketId":"VCrKUmNeHaGa9oqgAAAU","timestamp":"2026-01-12 18:50:50","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"tpQfkLWwdqUl5HHgAAAW","timestamp":"2026-01-12 18:50:51"}
+{"level":"info","message":"User disconnected","socketId":"tpQfkLWwdqUl5HHgAAAW","timestamp":"2026-01-12 18:58:58","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"3siHpKFCARHgL8WmAAAY","timestamp":"2026-01-12 18:59:00"}
+{"level":"info","message":"User disconnected","socketId":"3siHpKFCARHgL8WmAAAY","timestamp":"2026-01-12 18:59:07","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"CvflOHw6d9gf-bnCAAAb","timestamp":"2026-01-12 19:37:42"}
+{"level":"info","message":"✅ Daily closure created for 2026-01-12 by user","timestamp":"2026-01-12 19:38:08"}
+{"level":"info","message":"User disconnected","socketId":"CvflOHw6d9gf-bnCAAAb","timestamp":"2026-01-12 19:39:19","userId":"695d5df1ce812e2e91a2681a"}

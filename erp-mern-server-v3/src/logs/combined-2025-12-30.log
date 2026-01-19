@@ -1,0 +1,25 @@
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-30 20:14:52"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:14:52"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-30 20:19:26"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:19:26"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:19:29"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-30 20:19:32"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:19:32"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-30 20:36:19"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:36:19"}
+{"email":"admin@example.com","ip":"::ffff:192.168.0.159","level":"warn","message":"⚠️ Login failed: Invalid password","timestamp":"2025-12-30 20:36:58"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-30 20:37:18"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:37:18"}
+{"email":"admin@example.com","ip":"::ffff:192.168.0.159","level":"warn","message":"⚠️ Login failed: Invalid password","timestamp":"2025-12-30 20:37:41"}
+{"email":"admin@example.com","ip":"::ffff:192.168.0.159","level":"warn","message":"⚠️ Login failed: Invalid password","timestamp":"2025-12-30 20:38:04"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-30 20:39:08"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:39:08"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-30 20:39:21"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-30 20:39:21"}
+{"email":"admin@example.com","ip":"::ffff:192.168.0.159","level":"warn","message":"⚠️ Login failed: Invalid password","timestamp":"2025-12-30 20:39:43"}
+{"email":"admin@example.com","ip":"::ffff:192.168.0.159","level":"warn","message":"⚠️ Login failed: Invalid password","timestamp":"2025-12-30 20:39:51"}
+{"level":"info","message":"✅ User connected: 695417b171c6a9038e07fbd9","role":"admin","socketId":"er9f2YsT1JX46fTMAAAC","timestamp":"2025-12-30 20:46:18"}
+{"level":"info","message":"User disconnected","socketId":"er9f2YsT1JX46fTMAAAC","timestamp":"2025-12-30 20:46:31","userId":"695417b171c6a9038e07fbd9"}
+{"level":"info","message":"✅ User connected: 695417b171c6a9038e07fbd9","role":"admin","socketId":"NSxR7IuWNGTUvBgOAAAE","timestamp":"2025-12-30 20:46:31"}
+{"level":"info","message":"User disconnected","socketId":"NSxR7IuWNGTUvBgOAAAE","timestamp":"2025-12-30 20:46:37","userId":"695417b171c6a9038e07fbd9"}
+{"level":"info","message":"✅ User connected: 695417b171c6a9038e07fbd9","role":"admin","socketId":"h79-6n2JR94n5xb6AAAH","timestamp":"2025-12-30 20:46:43"}

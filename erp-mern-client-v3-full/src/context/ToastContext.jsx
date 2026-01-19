@@ -1,0 +1,28 @@
+import { createContext, useContext, useState, useCallback } from 'react'
+
+const ToastCtx = createContext()
+export const useToast = () => useContext(ToastCtx)
+
+export default function ToastProvider({ children }) {
+  const [toasts, setToasts] = useState([])
+
+  const push = useCallback((type, msg) => {
+    const id = Math.random().toString(36).slice(2)
+    setToasts(t => [...t, { id, type, msg }])
+    setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 3000)
+  }, [])
+
+  return (
+    <ToastCtx.Provider value={{ push }}>
+      {children}
+      <div className="fixed bottom-4 left-4 space-y-2 z-50">
+        {toasts.map(t => (
+          <div key={t.id}
+            className={`px-4 py-2 rounded-lg shadow text-white ${t.type === 'error' ? 'bg-red-600' : 'bg-green-600'}`}>
+            {t.msg}
+          </div>
+        ))}
+      </div>
+    </ToastCtx.Provider>
+  )
+}

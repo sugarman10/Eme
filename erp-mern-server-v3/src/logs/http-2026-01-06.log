@@ -1,0 +1,556 @@
+{"level":"info","message":"🔄 Creating Receipt Journal Entry...","timestamp":"2026-01-06 00:03:50"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695c35464473cb438c5d6129","timestamp":"2026-01-06 00:03:50"}
+{"level":"info","message":"✅ Receipt JE Created: 695c35464473cb438c5d6129","timestamp":"2026-01-06 00:03:50"}
+{"level":"info","message":"📝 Audit: CREATE RECEIPT 695c35464473cb438c5d6121","timestamp":"2026-01-06 00:03:50"}
+{"level":"info","message":"✅ Receipt created successfully: 695c35464473cb438c5d6121","timestamp":"2026-01-06 00:03:50"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 00:03:51"}
+{"level":"info","message":"Fetched 166 receipts (populated)","timestamp":"2026-01-06 00:03:51"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"hj-Y4DLsdNFioisjAAAr","timestamp":"2026-01-06 00:04:20"}
+{"level":"info","message":"User disconnected","socketId":"hj-Y4DLsdNFioisjAAAr","timestamp":"2026-01-06 00:04:20","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"mquWzufIdVoRBSSkAAAt","timestamp":"2026-01-06 00:04:20"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"It0RIa_V0A7RVmzkAAAv","timestamp":"2026-01-06 00:05:02"}
+{"level":"info","message":"User disconnected","socketId":"It0RIa_V0A7RVmzkAAAv","timestamp":"2026-01-06 00:05:02","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"DO5LJrv1-hMu3_l8AAAx","timestamp":"2026-01-06 00:05:02"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 00:05:30"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"wvCp4zfnta-Wqg58AAA0","timestamp":"2026-01-06 00:05:31"}
+{"level":"info","message":"Fetched 166 receipts (populated)","timestamp":"2026-01-06 00:05:31"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 00:05:31"}
+{"level":"info","message":"Fetched 166 receipts (populated)","timestamp":"2026-01-06 00:05:32"}
+{"error":"logger.logInfo is not a function","level":"error","stack":"TypeError: logger.logInfo is not a function\n    at addCredit (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/walletController.js:66:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createReceipt (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/financeController.js:373:13)","timestamp":"2026-01-06 00:10:28"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"lqs99RSHey2RNgPIAAA2","timestamp":"2026-01-06 00:11:32"}
+{"level":"info","message":"User disconnected","socketId":"TnwZOXb7A5pivM2BAAAF","timestamp":"2026-01-06 00:15:38","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"sl_CZOkUzqoF39ADAAA5","timestamp":"2026-01-06 00:15:39"}
+{"level":"info","message":"User disconnected","socketId":"sl_CZOkUzqoF39ADAAA5","timestamp":"2026-01-06 00:19:27","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"iJ0E4wPuGuI038Q1AAA8","timestamp":"2026-01-06 00:19:27"}
+{"level":"info","message":"User disconnected","socketId":"iJ0E4wPuGuI038Q1AAA8","timestamp":"2026-01-06 00:21:02","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"TtMpVAiGYVwFe2X-AAA_","timestamp":"2026-01-06 00:21:02"}
+{"level":"info","message":"User disconnected","socketId":"TtMpVAiGYVwFe2X-AAA_","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"GGo8sYG8_tgM-RMkAAAa","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"SRqpLu23VpS8yrpSAAAO","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"wvCp4zfnta-Wqg58AAA0","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"Su6EHIBzAvrRdTVfAAAU","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"WvVeOoaHWjscJjAvAAAI","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"ZkFN7obKEjQVf6yHAAAL","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"Jipgi6FPAcAoOVVCAAAR","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"jE8dM2_ZjH04Gt3EAAAp","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"jooQLs9hP2gcKQFNAAAX","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"5ZyxS4R8t0V43sjNAAAi","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"Fa6G3BcTyHkeKlShAAAl","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"f9bow3MG7z7IkA5zAAAe","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"mquWzufIdVoRBSSkAAAt","timestamp":"2026-01-06 00:41:43","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"DO5LJrv1-hMu3_l8AAAx","timestamp":"2026-01-06 00:41:44","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"lqs99RSHey2RNgPIAAA2","timestamp":"2026-01-06 00:41:44","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"Qc3F-9OQUQCNY5eXAABB","timestamp":"2026-01-06 19:28:46"}
+{"level":"info","message":"User disconnected","socketId":"Qc3F-9OQUQCNY5eXAABB","timestamp":"2026-01-06 19:28:46","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"z2foemN8Ki9YsI1DAABD","timestamp":"2026-01-06 19:28:46"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:28:48"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"Qkzyai8ZSV7ZIR8gAABF","timestamp":"2026-01-06 19:28:49"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:28:49"}
+{"level":"info","message":"User disconnected","socketId":"Qkzyai8ZSV7ZIR8gAABF","timestamp":"2026-01-06 19:28:49","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"M5v-GGfrj82XJ_o6AABH","timestamp":"2026-01-06 19:28:49"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"LqERqsRu-oDmOkzcAABJ","timestamp":"2026-01-06 19:28:49"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"CUDF53dVk2ISuETbAABM","timestamp":"2026-01-06 19:29:01"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"fEYqqTnQmq9b1DOvAABN","timestamp":"2026-01-06 19:29:01"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"Xl3QHehYSSGLI2QQAABP","timestamp":"2026-01-06 19:29:01"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"JfG3V93f773byzuyAABR","timestamp":"2026-01-06 19:29:02"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"Q9pZXcUkru3cnrCgAABT","timestamp":"2026-01-06 19:29:02"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"djZqtoLBiBy0PSi2AABV","timestamp":"2026-01-06 19:29:02"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"wcNqovwpGVWjprRDAABX","timestamp":"2026-01-06 19:29:02"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"TKS7ksShLNFYnX7EAABZ","timestamp":"2026-01-06 19:29:03"}
+{"level":"info","message":"User disconnected","socketId":"CUDF53dVk2ISuETbAABM","timestamp":"2026-01-06 19:29:07","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"B9xuBKR4jH7Fz3pmAABc","timestamp":"2026-01-06 19:29:08"}
+{"level":"info","message":"User disconnected","socketId":"fEYqqTnQmq9b1DOvAABN","timestamp":"2026-01-06 19:31:24","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"wcNqovwpGVWjprRDAABX","timestamp":"2026-01-06 19:31:24","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"djZqtoLBiBy0PSi2AABV","timestamp":"2026-01-06 19:31:24","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"TKS7ksShLNFYnX7EAABZ","timestamp":"2026-01-06 19:31:24","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"Q9pZXcUkru3cnrCgAABT","timestamp":"2026-01-06 19:31:24","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"Xl3QHehYSSGLI2QQAABP","timestamp":"2026-01-06 19:31:24","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"JfG3V93f773byzuyAABR","timestamp":"2026-01-06 19:31:24","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"KsP0pkSQ7nAa1KS7AABg","timestamp":"2026-01-06 19:31:26"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"KhD8-njYp5I5UT__AABi","timestamp":"2026-01-06 19:31:26"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:31:26"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"ta0u5eKH8VP43uCnAABj","timestamp":"2026-01-06 19:31:27"}
+{"level":"info","message":"User disconnected","socketId":"KsP0pkSQ7nAa1KS7AABg","timestamp":"2026-01-06 19:31:27","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"ta0u5eKH8VP43uCnAABj","timestamp":"2026-01-06 19:31:27","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"vecoTYn7o_7SE7HpAABl","timestamp":"2026-01-06 19:31:27"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"lcoKJ3aikxUuhV3WAABn","timestamp":"2026-01-06 19:31:27"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:31:27"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:31:27"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"iLB4qvRSEADS38PcAABp","timestamp":"2026-01-06 19:31:28"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:31:28"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:31:28"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"9zGkp-_pCoOptX2rAABr","timestamp":"2026-01-06 19:31:28"}
+{"level":"info","message":"User disconnected","socketId":"iLB4qvRSEADS38PcAABp","timestamp":"2026-01-06 19:31:28","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:31:28"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"x5NVD0Ors6m_Y7E9AABt","timestamp":"2026-01-06 19:31:28"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"22mlvJfJZt0ZS46xAABv","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"User disconnected","socketId":"22mlvJfJZt0ZS46xAABv","timestamp":"2026-01-06 19:31:29","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"gLeseXn5Glv6noYMAABx","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:31:29"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"IeYaDNfBRCVIQq2cAABz","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"User disconnected","socketId":"9zGkp-_pCoOptX2rAABr","timestamp":"2026-01-06 19:31:29","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"IeYaDNfBRCVIQq2cAABz","timestamp":"2026-01-06 19:31:29","userId":"69586857eb6068e62cc030cd"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"UUe2rtpG4SLYBO5zAAB2","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:31:29"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"gZdP7oJMIwj5wjKiAAB3","timestamp":"2026-01-06 19:31:29"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 19:36:32"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"xiR2i4CGFP_0b_zuAAAB","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"3jIF4CXBOFBrlr_mAAAD","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"hIvUdR9FJe35DuuQAAAF","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"AoKP2xiTB9XrGMMJAAAH","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"GqnM1vrgAti0vzm7AAAJ","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"ZbJhHIt5Qi7nLQJZAAAL","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"jym9oJzyWp3PRjICAAAN","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"wVxj87ymIPKutelvAAAP","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"yXftkOwxz2dKvQ2tAAAR","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"bie3m4j9oONg7uLVAAAT","timestamp":"2026-01-06 19:36:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"oTAgw60zohnoMPccAAAV","timestamp":"2026-01-06 19:36:33"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 19:37:04"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"fdV9ppIaWsvObRluAAAB","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"2nUkPSztsqAIVlw7AAAF","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"kKZ-sTfcpIA58gyYAAAH","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"To_jd_sHGoM5kTqwAAAJ","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"1vT31FNz1kDQUwFDAAAL","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"xjhhHVC3nLbElHqXAAAO","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 19:37:04"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 19:37:05"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 19:37:05"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"RlLA1Gon7KaHx3ZDAAAQ","timestamp":"2026-01-06 19:37:05"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"21Yde6HwhdfY1J5FAAAR","timestamp":"2026-01-06 19:37:05"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"NLpISSkWwrYCqaxMAAAS","timestamp":"2026-01-06 19:37:05"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"EHJNbgMOlh2xgUP4AAAT","timestamp":"2026-01-06 19:37:05"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"VAcUgDEf87V7_XLbAAAV","timestamp":"2026-01-06 19:37:05"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 19:37:37"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"Q-RKZbqH1jNoxIPxAAAB","timestamp":"2026-01-06 19:37:37"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 19:37:37"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 19:37:37"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"XswclYjgYUje4gjjAAAD","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"1bC4JcI1R3A9DlWdAAAF","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"IincSxtn8pt-59poAAAH","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"TMzr4bEI_p6vrcItAAAJ","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"JCQvndv6aYsbXCVHAAAL","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"6ojX_rmUBQ-puGw-AAAN","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"_8nosAd-6LZHBj8iAAAP","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"fPR0jCZkedxgdE8KAAAR","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"9QX2ZNwGRggTW-6gAAAT","timestamp":"2026-01-06 19:37:38"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"ZFFcDxxHvV_lh5DHAAAV","timestamp":"2026-01-06 19:37:39"}
+{"level":"info","message":"User disconnected","socketId":"6ojX_rmUBQ-puGw-AAAN","timestamp":"2026-01-06 19:43:01","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"JCQvndv6aYsbXCVHAAAL","timestamp":"2026-01-06 19:43:01","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"XswclYjgYUje4gjjAAAD","timestamp":"2026-01-06 19:43:01","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"fPR0jCZkedxgdE8KAAAR","timestamp":"2026-01-06 19:43:01","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"ZFFcDxxHvV_lh5DHAAAV","timestamp":"2026-01-06 19:43:01","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"IincSxtn8pt-59poAAAH","timestamp":"2026-01-06 19:43:02","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"TMzr4bEI_p6vrcItAAAJ","timestamp":"2026-01-06 19:43:02","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"1bC4JcI1R3A9DlWdAAAF","timestamp":"2026-01-06 19:43:02","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"_8nosAd-6LZHBj8iAAAP","timestamp":"2026-01-06 19:43:02","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"9QX2ZNwGRggTW-6gAAAT","timestamp":"2026-01-06 19:43:02","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"User disconnected","socketId":"Q-RKZbqH1jNoxIPxAAAB","timestamp":"2026-01-06 19:43:07","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"ipZE_kMAKAY6hm_EAAAY","timestamp":"2026-01-06 19:43:07"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:44:34"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:44:34"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:44:34"}
+{"level":"info","message":"Fetched 167 receipts (populated)","timestamp":"2026-01-06 19:44:34"}
+{"level":"info","message":"🔄 Creating Receipt Journal Entry...","timestamp":"2026-01-06 19:45:11"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d4a27ac9efb62306f3d9f","timestamp":"2026-01-06 19:45:11"}
+{"level":"info","message":"✅ Receipt JE Created: 695d4a27ac9efb62306f3d9f","timestamp":"2026-01-06 19:45:11"}
+{"level":"info","message":"📝 Audit: CREATE RECEIPT 695d4a27ac9efb62306f3d97","timestamp":"2026-01-06 19:45:11"}
+{"level":"info","message":"✅ Receipt created successfully: 695d4a27ac9efb62306f3d97","timestamp":"2026-01-06 19:45:11"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 19:45:11"}
+{"level":"info","message":"Fetched 168 receipts (populated)","timestamp":"2026-01-06 19:45:12"}
+{"level":"info","message":"User disconnected","socketId":"ipZE_kMAKAY6hm_EAAAY","timestamp":"2026-01-06 19:54:00","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"pXn9YsH9PB5jEFvLAAAa","timestamp":"2026-01-06 19:54:01"}
+{"level":"info","message":"User disconnected","socketId":"pXn9YsH9PB5jEFvLAAAa","timestamp":"2026-01-06 20:03:37","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"cx_rJUV_6MGyxWwCAAAd","timestamp":"2026-01-06 20:04:51"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:09:12"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:09:12"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:09:12"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:09:12"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:09:12"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:09:12"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"jIgkMcTnVupoL2hEAAAB","timestamp":"2026-01-06 20:09:14"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:54:32"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:54:32"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:54:32"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:54:32"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:54:32"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:54:32"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"PXXBWR-Yhf6H6IbkAAAC","timestamp":"2026-01-06 20:55:12"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 20:55:56"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d5abc348a27eca18f8fa0","timestamp":"2026-01-06 20:55:56"}
+{"level":"info","message":"✅ Sales JE Created: 695d5abc348a27eca18f8fa0","timestamp":"2026-01-06 20:55:56"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d5abc348a27eca18f8f8d","timestamp":"2026-01-06 20:55:56"}
+{"level":"info","message":"User disconnected","socketId":"PXXBWR-Yhf6H6IbkAAAC","timestamp":"2026-01-06 20:56:13","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"NGkeMc2BlAG3Wr1sAAAF","timestamp":"2026-01-06 20:56:13"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:56:57"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"o5-llGAZ0_6ZDUciAAAB","timestamp":"2026-01-06 20:56:57"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:56:57"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:56:57"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:56:57"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:56:57"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:56:57"}
+{"level":"info","message":"User disconnected","socketId":"o5-llGAZ0_6ZDUciAAAB","timestamp":"2026-01-06 20:57:10","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"Kfg4-DOuACryKHB0AAAE","timestamp":"2026-01-06 20:57:10"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:57:19"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:57:19"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:57:19"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"RrbPRJ9t20DdVDUFAAAB","timestamp":"2026-01-06 20:57:19"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:57:19"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:57:19"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:57:19"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:58:01"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:58:01"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:58:02"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:58:02"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:58:02"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:58:02"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"A7mhEstCuj2utUZ0AAAB","timestamp":"2026-01-06 20:58:02"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:58:16"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:58:16"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:58:16"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:58:16"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:58:16"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:58:16"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"iNjILBCrCan6Wb6xAAAB","timestamp":"2026-01-06 20:58:16"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:58:39"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:58:39"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:58:39"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:58:39"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:58:39"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:58:39"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"2ummZEIsBPHwr52AAAAB","timestamp":"2026-01-06 20:58:39"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:59:08"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:59:08"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:59:08"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:59:08"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:59:08"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:59:08"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"E9g-2e-NVFcX78efAAAB","timestamp":"2026-01-06 20:59:08"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 20:59:17"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 20:59:17"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 20:59:17"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 20:59:17"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 20:59:17"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 20:59:17"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"WhteMMWap5_0D1pNAAAB","timestamp":"2026-01-06 20:59:17"}
+{"amount":100,"balanceAfter":400,"customerId":"695d5b8c99eabd7ae11498cd","level":"info","message":"Wallet credit used","reference":{"type":"Manual"},"timestamp":"2026-01-06 20:59:24","transactionId":"695d5b8c99eabd7ae11498d6"}
+{"level":"info","message":"User disconnected","socketId":"WhteMMWap5_0D1pNAAAB","timestamp":"2026-01-06 20:59:46","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"d9IC1aLoNGV0CoSOAAAE","timestamp":"2026-01-06 20:59:47"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:00:20"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d5bc4ecaaf23d985cd3b9","timestamp":"2026-01-06 21:00:20"}
+{"level":"info","message":"✅ Sales JE Created: 695d5bc4ecaaf23d985cd3b9","timestamp":"2026-01-06 21:00:20"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d5bc4ecaaf23d985cd3a6","timestamp":"2026-01-06 21:00:20"}
+{"level":"info","message":"User disconnected","socketId":"d9IC1aLoNGV0CoSOAAAE","timestamp":"2026-01-06 21:00:23","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"18rUhfmVAW2r9xoiAAAH","timestamp":"2026-01-06 21:00:24"}
+{"level":"info","message":"User disconnected","socketId":"18rUhfmVAW2r9xoiAAAH","timestamp":"2026-01-06 21:00:40","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"zc51ELGyomAIzodzAAAJ","timestamp":"2026-01-06 21:00:40"}
+{"level":"info","message":"User disconnected","socketId":"zc51ELGyomAIzodzAAAJ","timestamp":"2026-01-06 21:00:40","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"uKF_ETcFoYVpB2klAAAL","timestamp":"2026-01-06 21:00:40"}
+{"level":"info","message":"User disconnected","socketId":"uKF_ETcFoYVpB2klAAAL","timestamp":"2026-01-06 21:02:16","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"iaLQ7lX7pLPGQsrDAAAO","timestamp":"2026-01-06 21:02:16"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:02:55"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d5c5fecaaf23d985cd71d","timestamp":"2026-01-06 21:02:55"}
+{"level":"info","message":"✅ Sales JE Created: 695d5c5fecaaf23d985cd71d","timestamp":"2026-01-06 21:02:55"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d5c5fecaaf23d985cd70b","timestamp":"2026-01-06 21:02:55"}
+{"level":"info","message":"User disconnected","socketId":"iaLQ7lX7pLPGQsrDAAAO","timestamp":"2026-01-06 21:06:13","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"i1W03p1ntmFHdPr1AAAR","timestamp":"2026-01-06 21:06:14"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:06:34"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d5d3aecaaf23d985cd953","timestamp":"2026-01-06 21:06:34"}
+{"level":"info","message":"✅ Sales JE Created: 695d5d3aecaaf23d985cd953","timestamp":"2026-01-06 21:06:34"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d5d3aecaaf23d985cd940","timestamp":"2026-01-06 21:06:34"}
+{"level":"info","message":"User disconnected","socketId":"i1W03p1ntmFHdPr1AAAR","timestamp":"2026-01-06 21:06:46","userId":"69586857eb6068e62cc030cd"}
+{"level":"info","message":"✅ User connected: 69586857eb6068e62cc030cd","role":"admin","socketId":"IbEtP27h_XIx0l5-AAAU","timestamp":"2026-01-06 21:06:46"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 21:09:29"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 21:09:36"}
+{"level":"info","message":"User disconnected","socketId":"IbEtP27h_XIx0l5-AAAU","timestamp":"2026-01-06 21:11:40","userId":"69586857eb6068e62cc030cd"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 21:13:28"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 21:13:28"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 21:13:28"}
+{"level":"info","message":"✅ Created account: 10103 - مخزون البضاعة","timestamp":"2026-01-06 21:13:29"}
+{"level":"info","message":"✅ Created account: 10105 - حسابات العملاء الرقابية","timestamp":"2026-01-06 21:13:29"}
+{"level":"info","message":"✅ Created account: 11101 - النقدية","timestamp":"2026-01-06 21:13:29"}
+{"level":"info","message":"✅ Created account: 20101 - حسابات الموردين الرقابية","timestamp":"2026-01-06 21:13:29"}
+{"level":"info","message":"✅ Created account: 40102 - مردودات المبيعات","timestamp":"2026-01-06 21:13:29"}
+{"level":"info","message":"📊 Auto-seeded 5 missing accounts","timestamp":"2026-01-06 21:13:29"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 21:13:29"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 21:13:29"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 21:14:44"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 21:14:44"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 21:14:44"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 21:14:45"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 21:14:45"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 21:14:45"}
+{"amount":500,"balanceAfter":500,"customerId":"695d6077c046241b0ed79b8a","level":"info","message":"Wallet credit added","timestamp":"2026-01-06 21:26:12","transactionId":"695d61d4c046241b0ed79bba","type":"deposit"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:28:17"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d6251c046241b0ed79bff","timestamp":"2026-01-06 21:28:17"}
+{"level":"info","message":"✅ Sales JE Created: 695d6251c046241b0ed79bff","timestamp":"2026-01-06 21:28:17"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d6251c046241b0ed79bf0","timestamp":"2026-01-06 21:28:17"}
+{"amount":200,"balanceAfter":700,"customerId":"695d6077c046241b0ed79b8a","level":"info","message":"Wallet credit added","timestamp":"2026-01-06 21:28:36","transactionId":"695d6264c046241b0ed79c2d","type":"deposit"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:29:35"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d629fc046241b0ed79c82","timestamp":"2026-01-06 21:29:35"}
+{"level":"info","message":"✅ Sales JE Created: 695d629fc046241b0ed79c82","timestamp":"2026-01-06 21:29:35"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d629fc046241b0ed79c74","timestamp":"2026-01-06 21:29:35"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:31:44"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d6320c046241b0ed79ce0","timestamp":"2026-01-06 21:31:44"}
+{"level":"info","message":"✅ Sales JE Created: 695d6320c046241b0ed79ce0","timestamp":"2026-01-06 21:31:44"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d6320c046241b0ed79cd2","timestamp":"2026-01-06 21:31:44"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 21:32:35"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 21:32:35"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 21:32:35"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 21:32:35"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 21:32:35"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 21:32:35"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:32:57"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d63695ea650602b0c2866","timestamp":"2026-01-06 21:32:57"}
+{"level":"info","message":"✅ Sales JE Created: 695d63695ea650602b0c2866","timestamp":"2026-01-06 21:32:57"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d63695ea650602b0c2857","timestamp":"2026-01-06 21:32:57"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:34:47"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d63d75ea650602b0c28c4","timestamp":"2026-01-06 21:34:47"}
+{"level":"info","message":"✅ Sales JE Created: 695d63d75ea650602b0c28c4","timestamp":"2026-01-06 21:34:47"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d63d75ea650602b0c28b6","timestamp":"2026-01-06 21:34:47"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:34:58"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d63e25ea650602b0c28ef","timestamp":"2026-01-06 21:34:58"}
+{"level":"info","message":"✅ Sales JE Created: 695d63e25ea650602b0c28ef","timestamp":"2026-01-06 21:34:58"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d63e25ea650602b0c28e1","timestamp":"2026-01-06 21:34:58"}
+{"amount":2300,"balanceAfter":3000,"customerId":"695d6077c046241b0ed79b8a","level":"info","message":"Wallet credit added","timestamp":"2026-01-06 21:36:40","transactionId":"695d64485ea650602b0c2913","type":"deposit"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:37:14"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d646a5ea650602b0c2952","timestamp":"2026-01-06 21:37:14"}
+{"level":"info","message":"✅ Sales JE Created: 695d646a5ea650602b0c2952","timestamp":"2026-01-06 21:37:14"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d646a5ea650602b0c2944","timestamp":"2026-01-06 21:37:14"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:40:43"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d653b5ea650602b0c29b0","timestamp":"2026-01-06 21:40:43"}
+{"level":"info","message":"✅ Sales JE Created: 695d653b5ea650602b0c29b0","timestamp":"2026-01-06 21:40:43"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d653b5ea650602b0c29a1","timestamp":"2026-01-06 21:40:43"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 21:41:37"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 21:41:37"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 21:41:37"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 21:41:37"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 21:41:37"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 21:41:37"}
+{"amount":5000,"balanceAfter":5000,"customerId":"695d660cb94b0432088698a0","level":"info","message":"Wallet credit added","timestamp":"2026-01-06 21:44:24","transactionId":"695d6618b94b0432088698af","type":"deposit"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:44:42"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d662ab94b0432088698f3","timestamp":"2026-01-06 21:44:42"}
+{"level":"info","message":"✅ Sales JE Created: 695d662ab94b0432088698f3","timestamp":"2026-01-06 21:44:42"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d662ab94b0432088698e4","timestamp":"2026-01-06 21:44:42"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 21:48:23"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d6707b94b04320886999f","timestamp":"2026-01-06 21:48:23"}
+{"level":"info","message":"✅ Sales JE Created: 695d6707b94b04320886999f","timestamp":"2026-01-06 21:48:23"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d6707b94b043208869991","timestamp":"2026-01-06 21:48:23"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 21:58:28"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 21:58:28"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 21:58:28"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 21:58:28"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 21:58:28"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 21:58:28"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:03:03"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:03:04"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:03:04"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:03:04"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:03:04"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:03:04"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:04:01"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d6ab1a2c4a96ef6a1705e","timestamp":"2026-01-06 22:04:01"}
+{"level":"info","message":"✅ Sales JE Created: 695d6ab1a2c4a96ef6a1705e","timestamp":"2026-01-06 22:04:01"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d6ab1a2c4a96ef6a1704f","timestamp":"2026-01-06 22:04:01"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:14:13"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:14:13"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:14:13"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:14:13"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:14:13"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:14:13"}
+{"errors":[{"location":"body","msg":"Invalid value","path":"treasury","type":"field","value":null}],"level":"warn","message":"⚠️ Invoice Validation Errors","timestamp":"2026-01-06 22:15:25"}
+{"errors":[{"location":"body","msg":"Invalid value","path":"treasury","type":"field","value":null}],"level":"warn","message":"⚠️ Invoice Validation Errors","timestamp":"2026-01-06 22:15:38"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:16:23"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:16:23"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:16:23"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:16:23"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:16:23"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:16:23"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:16:31"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:16:31"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:16:31"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:16:31"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:16:31"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:16:31"}
+{"error":"الخزينة مطلوبة (Treasury is required for payments)","level":"error","timestamp":"2026-01-06 22:16:55"}
+{"error":"الخزينة مطلوبة (Treasury is required for payments)","level":"error","stack":"Error: الخزينة مطلوبة (Treasury is required for payments)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:704:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:16:55"}
+{"error":"الخزينة مطلوبة (Treasury is required for payments)","level":"error","timestamp":"2026-01-06 22:17:01"}
+{"error":"الخزينة مطلوبة (Treasury is required for payments)","level":"error","stack":"Error: الخزينة مطلوبة (Treasury is required for payments)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:704:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:17:01"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:17:17"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d6dcd8a4e650d58d5a430","timestamp":"2026-01-06 22:17:17"}
+{"level":"info","message":"✅ Sales JE Created: 695d6dcd8a4e650d58d5a430","timestamp":"2026-01-06 22:17:17"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d6dcd8a4e650d58d5a421","timestamp":"2026-01-06 22:17:17"}
+{"error":"الخزينة مطلوبة (Treasury is required for payments)","level":"error","timestamp":"2026-01-06 22:17:30"}
+{"error":"الخزينة مطلوبة (Treasury is required for payments)","level":"error","stack":"Error: الخزينة مطلوبة (Treasury is required for payments)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:704:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:17:30"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:19:52"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:19:52"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:19:52"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:19:52"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:19:52"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:19:52"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:20:14"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:20:14"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:20:14"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:20:14"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:20:14"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:20:14"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:20:51"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:20:51"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:20:51"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:20:51"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:20:51"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:20:51"}
+{"error":"SalesInvoice validation failed: paymentMethod: `wallet` is not a valid enum value for path `paymentMethod`.","level":"error","timestamp":"2026-01-06 22:21:10"}
+{"error":"SalesInvoice validation failed: paymentMethod: `wallet` is not a valid enum value for path `paymentMethod`.","level":"error","stack":"Error: SalesInvoice validation failed: paymentMethod: `wallet` is not a valid enum value for path `paymentMethod`.\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:705:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:21:10"}
+{"error":"SalesInvoice validation failed: paymentMethod: `wallet` is not a valid enum value for path `paymentMethod`.","level":"error","timestamp":"2026-01-06 22:22:15"}
+{"error":"SalesInvoice validation failed: paymentMethod: `wallet` is not a valid enum value for path `paymentMethod`.","level":"error","stack":"Error: SalesInvoice validation failed: paymentMethod: `wallet` is not a valid enum value for path `paymentMethod`.\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:705:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:22:15"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:23:37"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:23:37"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:23:37"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:23:37"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:23:37"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:23:37"}
+{"amount":2500,"balanceAfter":2500,"customerId":"695d660cb94b0432088698a0","level":"info","message":"Wallet credit used","reference":{"id":"695d6f626a78cfa98932bff0","number":"INV-00015","type":"SalesInvoice"},"timestamp":"2026-01-06 22:24:02","transactionId":"695d6f626a78cfa98932bffa"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:24:02"}
+{"error":"حساب أمانات العملاء/المحفظة (2030) غير موجود","level":"error","timestamp":"2026-01-06 22:24:02"}
+{"error":"حساب أمانات العملاء/المحفظة (2030) غير موجود","level":"error","stack":"Error: حساب أمانات العملاء/المحفظة (2030) غير موجود\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:705:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:24:02"}
+{"amount":2500,"balanceAfter":2500,"customerId":"695d660cb94b0432088698a0","level":"info","message":"Wallet credit used","reference":{"id":"695d6f666a78cfa98932c005","number":"INV-00016","type":"SalesInvoice"},"timestamp":"2026-01-06 22:24:06","transactionId":"695d6f666a78cfa98932c00f"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:24:06"}
+{"error":"حساب أمانات العملاء/المحفظة (2030) غير موجود","level":"error","timestamp":"2026-01-06 22:24:06"}
+{"error":"حساب أمانات العملاء/المحفظة (2030) غير موجود","level":"error","stack":"Error: حساب أمانات العملاء/المحفظة (2030) غير موجود\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:705:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:24:06"}
+{"level":"http","message":"GET /reports/trial-balance called (from: 2025-12-31, to: 2026-01-06)","timestamp":"2026-01-06 22:24:15"}
+{"level":"info","message":"Trial Balance: 2 accounts, Balanced: true","timestamp":"2026-01-06 22:24:15"}
+{"amount":2500,"balanceAfter":2500,"customerId":"695d660cb94b0432088698a0","level":"info","message":"Wallet credit used","reference":{"id":"695d6f976a78cfa98932c07a","number":"INV-00017","type":"SalesInvoice"},"timestamp":"2026-01-06 22:24:55","transactionId":"695d6f976a78cfa98932c084"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:24:55"}
+{"error":"حساب أمانات العملاء/المحفظة (2030) غير موجود","level":"error","timestamp":"2026-01-06 22:24:55"}
+{"error":"حساب أمانات العملاء/المحفظة (2030) غير موجود","level":"error","stack":"Error: حساب أمانات العملاء/المحفظة (2030) غير موجود\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:705:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2026-01-06 22:24:55"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:25:41"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:25:41"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:25:41"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:25:42"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:25:42"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:25:42"}
+{"amount":2500,"balanceAfter":2500,"customerId":"695d660cb94b0432088698a0","level":"info","message":"Wallet credit used","reference":{"id":"695d7028bdbb9bab575a12e5","number":"INV-00018","type":"SalesInvoice"},"timestamp":"2026-01-06 22:27:20","transactionId":"695d7028bdbb9bab575a12ef"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:27:20"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d7028bdbb9bab575a12f4","timestamp":"2026-01-06 22:27:20"}
+{"level":"info","message":"✅ Sales JE Created: 695d7028bdbb9bab575a12f4","timestamp":"2026-01-06 22:27:20"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d7028bdbb9bab575a12e5","timestamp":"2026-01-06 22:27:20"}
+{"amount":2500,"balanceAfter":0,"customerId":"695d660cb94b0432088698a0","level":"info","message":"Wallet credit used","reference":{"id":"695d707dbdbb9bab575a133e","number":"INV-00019","type":"SalesInvoice"},"timestamp":"2026-01-06 22:28:45","transactionId":"695d707dbdbb9bab575a1348"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:28:45"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d707dbdbb9bab575a134c","timestamp":"2026-01-06 22:28:45"}
+{"level":"info","message":"✅ Sales JE Created: 695d707dbdbb9bab575a134c","timestamp":"2026-01-06 22:28:45"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d707dbdbb9bab575a133e","timestamp":"2026-01-06 22:28:45"}
+{"amount":3000,"balanceAfter":3000,"customerId":"695d70b7bdbb9bab575a1380","level":"info","message":"Wallet credit added","timestamp":"2026-01-06 22:29:49","transactionId":"695d70bdbdbb9bab575a138d","type":"deposit"}
+{"amount":2500,"balanceAfter":500,"customerId":"695d70b7bdbb9bab575a1380","level":"info","message":"Wallet credit used","reference":{"id":"695d70cdbdbb9bab575a13be","number":"INV-00020","type":"SalesInvoice"},"timestamp":"2026-01-06 22:30:05","transactionId":"695d70cdbdbb9bab575a13c8"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:30:05"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d70cdbdbb9bab575a13cc","timestamp":"2026-01-06 22:30:05"}
+{"level":"info","message":"✅ Sales JE Created: 695d70cdbdbb9bab575a13cc","timestamp":"2026-01-06 22:30:05"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d70cdbdbb9bab575a13be","timestamp":"2026-01-06 22:30:05"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:33:25"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:33:25"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:33:25"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:33:26"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:33:26"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:33:26"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:33:38"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:33:38"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:33:38"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:33:38"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:33:38"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:33:38"}
+{"amount":50000,"balanceAfter":50000,"customerId":"695d729915147638d4a37bc7","level":"info","message":"Wallet credit added","timestamp":"2026-01-06 22:38:44","transactionId":"695d72d415147638d4a37bdd","type":"deposit"}
+{"amount":5000,"balanceAfter":5000,"customerId":"695d72c815147638d4a37bd0","level":"info","message":"Wallet credit added","timestamp":"2026-01-06 22:38:55","transactionId":"695d72df15147638d4a37bf0","type":"deposit"}
+{"amount":2500,"balanceAfter":2500,"customerId":"695d72c815147638d4a37bd0","level":"info","message":"Wallet credit used","reference":{"id":"695d72f415147638d4a37c41","number":"INV-00021","type":"SalesInvoice"},"timestamp":"2026-01-06 22:39:16","transactionId":"695d72f415147638d4a37c4b"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:39:16"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d72f415147638d4a37c50","timestamp":"2026-01-06 22:39:16"}
+{"level":"info","message":"✅ Sales JE Created: 695d72f415147638d4a37c50","timestamp":"2026-01-06 22:39:16"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d72f415147638d4a37c41","timestamp":"2026-01-06 22:39:16"}
+{"amount":2500,"balanceAfter":47500,"customerId":"695d729915147638d4a37bc7","level":"info","message":"Wallet credit used","reference":{"id":"695d731015147638d4a37c73","number":"INV-00022","type":"SalesInvoice"},"timestamp":"2026-01-06 22:39:44","transactionId":"695d731015147638d4a37c7d"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:39:44"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d731015147638d4a37c81","timestamp":"2026-01-06 22:39:44"}
+{"level":"info","message":"✅ Sales JE Created: 695d731015147638d4a37c81","timestamp":"2026-01-06 22:39:44"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d731015147638d4a37c73","timestamp":"2026-01-06 22:39:44"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:40:11"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d732b15147638d4a37cd2","timestamp":"2026-01-06 22:40:11"}
+{"level":"info","message":"✅ Sales JE Created: 695d732b15147638d4a37cd2","timestamp":"2026-01-06 22:40:11"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d732b15147638d4a37cc6","timestamp":"2026-01-06 22:40:11"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:44:02"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:44:02"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:44:02"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:44:03"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:44:03"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:44:03"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:44:40"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:44:40"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:44:40"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:44:40"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:44:40"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:44:40"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:44:54"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:44:54"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:44:54"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:44:54"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:44:54"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:44:54"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:45:16"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:45:17"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:45:17"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:45:17"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:45:17"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:45:17"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 22:45:55"}
+{"level":"info","message":"Fetched 0 receipts (populated)","timestamp":"2026-01-06 22:45:55"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 22:45:55"}
+{"level":"info","message":"Fetched 0 receipts (populated)","timestamp":"2026-01-06 22:45:55"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 22:48:32"}
+{"level":"info","message":"Fetched 0 receipts (populated)","timestamp":"2026-01-06 22:48:32"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 22:48:32"}
+{"level":"info","message":"Fetched 0 receipts (populated)","timestamp":"2026-01-06 22:48:32"}
+{"level":"info","message":"🔄 Creating Receipt Journal Entry...","timestamp":"2026-01-06 22:48:45"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d752db3aa97a547c52650","timestamp":"2026-01-06 22:48:45"}
+{"level":"info","message":"✅ Receipt JE Created: 695d752db3aa97a547c52650","timestamp":"2026-01-06 22:48:45"}
+{"level":"info","message":"📝 Audit: CREATE RECEIPT 695d752db3aa97a547c52647","timestamp":"2026-01-06 22:48:45"}
+{"level":"info","message":"✅ Receipt created successfully: 695d752db3aa97a547c52647","timestamp":"2026-01-06 22:48:45"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 22:48:45"}
+{"level":"info","message":"Fetched 1 receipts (populated)","timestamp":"2026-01-06 22:48:45"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-06 22:51:19"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 695d75c7b3aa97a547c526a7","timestamp":"2026-01-06 22:51:19"}
+{"level":"info","message":"✅ Sales JE Created: 695d75c7b3aa97a547c526a7","timestamp":"2026-01-06 22:51:19"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 695d75c7b3aa97a547c5269a","timestamp":"2026-01-06 22:51:19"}
+{"amount":5000,"balanceAfter":42500,"customerId":"695d729915147638d4a37bc7","level":"info","message":"Wallet credit used","reference":{"id":"695d732b15147638d4a37cc6","number":"INV-00023","type":"SalesInvoice"},"timestamp":"2026-01-06 22:51:42","transactionId":"695d75deb3aa97a547c526cb"}
+{"amount":5000,"customerId":"695d729915147638d4a37bc7","invoiceId":"695d732b15147638d4a37cc6","level":"info","message":"Wallet payment for invoice successful","timestamp":"2026-01-06 22:51:42"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 22:51:59"}
+{"level":"info","message":"Fetched 1 receipts (populated)","timestamp":"2026-01-06 22:51:59"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-06 22:51:59"}
+{"level":"info","message":"Fetched 1 receipts (populated)","timestamp":"2026-01-06 22:51:59"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:54:32"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:54:32"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:54:32"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:54:32"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:54:32"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:54:32"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:54:52"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:54:52"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:54:52"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:54:53"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:54:53"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:54:53"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2026-01-06 22:55:15"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2026-01-06 22:55:15"}
+{"level":"info","message":"🔧 Initializing system data...","timestamp":"2026-01-06 22:55:15"}
+{"level":"info","message":"✅ All required accounts exist","timestamp":"2026-01-06 22:55:15"}
+{"level":"info","message":"✅ Cash Customer ready: CASH","timestamp":"2026-01-06 22:55:15"}
+{"level":"info","message":"✅ System data initialization complete","timestamp":"2026-01-06 22:55:15"}

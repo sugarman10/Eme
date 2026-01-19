@@ -1,0 +1,370 @@
+[2025-11-28T20:44:38.959Z] [INFO] Loading master data...
+[2025-11-28T20:44:38.986Z] [SUCCESS] Loaded: 20 items, 16 customers, 4 warehouses
+[2025-11-28T20:44:38.987Z] [INFO] 
+========== DAY 1 ==========
+[2025-11-28T20:44:38.987Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.008Z] [TRANSACTION] retail Sale created: 5393.50 SAR (Paid) (Day 1)
+[2025-11-28T20:44:39.027Z] [TRANSACTION] retail Sale created: 5612.00 SAR (Paid) (Day 1)
+[2025-11-28T20:44:39.039Z] [TRANSACTION] retail Sale created: 1621.50 SAR (Paid) (Day 1)
+[2025-11-28T20:44:39.048Z] [TRANSACTION] retail Sale created: 230.00 SAR (Paid) (Day 1)
+[2025-11-28T20:44:39.062Z] [TRANSACTION] retail Sale created: 1805.50 SAR (Paid) (Day 1)
+[2025-11-28T20:44:39.064Z] [TRANSACTION] Expense recorded: Rent Expense - 7175.00 SAR (Day 1)
+[2025-11-28T20:44:39.064Z] [SUCCESS] Day 1 complete: 5 sales, 0 purchases
+[2025-11-28T20:44:39.178Z] [INFO] 
+========== DAY 2 ==========
+[2025-11-28T20:44:39.179Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.190Z] [TRANSACTION] retail Sale created: 299.00 SAR (Paid) (Day 2)
+[2025-11-28T20:44:39.202Z] [TRANSACTION] retail Sale created: 966.00 SAR (Paid) (Day 2)
+[2025-11-28T20:44:39.217Z] [TRANSACTION] retail Sale created: 2432.25 SAR (Paid) (Day 2)
+[2025-11-28T20:44:39.233Z] [TRANSACTION] retail Sale created: 2725.50 SAR (Paid) (Day 2)
+[2025-11-28T20:44:39.243Z] [TRANSACTION] retail Sale created: 345.00 SAR (Paid) (Day 2)
+[2025-11-28T20:44:39.243Z] [SUCCESS] Day 2 complete: 5 sales, 0 purchases
+[2025-11-28T20:44:39.350Z] [INFO] 
+========== DAY 3 ==========
+[2025-11-28T20:44:39.351Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.352Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.369Z] [TRANSACTION] retail Sale created: 7935.00 SAR (Paid) (Day 3)
+[2025-11-28T20:44:39.380Z] [TRANSACTION] retail Sale created: 172.50 SAR (Paid) (Day 3)
+[2025-11-28T20:44:39.397Z] [TRANSACTION] retail Sale created: 7779.75 SAR (Paid) (Day 3)
+[2025-11-28T20:44:39.409Z] [TRANSACTION] retail Sale created: 1265.00 SAR (Paid) (Day 3)
+[2025-11-28T20:44:39.410Z] [SUCCESS] Day 3 complete: 4 sales, 0 purchases
+[2025-11-28T20:44:39.522Z] [INFO] 
+========== DAY 4 ==========
+[2025-11-28T20:44:39.523Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.523Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.524Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.541Z] [TRANSACTION] retail Sale created: 5301.50 SAR (Paid) (Day 4)
+[2025-11-28T20:44:39.554Z] [TRANSACTION] retail Sale created: 9108.00 SAR (Paid) (Day 4)
+[2025-11-28T20:44:39.571Z] [TRANSACTION] retail Sale created: 1615.75 SAR (Paid) (Day 4)
+[2025-11-28T20:44:39.579Z] [TRANSACTION] wholesale Sale created: 287.50 SAR (Credit) (Day 4)
+[2025-11-28T20:44:39.580Z] [SUCCESS] Day 4 complete: 4 sales, 0 purchases
+[2025-11-28T20:44:39.693Z] [INFO] 
+========== DAY 5 ==========
+[2025-11-28T20:44:39.693Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.694Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:39.704Z] [TRANSACTION] retail Sale created: 8153.50 SAR (Paid) (Day 5)
+[2025-11-28T20:44:39.712Z] [TRANSACTION] retail Sale created: 1265.00 SAR (Paid) (Day 5)
+[2025-11-28T20:44:39.718Z] [TRANSACTION] retail Sale created: 264.50 SAR (Paid) (Day 5)
+[2025-11-28T20:44:39.732Z] [TRANSACTION] retail Sale created: 11195.25 SAR (Paid) (Day 5)
+[2025-11-28T20:44:39.743Z] [TRANSACTION] retail Sale created: 11419.50 SAR (Paid) (Day 5)
+[2025-11-28T20:44:39.763Z] [TRANSACTION] retail Sale created: 4094.00 SAR (Paid) (Day 5)
+[2025-11-28T20:44:39.764Z] [TRANSACTION] Expense recorded: Salaries & Wages - 15906.00 SAR (Day 5)
+[2025-11-28T20:44:39.764Z] [SUCCESS] Day 5 complete: 6 sales, 0 purchases
+[2025-11-28T20:44:39.878Z] [INFO] 
+========== DAY 6 ==========
+[2025-11-28T20:44:39.887Z] [TRANSACTION] retail Sale created: 207.00 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.898Z] [TRANSACTION] retail Sale created: 4657.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.907Z] [TRANSACTION] retail Sale created: 6152.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.919Z] [TRANSACTION] retail Sale created: 8142.00 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.931Z] [TRANSACTION] retail Sale created: 1759.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.943Z] [TRANSACTION] retail Sale created: 2323.00 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.954Z] [TRANSACTION] retail Sale created: 454.25 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.967Z] [TRANSACTION] retail Sale created: 782.00 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.982Z] [TRANSACTION] retail Sale created: 6854.00 SAR (Paid) (Day 6)
+[2025-11-28T20:44:39.995Z] [TRANSACTION] retail Sale created: 8360.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:40.012Z] [TRANSACTION] retail Sale created: 6451.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:40.030Z] [TRANSACTION] retail Sale created: 8659.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:40.039Z] [TRANSACTION] retail Sale created: 46.00 SAR (Paid) (Day 6)
+[2025-11-28T20:44:40.053Z] [TRANSACTION] retail Sale created: 9073.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:40.067Z] [TRANSACTION] wholesale Sale created: 3818.00 SAR (Credit) (Day 6)
+[2025-11-28T20:44:40.082Z] [TRANSACTION] wholesale Sale created: 2472.50 SAR (Paid) (Day 6)
+[2025-11-28T20:44:40.098Z] [TRANSACTION] wholesale Sale created: 1930.85 SAR (Paid) (Day 6)
+[2025-11-28T20:44:40.099Z] [SUCCESS] Day 6 complete: 17 sales, 0 purchases
+[2025-11-28T20:44:40.207Z] [INFO] 
+========== DAY 7 ==========
+[2025-11-28T20:44:40.217Z] [TRANSACTION] retail Sale created: 2760.00 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.230Z] [TRANSACTION] retail Sale created: 4853.00 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.242Z] [TRANSACTION] retail Sale created: 1035.00 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.255Z] [TRANSACTION] retail Sale created: 2990.00 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.272Z] [TRANSACTION] retail Sale created: 3185.50 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.290Z] [TRANSACTION] retail Sale created: 2800.25 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.305Z] [TRANSACTION] retail Sale created: 2029.75 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.316Z] [TRANSACTION] retail Sale created: 914.25 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.332Z] [TRANSACTION] retail Sale created: 8878.00 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.347Z] [TRANSACTION] retail Sale created: 2087.25 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.359Z] [TRANSACTION] retail Sale created: 931.50 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.370Z] [TRANSACTION] retail Sale created: 138.00 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.385Z] [TRANSACTION] retail Sale created: 1644.50 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.398Z] [TRANSACTION] retail Sale created: 1748.00 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.409Z] [TRANSACTION] retail Sale created: 3248.75 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.428Z] [TRANSACTION] wholesale Sale created: 5234.80 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.439Z] [TRANSACTION] wholesale Sale created: 2961.25 SAR (Paid) (Day 7)
+[2025-11-28T20:44:40.450Z] [TRANSACTION] wholesale Sale created: 2012.50 SAR (Credit) (Day 7)
+[2025-11-28T20:44:40.451Z] [SUCCESS] Day 7 complete: 18 sales, 0 purchases
+[2025-11-28T20:44:40.552Z] [INFO] 
+========== DAY 8 ==========
+[2025-11-28T20:44:40.552Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:40.570Z] [TRANSACTION] retail Sale created: 3887.00 SAR (Paid) (Day 8)
+[2025-11-28T20:44:40.579Z] [TRANSACTION] retail Sale created: 885.50 SAR (Paid) (Day 8)
+[2025-11-28T20:44:40.593Z] [TRANSACTION] retail Sale created: 4071.00 SAR (Paid) (Day 8)
+[2025-11-28T20:44:40.593Z] [SUCCESS] Day 8 complete: 3 sales, 0 purchases
+[2025-11-28T20:44:40.707Z] [INFO] 
+========== DAY 9 ==========
+[2025-11-28T20:44:40.708Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:40.716Z] [TRANSACTION] retail Sale created: 6739.00 SAR (Paid) (Day 9)
+[2025-11-28T20:44:40.721Z] [TRANSACTION] retail Sale created: 103.50 SAR (Paid) (Day 9)
+[2025-11-28T20:44:40.734Z] [TRANSACTION] retail Sale created: 12736.25 SAR (Paid) (Day 9)
+[2025-11-28T20:44:40.735Z] [SUCCESS] Day 9 complete: 3 sales, 0 purchases
+[2025-11-28T20:44:40.849Z] [INFO] 
+========== DAY 10 ==========
+[2025-11-28T20:44:40.849Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:40.850Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:40.859Z] [TRANSACTION] retail Sale created: 10925.00 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.865Z] [TRANSACTION] retail Sale created: 189.75 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.881Z] [TRANSACTION] retail Sale created: 2564.50 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.887Z] [TRANSACTION] retail Sale created: 345.00 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.894Z] [TRANSACTION] retail Sale created: 7279.50 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.904Z] [TRANSACTION] retail Sale created: 2139.00 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.913Z] [TRANSACTION] retail Sale created: 724.50 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.924Z] [TRANSACTION] wholesale Sale created: 4197.50 SAR (Credit) (Day 10)
+[2025-11-28T20:44:40.937Z] [TRANSACTION] wholesale Sale created: 3807.65 SAR (Paid) (Day 10)
+[2025-11-28T20:44:40.947Z] [TRANSACTION] wholesale Sale created: 8152.35 SAR (Credit) (Day 10)
+[2025-11-28T20:44:40.947Z] [TRANSACTION] Expense recorded: Utilities (Electricity & Water) - 1359.00 SAR (Day 10)
+[2025-11-28T20:44:40.948Z] [SUCCESS] Day 10 complete: 10 sales, 0 purchases
+[2025-11-28T20:44:41.052Z] [INFO] 
+========== DAY 11 ==========
+[2025-11-28T20:44:41.053Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:41.053Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:41.060Z] [TRANSACTION] retail Sale created: 2564.50 SAR (Paid) (Day 11)
+[2025-11-28T20:44:41.068Z] [TRANSACTION] retail Sale created: 759.00 SAR (Paid) (Day 11)
+[2025-11-28T20:44:41.075Z] [TRANSACTION] retail Sale created: 736.00 SAR (Paid) (Day 11)
+[2025-11-28T20:44:41.084Z] [TRANSACTION] retail Sale created: 12868.50 SAR (Paid) (Day 11)
+[2025-11-28T20:44:41.092Z] [TRANSACTION] retail Sale created: 1782.50 SAR (Paid) (Day 11)
+[2025-11-28T20:44:41.099Z] [TRANSACTION] wholesale Sale created: 358.80 SAR (Paid) (Day 11)
+[2025-11-28T20:44:41.108Z] [TRANSACTION] wholesale Sale created: 2190.75 SAR (Paid) (Day 11)
+[2025-11-28T20:44:41.108Z] [SUCCESS] Day 11 complete: 7 sales, 0 purchases
+[2025-11-28T20:44:41.210Z] [INFO] 
+========== DAY 12 ==========
+[2025-11-28T20:44:41.211Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:41.211Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:41.218Z] [TRANSACTION] retail Sale created: 2403.50 SAR (Paid) (Day 12)
+[2025-11-28T20:44:41.224Z] [TRANSACTION] retail Sale created: 598.00 SAR (Paid) (Day 12)
+[2025-11-28T20:44:41.234Z] [TRANSACTION] retail Sale created: 7371.50 SAR (Paid) (Day 12)
+[2025-11-28T20:44:41.245Z] [TRANSACTION] retail Sale created: 2846.25 SAR (Paid) (Day 12)
+[2025-11-28T20:44:41.246Z] [SUCCESS] Day 12 complete: 4 sales, 0 purchases
+[2025-11-28T20:44:41.352Z] [INFO] 
+========== DAY 13 ==========
+[2025-11-28T20:44:41.361Z] [TRANSACTION] retail Sale created: 747.50 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.370Z] [TRANSACTION] retail Sale created: 1719.25 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.380Z] [TRANSACTION] retail Sale created: 3381.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.387Z] [TRANSACTION] retail Sale created: 8970.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.393Z] [TRANSACTION] retail Sale created: 207.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.401Z] [TRANSACTION] retail Sale created: 2242.50 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.406Z] [TRANSACTION] retail Sale created: 3795.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.417Z] [TRANSACTION] retail Sale created: 10315.50 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.426Z] [TRANSACTION] retail Sale created: 2984.25 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.435Z] [TRANSACTION] retail Sale created: 540.50 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.440Z] [TRANSACTION] retail Sale created: 460.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.451Z] [TRANSACTION] retail Sale created: 1932.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.459Z] [TRANSACTION] retail Sale created: 1702.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.472Z] [TRANSACTION] retail Sale created: 3013.00 SAR (Paid) (Day 13)
+[2025-11-28T20:44:41.473Z] [SUCCESS] Day 13 complete: 14 sales, 0 purchases
+[2025-11-28T20:44:41.585Z] [INFO] 
+========== DAY 14 ==========
+[2025-11-28T20:44:41.593Z] [TRANSACTION] retail Sale created: 5600.50 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.602Z] [TRANSACTION] retail Sale created: 1702.00 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.611Z] [TRANSACTION] retail Sale created: 5606.25 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.624Z] [TRANSACTION] retail Sale created: 9706.00 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.631Z] [TRANSACTION] retail Sale created: 644.00 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.643Z] [TRANSACTION] retail Sale created: 2162.00 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.652Z] [TRANSACTION] retail Sale created: 1161.50 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.658Z] [TRANSACTION] retail Sale created: 368.00 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.665Z] [TRANSACTION] retail Sale created: 276.00 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.675Z] [TRANSACTION] retail Sale created: 10154.50 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.685Z] [TRANSACTION] wholesale Sale created: 4191.75 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.693Z] [TRANSACTION] wholesale Sale created: 1012.00 SAR (Paid) (Day 14)
+[2025-11-28T20:44:41.705Z] [TRANSACTION] wholesale Sale created: 7897.05 SAR (Credit) (Day 14)
+[2025-11-28T20:44:41.706Z] [SUCCESS] Day 14 complete: 13 sales, 0 purchases
+[2025-11-28T20:44:41.820Z] [INFO] 
+========== DAY 15 ==========
+[2025-11-28T20:44:41.821Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:41.821Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:41.830Z] [TRANSACTION] retail Sale created: 782.00 SAR (Paid) (Day 15)
+[2025-11-28T20:44:41.839Z] [TRANSACTION] retail Sale created: 4255.00 SAR (Paid) (Day 15)
+[2025-11-28T20:44:41.848Z] [TRANSACTION] retail Sale created: 2587.50 SAR (Paid) (Day 15)
+[2025-11-28T20:44:41.857Z] [TRANSACTION] retail Sale created: 644.00 SAR (Paid) (Day 15)
+[2025-11-28T20:44:41.864Z] [TRANSACTION] retail Sale created: 264.50 SAR (Paid) (Day 15)
+[2025-11-28T20:44:41.873Z] [TRANSACTION] retail Sale created: 1000.50 SAR (Paid) (Day 15)
+[2025-11-28T20:44:41.874Z] [TRANSACTION] Expense recorded: Marketing & Advertising - 4956.00 SAR (Day 15)
+[2025-11-28T20:44:41.874Z] [SUCCESS] Day 15 complete: 6 sales, 0 purchases
+[2025-11-28T20:44:41.975Z] [INFO] 
+========== DAY 16 ==========
+[2025-11-28T20:44:41.976Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:41.983Z] [TRANSACTION] retail Sale created: 1794.00 SAR (Paid) (Day 16)
+[2025-11-28T20:44:41.988Z] [TRANSACTION] retail Sale created: 517.50 SAR (Paid) (Day 16)
+[2025-11-28T20:44:42.001Z] [TRANSACTION] retail Sale created: 7509.50 SAR (Paid) (Day 16)
+[2025-11-28T20:44:42.017Z] [TRANSACTION] retail Sale created: 8452.50 SAR (Paid) (Day 16)
+[2025-11-28T20:44:42.026Z] [TRANSACTION] retail Sale created: 3335.00 SAR (Paid) (Day 16)
+[2025-11-28T20:44:42.027Z] [SUCCESS] Day 16 complete: 5 sales, 0 purchases
+[2025-11-28T20:44:42.132Z] [INFO] 
+========== DAY 17 ==========
+[2025-11-28T20:44:42.133Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:42.134Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:42.140Z] [TRANSACTION] retail Sale created: 2645.00 SAR (Paid) (Day 17)
+[2025-11-28T20:44:42.149Z] [TRANSACTION] retail Sale created: 2633.50 SAR (Paid) (Day 17)
+[2025-11-28T20:44:42.156Z] [TRANSACTION] retail Sale created: 276.00 SAR (Paid) (Day 17)
+[2025-11-28T20:44:42.157Z] [SUCCESS] Day 17 complete: 3 sales, 0 purchases
+[2025-11-28T20:44:42.273Z] [INFO] 
+========== DAY 18 ==========
+[2025-11-28T20:44:42.294Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:42.295Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:42.303Z] [TRANSACTION] retail Sale created: 2288.50 SAR (Paid) (Day 18)
+[2025-11-28T20:44:42.312Z] [TRANSACTION] retail Sale created: 442.75 SAR (Paid) (Day 18)
+[2025-11-28T20:44:42.326Z] [TRANSACTION] retail Sale created: 6969.00 SAR (Paid) (Day 18)
+[2025-11-28T20:44:42.327Z] [SUCCESS] Day 18 complete: 3 sales, 0 purchases
+[2025-11-28T20:44:42.429Z] [INFO] 
+========== DAY 19 ==========
+[2025-11-28T20:44:42.430Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:42.431Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:42.431Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:42.441Z] [TRANSACTION] retail Sale created: 3789.25 SAR (Paid) (Day 19)
+[2025-11-28T20:44:42.450Z] [TRANSACTION] retail Sale created: 5278.50 SAR (Paid) (Day 19)
+[2025-11-28T20:44:42.456Z] [TRANSACTION] retail Sale created: 6003.00 SAR (Paid) (Day 19)
+[2025-11-28T20:44:42.457Z] [SUCCESS] Day 19 complete: 3 sales, 0 purchases
+[2025-11-28T20:44:42.570Z] [INFO] 
+========== DAY 20 ==========
+[2025-11-28T20:44:42.579Z] [TRANSACTION] retail Sale created: 1403.00 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.591Z] [TRANSACTION] retail Sale created: 9700.25 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.605Z] [TRANSACTION] retail Sale created: 5065.75 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.620Z] [TRANSACTION] retail Sale created: 7739.50 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.633Z] [TRANSACTION] retail Sale created: 4956.50 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.642Z] [TRANSACTION] retail Sale created: 4910.50 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.648Z] [TRANSACTION] retail Sale created: 46.00 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.654Z] [TRANSACTION] retail Sale created: 1207.50 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.667Z] [TRANSACTION] retail Sale created: 8188.00 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.704Z] [TRANSACTION] retail Sale created: 1495.00 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.714Z] [TRANSACTION] retail Sale created: 6083.50 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.720Z] [TRANSACTION] retail Sale created: 34.50 SAR (Paid) (Day 20)
+[2025-11-28T20:44:42.720Z] [TRANSACTION] Expense recorded: Maintenance & Repairs - 1390.00 SAR (Day 20)
+[2025-11-28T20:44:42.721Z] [SUCCESS] Day 20 complete: 12 sales, 0 purchases
+[2025-11-28T20:44:42.836Z] [INFO] 
+========== DAY 21 ==========
+[2025-11-28T20:44:42.849Z] [TRANSACTION] retail Sale created: 10936.50 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.864Z] [TRANSACTION] retail Sale created: 2777.25 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.876Z] [TRANSACTION] retail Sale created: 1552.50 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.897Z] [TRANSACTION] retail Sale created: 8418.00 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.906Z] [TRANSACTION] retail Sale created: 885.50 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.920Z] [TRANSACTION] retail Sale created: 3277.50 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.929Z] [TRANSACTION] retail Sale created: 57.50 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.941Z] [TRANSACTION] retail Sale created: 1857.25 SAR (Paid) (Day 21)
+[2025-11-28T20:44:42.942Z] [SUCCESS] Day 21 complete: 8 sales, 0 purchases
+[2025-11-28T20:44:43.056Z] [INFO] 
+========== DAY 22 ==========
+[2025-11-28T20:44:43.056Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.057Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.057Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.065Z] [TRANSACTION] retail Sale created: 7452.00 SAR (Paid) (Day 22)
+[2025-11-28T20:44:43.072Z] [TRANSACTION] retail Sale created: 1828.50 SAR (Paid) (Day 22)
+[2025-11-28T20:44:43.084Z] [TRANSACTION] retail Sale created: 4151.50 SAR (Paid) (Day 22)
+[2025-11-28T20:44:43.093Z] [TRANSACTION] retail Sale created: 770.50 SAR (Paid) (Day 22)
+[2025-11-28T20:44:43.101Z] [TRANSACTION] retail Sale created: 3622.50 SAR (Paid) (Day 22)
+[2025-11-28T20:44:43.111Z] [TRANSACTION] wholesale Sale created: 1362.75 SAR (Credit) (Day 22)
+[2025-11-28T20:44:43.121Z] [TRANSACTION] wholesale Sale created: 6923.00 SAR (Paid) (Day 22)
+[2025-11-28T20:44:43.126Z] [TRANSACTION] wholesale Sale created: 317.40 SAR (Credit) (Day 22)
+[2025-11-28T20:44:43.127Z] [SUCCESS] Day 22 complete: 8 sales, 0 purchases
+[2025-11-28T20:44:43.228Z] [INFO] 
+========== DAY 23 ==========
+[2025-11-28T20:44:43.229Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.230Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.240Z] [TRANSACTION] retail Sale created: 2392.00 SAR (Paid) (Day 23)
+[2025-11-28T20:44:43.251Z] [TRANSACTION] retail Sale created: 5054.25 SAR (Paid) (Day 23)
+[2025-11-28T20:44:43.257Z] [TRANSACTION] retail Sale created: 310.50 SAR (Paid) (Day 23)
+[2025-11-28T20:44:43.267Z] [TRANSACTION] retail Sale created: 517.50 SAR (Paid) (Day 23)
+[2025-11-28T20:44:43.282Z] [TRANSACTION] retail Sale created: 15341.00 SAR (Paid) (Day 23)
+[2025-11-28T20:44:43.293Z] [TRANSACTION] retail Sale created: 4278.00 SAR (Paid) (Day 23)
+[2025-11-28T20:44:43.305Z] [TRANSACTION] wholesale Sale created: 6230.70 SAR (Credit) (Day 23)
+[2025-11-28T20:44:43.320Z] [TRANSACTION] wholesale Sale created: 3634.00 SAR (Credit) (Day 23)
+[2025-11-28T20:44:43.329Z] [TRANSACTION] wholesale Sale created: 2550.70 SAR (Credit) (Day 23)
+[2025-11-28T20:44:43.329Z] [SUCCESS] Day 23 complete: 9 sales, 0 purchases
+[2025-11-28T20:44:43.432Z] [INFO] 
+========== DAY 24 ==========
+[2025-11-28T20:44:43.433Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.434Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.453Z] [TRANSACTION] retail Sale created: 5094.50 SAR (Paid) (Day 24)
+[2025-11-28T20:44:43.475Z] [TRANSACTION] retail Sale created: 4232.00 SAR (Paid) (Day 24)
+[2025-11-28T20:44:43.491Z] [TRANSACTION] retail Sale created: 5600.50 SAR (Paid) (Day 24)
+[2025-11-28T20:44:43.507Z] [TRANSACTION] retail Sale created: 2346.00 SAR (Paid) (Day 24)
+[2025-11-28T20:44:43.508Z] [SUCCESS] Day 24 complete: 4 sales, 0 purchases
+[2025-11-28T20:44:43.620Z] [INFO] 
+========== DAY 25 ==========
+[2025-11-28T20:44:43.620Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.621Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.621Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.628Z] [TRANSACTION] retail Sale created: 494.50 SAR (Paid) (Day 25)
+[2025-11-28T20:44:43.636Z] [TRANSACTION] retail Sale created: 276.00 SAR (Paid) (Day 25)
+[2025-11-28T20:44:43.642Z] [TRANSACTION] retail Sale created: 8878.00 SAR (Paid) (Day 25)
+[2025-11-28T20:44:43.655Z] [TRANSACTION] retail Sale created: 4726.50 SAR (Paid) (Day 25)
+[2025-11-28T20:44:43.665Z] [TRANSACTION] retail Sale created: 1592.75 SAR (Paid) (Day 25)
+[2025-11-28T20:44:43.675Z] [TRANSACTION] retail Sale created: 6118.00 SAR (Paid) (Day 25)
+[2025-11-28T20:44:43.684Z] [TRANSACTION] wholesale Sale created: 3559.25 SAR (Paid) (Day 25)
+[2025-11-28T20:44:43.693Z] [TRANSACTION] wholesale Sale created: 1431.75 SAR (Credit) (Day 25)
+[2025-11-28T20:44:43.694Z] [SUCCESS] Day 25 complete: 8 sales, 0 purchases
+[2025-11-28T20:44:43.807Z] [INFO] 
+========== DAY 26 ==========
+[2025-11-28T20:44:43.808Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.808Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:43.820Z] [TRANSACTION] retail Sale created: 7601.50 SAR (Paid) (Day 26)
+[2025-11-28T20:44:43.826Z] [TRANSACTION] retail Sale created: 552.00 SAR (Paid) (Day 26)
+[2025-11-28T20:44:43.832Z] [TRANSACTION] retail Sale created: 517.50 SAR (Paid) (Day 26)
+[2025-11-28T20:44:43.841Z] [TRANSACTION] retail Sale created: 6572.25 SAR (Paid) (Day 26)
+[2025-11-28T20:44:43.851Z] [TRANSACTION] retail Sale created: 2116.00 SAR (Paid) (Day 26)
+[2025-11-28T20:44:43.859Z] [TRANSACTION] wholesale Sale created: 3283.25 SAR (Paid) (Day 26)
+[2025-11-28T20:44:43.860Z] [SUCCESS] Day 26 complete: 6 sales, 0 purchases
+[2025-11-28T20:44:43.962Z] [INFO] 
+========== DAY 27 ==========
+[2025-11-28T20:44:43.974Z] [TRANSACTION] retail Sale created: 931.50 SAR (Paid) (Day 27)
+[2025-11-28T20:44:43.988Z] [TRANSACTION] retail Sale created: 6049.00 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.005Z] [TRANSACTION] retail Sale created: 11649.50 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.012Z] [TRANSACTION] retail Sale created: 6463.00 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.019Z] [TRANSACTION] retail Sale created: 2771.50 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.028Z] [TRANSACTION] retail Sale created: 4720.75 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.036Z] [TRANSACTION] retail Sale created: 287.50 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.045Z] [TRANSACTION] retail Sale created: 1868.75 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.054Z] [TRANSACTION] retail Sale created: 3381.00 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.061Z] [TRANSACTION] retail Sale created: 2346.00 SAR (Paid) (Day 27)
+[2025-11-28T20:44:44.062Z] [SUCCESS] Day 27 complete: 10 sales, 0 purchases
+[2025-11-28T20:44:44.165Z] [INFO] 
+========== DAY 28 ==========
+[2025-11-28T20:44:44.171Z] [TRANSACTION] retail Sale created: 1035.00 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.185Z] [TRANSACTION] retail Sale created: 3128.00 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.194Z] [TRANSACTION] retail Sale created: 5474.00 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.203Z] [TRANSACTION] retail Sale created: 632.50 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.214Z] [TRANSACTION] retail Sale created: 9786.50 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.221Z] [TRANSACTION] retail Sale created: 3335.00 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.228Z] [TRANSACTION] retail Sale created: 1840.00 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.234Z] [TRANSACTION] retail Sale created: 126.50 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.243Z] [TRANSACTION] retail Sale created: 1719.25 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.255Z] [TRANSACTION] retail Sale created: 6302.00 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.264Z] [TRANSACTION] retail Sale created: 3944.50 SAR (Paid) (Day 28)
+[2025-11-28T20:44:44.265Z] [SUCCESS] Day 28 complete: 11 sales, 0 purchases
+[2025-11-28T20:44:44.370Z] [INFO] 
+========== DAY 29 ==========
+[2025-11-28T20:44:44.370Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:44.371Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:44.377Z] [TRANSACTION] retail Sale created: 690.00 SAR (Paid) (Day 29)
+[2025-11-28T20:44:44.389Z] [TRANSACTION] retail Sale created: 7699.25 SAR (Paid) (Day 29)
+[2025-11-28T20:44:44.396Z] [TRANSACTION] retail Sale created: 1460.50 SAR (Paid) (Day 29)
+[2025-11-28T20:44:44.406Z] [TRANSACTION] retail Sale created: 5278.50 SAR (Paid) (Day 29)
+[2025-11-28T20:44:44.412Z] [TRANSACTION] retail Sale created: 3105.00 SAR (Paid) (Day 29)
+[2025-11-28T20:44:44.424Z] [TRANSACTION] retail Sale created: 8096.00 SAR (Paid) (Day 29)
+[2025-11-28T20:44:44.439Z] [TRANSACTION] retail Sale created: 7015.00 SAR (Paid) (Day 29)
+[2025-11-28T20:44:44.439Z] [SUCCESS] Day 29 complete: 7 sales, 0 purchases
+[2025-11-28T20:44:44.541Z] [INFO] 
+========== DAY 30 ==========
+[2025-11-28T20:44:44.542Z] [WARNING] No suppliers available for purchase
+[2025-11-28T20:44:44.558Z] [TRANSACTION] retail Sale created: 1035.00 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.567Z] [TRANSACTION] retail Sale created: 1265.00 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.580Z] [TRANSACTION] retail Sale created: 1656.00 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.639Z] [TRANSACTION] retail Sale created: 1138.50 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.653Z] [TRANSACTION] retail Sale created: 7912.00 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.660Z] [TRANSACTION] retail Sale created: 2288.50 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.666Z] [TRANSACTION] retail Sale created: 2001.00 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.677Z] [TRANSACTION] retail Sale created: 6095.00 SAR (Paid) (Day 30)
+[2025-11-28T20:44:44.677Z] [SUCCESS] Day 30 complete: 8 sales, 0 purchases
+[2025-11-28T20:44:44.791Z] [INFO] 
+📊 Generating Final Report...
+[2025-11-28T20:44:45.072Z] [SUCCESS] 
+✅ ========================================
+[2025-11-28T20:44:45.073Z] [SUCCESS]    SIMULATION COMPLETED SUCCESSFULLY!
+[2025-11-28T20:44:45.073Z] [SUCCESS] ========================================
+

@@ -1,0 +1,123 @@
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"Xkb7up8RCypiNh9AAAAM","timestamp":"2025-12-29 17:34:44"}
+{"level":"info","message":"User disconnected","socketId":"Xkb7up8RCypiNh9AAAAM","timestamp":"2025-12-29 17:34:44","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"vg4yQ_31zpKsy3h1AAAP","timestamp":"2025-12-29 17:34:47"}
+{"level":"info","message":"📝 Audit: UPDATE PRODUCT 69332f9fc8f136b5c1279795","timestamp":"2025-12-29 20:16:32"}
+{"level":"info","message":"📝 Audit: UPDATE PRODUCT 69332f9fc8f136b5c127973b","timestamp":"2025-12-29 20:16:37"}
+{"level":"info","message":"📝 Audit: UPDATE PRODUCT 69332f9fc8f136b5c127978f","timestamp":"2025-12-29 20:16:46"}
+{"level":"info","message":"📝 Audit: UPDATE PRODUCT 69332f9fc8f136b5c127975f","timestamp":"2025-12-29 20:16:57"}
+{"level":"info","message":"📝 Audit: UPDATE PRODUCT 69332f9fc8f136b5c1279783","timestamp":"2025-12-29 20:17:05"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2025-12-29 20:17:24"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 6952c5b4bd8aa24b24c6e204","timestamp":"2025-12-29 20:17:24"}
+{"level":"info","message":"✅ Sales JE Created: 6952c5b4bd8aa24b24c6e204","timestamp":"2025-12-29 20:17:24"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 6952c5b4bd8aa24b24c6e1d6","timestamp":"2025-12-29 20:17:25"}
+{"level":"info","message":"User disconnected","socketId":"vg4yQ_31zpKsy3h1AAAP","timestamp":"2025-12-29 20:18:16","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"KQHLcs0KC2qAmhwIAAAR","timestamp":"2025-12-29 20:18:17"}
+{"level":"info","message":"User disconnected","socketId":"KQHLcs0KC2qAmhwIAAAR","timestamp":"2025-12-29 20:18:17","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"-8FUY7CcIoQ7LcGeAAAT","timestamp":"2025-12-29 20:18:17"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 20:35:11"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-29 20:35:11"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"NeEFVes9mOke2SP7AAAB","timestamp":"2025-12-29 20:35:13"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 20:37:11"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-29 20:37:11"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"drwCllghW_9NPPHdAAAB","timestamp":"2025-12-29 20:37:12"}
+{"level":"info","message":"User disconnected","socketId":"drwCllghW_9NPPHdAAAB","timestamp":"2025-12-29 20:42:08","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"91EICu_1UNZjPBF1AAAD","timestamp":"2025-12-29 20:42:09"}
+{"level":"info","message":"User disconnected","socketId":"91EICu_1UNZjPBF1AAAD","timestamp":"2025-12-29 20:42:09","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"mA81gDMMBDUN-o0-AAAF","timestamp":"2025-12-29 20:42:09"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 21:04:14"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-29 21:04:14"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"ilr1UjySAU_XHAzcAAAB","timestamp":"2025-12-29 21:04:14"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 21:53:48"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-29 21:53:48"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"oJe3yDue8Ekb7FlzAAAB","timestamp":"2025-12-29 21:53:48"}
+{"level":"info","message":"User disconnected","socketId":"oJe3yDue8Ekb7FlzAAAB","timestamp":"2025-12-29 21:53:59","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"b3OTXCdQ7i5yD0_RAAAE","timestamp":"2025-12-29 21:54:08"}
+{"level":"http","message":"GET /reports/trial-balance/export (to: 2025-12-29)","timestamp":"2025-12-29 21:54:58"}
+{"level":"info","message":"User disconnected","socketId":"b3OTXCdQ7i5yD0_RAAAE","timestamp":"2025-12-29 22:11:55","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"TSZdCq4tp_UZhmMOAAAH","timestamp":"2025-12-29 22:11:56"}
+{"level":"info","message":"User disconnected","socketId":"TSZdCq4tp_UZhmMOAAAH","timestamp":"2025-12-29 22:19:15","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"66N2ao7SA-rsH2LpAAAK","timestamp":"2025-12-29 22:19:18"}
+{"level":"info","message":"User disconnected","socketId":"66N2ao7SA-rsH2LpAAAK","timestamp":"2025-12-29 22:32:43","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"IbJ54T2YPzHQm_x3AAAN","timestamp":"2025-12-29 22:32:44"}
+{"level":"info","message":"User disconnected","socketId":"IbJ54T2YPzHQm_x3AAAN","timestamp":"2025-12-29 22:42:04","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"6aeNg_BBbb6A7LV4AAAQ","timestamp":"2025-12-29 22:42:04"}
+{"level":"info","message":"User disconnected","socketId":"6aeNg_BBbb6A7LV4AAAQ","timestamp":"2025-12-29 22:50:05","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"PJ_e1D_lVsCXTSshAAAT","timestamp":"2025-12-29 22:50:05"}
+{"level":"info","message":"User disconnected","socketId":"PJ_e1D_lVsCXTSshAAAT","timestamp":"2025-12-29 22:59:09","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"gpW-mAvhkhGoCI3yAAAV","timestamp":"2025-12-29 22:59:09"}
+{"level":"info","message":"User disconnected","socketId":"gpW-mAvhkhGoCI3yAAAV","timestamp":"2025-12-29 22:59:09","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"UPlXAuWCD4i49AzLAAAX","timestamp":"2025-12-29 22:59:09"}
+{"level":"info","message":"User disconnected","socketId":"UPlXAuWCD4i49AzLAAAX","timestamp":"2025-12-29 23:00:50","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"i71LPRt9Ppb8m7LyAAAa","timestamp":"2025-12-29 23:00:51"}
+{"level":"info","message":"User disconnected","socketId":"i71LPRt9Ppb8m7LyAAAa","timestamp":"2025-12-29 23:04:51","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"8Xgr9erqlTweb3x0AAAc","timestamp":"2025-12-29 23:04:52"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:05:37"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-29 23:05:37"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"DgVKVZdOaK2AZeJtAAAB","timestamp":"2025-12-29 23:05:38"}
+{"level":"info","message":"User disconnected","socketId":"DgVKVZdOaK2AZeJtAAAB","timestamp":"2025-12-29 23:05:48","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"R2Vsx6zJT-yUQp0NAAAE","timestamp":"2025-12-29 23:05:48"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:08:32"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-29 23:08:32"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"fon1zalmV8xREfpjAAAB","timestamp":"2025-12-29 23:08:32"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:10:13"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:10:13"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"3_8BA8mXP-5g1bjgAAAB","timestamp":"2025-12-29 23:10:13"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:10:41"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:10:41"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"Vmfiz1AAsNWarW4iAAAB","timestamp":"2025-12-29 23:10:44"}
+{"level":"info","message":"User disconnected","socketId":"Vmfiz1AAsNWarW4iAAAB","timestamp":"2025-12-29 23:10:46","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"auSNOCfzW7I_Uv_RAAAD","timestamp":"2025-12-29 23:10:47"}
+{"level":"info","message":"User disconnected","socketId":"auSNOCfzW7I_Uv_RAAAD","timestamp":"2025-12-29 23:19:20","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"58MIgkXZme_NpWRFAAAG","timestamp":"2025-12-29 23:19:21"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"BF9Wuhe9eoJ-v3tVAAAI","timestamp":"2025-12-29 23:25:03"}
+{"level":"info","message":"User disconnected","socketId":"BF9Wuhe9eoJ-v3tVAAAI","timestamp":"2025-12-29 23:25:03","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"xKSbS-9TDe-pm0XMAAAK","timestamp":"2025-12-29 23:25:03"}
+{"level":"info","message":"User disconnected","socketId":"xKSbS-9TDe-pm0XMAAAK","timestamp":"2025-12-29 23:34:35","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"User disconnected","socketId":"58MIgkXZme_NpWRFAAAG","timestamp":"2025-12-29 23:35:16","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"1zXYTsV-qKRpDvYnAAAN","timestamp":"2025-12-29 23:35:17"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:35:25"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:35:25"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"MK7XI_qjMDhdqV9qAAAB","timestamp":"2025-12-29 23:35:26"}
+{"level":"info","message":"User disconnected","socketId":"MK7XI_qjMDhdqV9qAAAB","timestamp":"2025-12-29 23:35:28","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"-G11riwMCp7XyanrAAAD","timestamp":"2025-12-29 23:35:28"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:42:13"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:42:14"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"C8t8sSz6ZWnnczi-AAAB","timestamp":"2025-12-29 23:42:14"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:44:26"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:44:26"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"rZVwoViA2T2jMQqeAAAB","timestamp":"2025-12-29 23:44:27"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:45:15"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:45:15"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"sjUkiQQ6RX2jtAx6AAAB","timestamp":"2025-12-29 23:45:16"}
+{"level":"info","message":"User disconnected","socketId":"sjUkiQQ6RX2jtAx6AAAB","timestamp":"2025-12-29 23:45:35","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"tSfzgj5VA32wXYdJAAAE","timestamp":"2025-12-29 23:45:35"}
+{"level":"info","message":"User disconnected","socketId":"tSfzgj5VA32wXYdJAAAE","timestamp":"2025-12-29 23:48:06","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"ujmb9ylMZxcIJwj8AAAH","timestamp":"2025-12-29 23:48:07"}
+{"level":"info","message":"User disconnected","socketId":"ujmb9ylMZxcIJwj8AAAH","timestamp":"2025-12-29 23:48:08","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"CDRXhz0sMSjezU8HAAAJ","timestamp":"2025-12-29 23:48:09"}
+{"level":"info","message":"User disconnected","socketId":"CDRXhz0sMSjezU8HAAAJ","timestamp":"2025-12-29 23:48:15","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"3B7zGOgvoyH0i6b5AAAL","timestamp":"2025-12-29 23:48:16"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"PVNvH3Xn8rqgCOb-AAAO","timestamp":"2025-12-29 23:48:48"}
+{"level":"info","message":"User disconnected","socketId":"3B7zGOgvoyH0i6b5AAAL","timestamp":"2025-12-29 23:48:50","userId":"693effdd29de2ba4220cfe03"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:51:46"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:51:46"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"XRuswwDcV0PU0FBdAAAB","timestamp":"2025-12-29 23:51:47"}
+{"level":"info","message":"User disconnected","socketId":"XRuswwDcV0PU0FBdAAAB","timestamp":"2025-12-29 23:51:48","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"K3vmtUZGSqvodm8lAAAD","timestamp":"2025-12-29 23:51:49"}
+{"level":"info","message":"User disconnected","socketId":"K3vmtUZGSqvodm8lAAAD","timestamp":"2025-12-29 23:51:49","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"sQ8OQsZDsW7CkrAwAAAF","timestamp":"2025-12-29 23:51:49"}
+{"level":"info","message":"User disconnected","socketId":"sQ8OQsZDsW7CkrAwAAAF","timestamp":"2025-12-29 23:52:05","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"KebiNj2_68dEok4CAAAH","timestamp":"2025-12-29 23:52:05"}
+{"level":"info","message":"User disconnected","socketId":"KebiNj2_68dEok4CAAAH","timestamp":"2025-12-29 23:52:15","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"NIQBHtd-Y8GcayXjAAAJ","timestamp":"2025-12-29 23:52:15"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:54:35"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:54:35"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"nIOoZuB3hpUBmNsxAAAB","timestamp":"2025-12-29 23:54:35"}
+{"level":"info","message":"User disconnected","socketId":"nIOoZuB3hpUBmNsxAAAB","timestamp":"2025-12-29 23:54:43","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"HYjQ8r5_ukhlsYf4AAAE","timestamp":"2025-12-29 23:54:43"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-29 23:56:47"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected: localhost","timestamp":"2025-12-29 23:56:47"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"Y4dkizsE5HZwoGGsAAAB","timestamp":"2025-12-29 23:56:48"}
+{"level":"info","message":"User disconnected","socketId":"Y4dkizsE5HZwoGGsAAAB","timestamp":"2025-12-29 23:58:04","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"A0P7dUi6XNHbSgXIAAAD","timestamp":"2025-12-29 23:58:05"}
+{"level":"info","message":"User disconnected","socketId":"A0P7dUi6XNHbSgXIAAAD","timestamp":"2025-12-29 23:58:05","userId":"693effdd29de2ba4220cfe03"}

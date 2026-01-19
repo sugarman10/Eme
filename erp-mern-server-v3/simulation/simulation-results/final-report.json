@@ -1,0 +1,30 @@
+{
+  "summary": {
+    "simulationPeriod": "30 days",
+    "startDate": "2025-01-01",
+    "endDate": "2025-01-31",
+    "executedAt": "2025-11-28T20:44:44.792Z"
+  },
+  "statistics": {
+    "totalPurchases": "0.00",
+    "totalSales": "816916.30",
+    "totalExpenses": "30786.00",
+    "grossProfit": "816916.30",
+    "netProfit": "786130.30"
+  },
+  "transactionCounts": {
+    "purchases": 0,
+    "sales": 224,
+    "expenses": 5,
+    "transfers": 0,
+    "returns": 0
+  },
+  "salesBreakdown": {
+    "retail": 200,
+    "wholesale": 24,
+    "cashSales": 212,
+    "creditSales": 12
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,7 @@
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"Owj3F-Wv8rVLFB6ZAAAd","timestamp":"2026-01-14 16:23:33"}
+{"level":"info","message":"User disconnected","socketId":"Owj3F-Wv8rVLFB6ZAAAd","timestamp":"2026-01-14 16:23:33","userId":"695d5df1ce812e2e91a2681a"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"pe4MUetTH4NqWAB3AAAf","timestamp":"2026-01-14 16:23:33"}
+{"level":"info","lowStockCount":0,"message":"✅ Dashboard queries completed","timestamp":"2026-01-14 16:23:33"}
+{"level":"http","message":"GET /reports/trial-balance called (from: 2025-12-31, to: 2026-01-14)","timestamp":"2026-01-14 16:28:59"}
+{"level":"info","message":"Trial Balance: 4 accounts, Balanced: true","timestamp":"2026-01-14 16:29:00"}
+{"level":"info","message":"User disconnected","socketId":"pe4MUetTH4NqWAB3AAAf","timestamp":"2026-01-14 16:45:59","userId":"695d5df1ce812e2e91a2681a"}

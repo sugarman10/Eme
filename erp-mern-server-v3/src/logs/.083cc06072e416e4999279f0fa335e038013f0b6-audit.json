@@ -1,0 +1,80 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\.083cc06072e416e4999279f0fa335e038013f0b6-audit.json",
+    "files": [
+        {
+            "date": 1766725001661,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2025-12-26.log",
+            "hash": "d5e258944b8628ca9872fd52e73a27041fb0c6e25816fd28f017e5396b8df6bd"
+        },
+        {
+            "date": 1766850211041,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2025-12-27.log",
+            "hash": "a1243f55001d839774f9a8e01efeab16c884d65585f2982275ce31f20ef79b70"
+        },
+        {
+            "date": 1767033310555,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2025-12-29.log",
+            "hash": "d75282c4d8c51ce05504c97f3c0c9ad60a5afe66a77782ba9f816226903c3e76"
+        },
+        {
+            "date": 1767045651795,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2025-12-30.log",
+            "hash": "a56b2bf07edd53ce9625e1b48164d00f795a5acc5a0c5b3673a0f322496f139a"
+        },
+        {
+            "date": 1767148890250,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2025-12-31.log",
+            "hash": "c589a8d7ccad39c70aaa6ad92ad13005a1413917aed1f7e6187c9b3bcb8ef69c"
+        },
+        {
+            "date": 1767229803833,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-01.log",
+            "hash": "0fa0de8a7db8995a4f54273c533f2cc54c7d9376660249199e7d9e6260998059"
+        },
+        {
+            "date": 1767304936651,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-02.log",
+            "hash": "5171821513596ffe43378ed2fd160dabbf9acb49f4f9fead6675b0d8f5814421"
+        },
+        {
+            "date": 1767399601664,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-03.log",
+            "hash": "dae44a1899a0cf60a9a5fc71d755a8f4e79cc32b74753b16ee4d2c58378ecdee"
+        },
+        {
+            "date": 1767477774908,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-04.log",
+            "hash": "984308ff4685d02bdc1533a0e83ecd9ac9e966fab2575f6028234ea9e72a191d"
+        },
+        {
+            "date": 1767639835290,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-05.log",
+            "hash": "6672b11fd1debc8ab5f552604ed64afd42ac16b5be1121dd60c041553a281729"
+        },
+        {
+            "date": 1767651028625,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-06.log",
+            "hash": "e583c6a5c7dcaaa71841d21c33dbd2ee4c345874e10eaa3e71ce8563c0f7a8ad"
+        },
+        {
+            "date": 1768154414673,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-11.log",
+            "hash": "6c024d1b9404dc0f296e1f5a8e9425fa8496f18c9b9f47d4171afbca40f58315"
+        },
+        {
+            "date": 1768234852487,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-12.log",
+            "hash": "b4a946ea20c82cf2acdaca2012ee3a2eff56dcb167cf97e236e411514d46df0c"
+        },
+        {
+            "date": 1768779861498,
+            "name": "C:\\Users\\HP\\Desktop\\erp system\\erp-mern-server-v3\\src\\logs\\error-2026-01-19.log",
+            "hash": "d4d409195d242d9221702936684074434830257c3b62551fa9169aa62faebdef"
+        }
+    ],
+    "hashType": "sha256"
+}

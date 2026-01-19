@@ -1,0 +1,37 @@
+{"level":"info","lowStockCount":0,"message":"✅ Dashboard queries completed","timestamp":"2026-01-09 13:26:18"}
+{"level":"http","message":"GET /reports/trial-balance called (from: 2025-12-31, to: 2026-01-09)","timestamp":"2026-01-09 13:28:08"}
+{"level":"info","message":"Trial Balance: 4 accounts, Balanced: true","timestamp":"2026-01-09 13:28:08"}
+{"level":"info","message":"User logged in: me","timestamp":"2026-01-09 13:39:42"}
+{"level":"info","message":"✅ User connected: 6960e8f37bef226cec44dbf2","role":"cashier","socketId":"9Dqc0uKsNTD14VU9AAAC","timestamp":"2026-01-09 13:39:42"}
+{"level":"info","message":"User disconnected","socketId":"9Dqc0uKsNTD14VU9AAAC","timestamp":"2026-01-09 13:39:42","userId":"6960e8f37bef226cec44dbf2"}
+{"level":"info","message":"✅ User connected: 6960e8f37bef226cec44dbf2","role":"cashier","socketId":"jR2zyMNT0C2PvW1JAAAE","timestamp":"2026-01-09 13:39:42"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2026-01-09 13:40:21"}
+{"level":"info","message":"📝 Audit: CREATE JOURNAL 6960e9257bef226cec44dc71","timestamp":"2026-01-09 13:40:21"}
+{"level":"info","message":"✅ Sales JE Created: 6960e9257bef226cec44dc71","timestamp":"2026-01-09 13:40:21"}
+{"level":"info","message":"📝 Audit: CREATE INVOICE 6960e9257bef226cec44dc63","timestamp":"2026-01-09 13:40:21"}
+{"level":"info","message":"User disconnected","socketId":"jR2zyMNT0C2PvW1JAAAE","timestamp":"2026-01-09 13:40:43","userId":"6960e8f37bef226cec44dbf2"}
+{"identifier":"U@C.COM","ip":"::ffff:192.168.0.159","level":"warn","message":"⚠️ Login failed: User not found","timestamp":"2026-01-09 13:42:14"}
+{"identifier":"me]\\","ip":"::ffff:192.168.0.159","level":"warn","message":"⚠️ Login failed: User not found","timestamp":"2026-01-09 13:42:20"}
+{"level":"info","message":"User logged in: me","timestamp":"2026-01-09 13:42:22"}
+{"level":"info","message":"✅ User connected: 6960e8f37bef226cec44dbf2","role":"cashier","socketId":"aHawSzNHMyRzMjqBAAAH","timestamp":"2026-01-09 13:42:22"}
+{"level":"info","message":"User disconnected","socketId":"aHawSzNHMyRzMjqBAAAH","timestamp":"2026-01-09 13:46:40","userId":"6960e8f37bef226cec44dbf2"}
+{"level":"info","message":"✅ User connected: 6960e8f37bef226cec44dbf2","role":"cashier","socketId":"3G-hsDTvLkZvP7Q-AAAJ","timestamp":"2026-01-09 19:58:25"}
+{"level":"info","message":"User disconnected","socketId":"3G-hsDTvLkZvP7Q-AAAJ","timestamp":"2026-01-09 19:58:27","userId":"6960e8f37bef226cec44dbf2"}
+{"level":"info","message":"✅ User connected: 6960e8f37bef226cec44dbf2","role":"cashier","socketId":"yT_fBwTPIYfzsMyAAAAL","timestamp":"2026-01-09 19:58:32"}
+{"level":"info","message":"User disconnected","socketId":"yT_fBwTPIYfzsMyAAAAL","timestamp":"2026-01-09 19:58:32","userId":"6960e8f37bef226cec44dbf2"}
+{"level":"info","message":"✅ User connected: 6960e8f37bef226cec44dbf2","role":"cashier","socketId":"6WNMSF2KZucvzeAKAAAO","timestamp":"2026-01-09 19:58:32"}
+{"level":"info","message":"User disconnected","socketId":"6WNMSF2KZucvzeAKAAAO","timestamp":"2026-01-09 19:58:35","userId":"6960e8f37bef226cec44dbf2"}
+{"level":"info","message":"User logged in: admin@example.com","timestamp":"2026-01-09 19:59:10"}
+{"level":"info","message":"✅ User connected: 695d5df1ce812e2e91a2681a","role":"admin","socketId":"NJMQWOTLS3Jhc7HPAAAR","timestamp":"2026-01-09 19:59:10"}
+{"level":"info","lowStockCount":0,"message":"✅ Dashboard queries completed","timestamp":"2026-01-09 19:59:10"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-09 20:03:04"}
+{"level":"info","message":"Fetched 1 receipts (populated)","timestamp":"2026-01-09 20:03:04"}
+{"level":"http","message":"GET /receipts called","timestamp":"2026-01-09 20:03:04"}
+{"level":"info","message":"Fetched 1 receipts (populated)","timestamp":"2026-01-09 20:03:04"}
+{"level":"http","message":"GET /reports/trial-balance called (from: 2025-12-31, to: 2026-01-09)","timestamp":"2026-01-09 20:08:50"}
+{"level":"info","message":"Trial Balance: 4 accounts, Balanced: true","timestamp":"2026-01-09 20:08:50"}
+{"level":"http","message":"GET /reports/income-statement (from: 2025-12-31, to: 2026-01-09)","timestamp":"2026-01-09 20:08:57"}
+{"level":"info","message":"Income Statement: Net Profit=60000","timestamp":"2026-01-09 20:08:57"}
+{"level":"http","message":"GET /reports/balance-sheet (to: 2026-01-09)","timestamp":"2026-01-09 20:09:02"}
+{"level":"info","lowStockCount":0,"message":"✅ Dashboard queries completed","timestamp":"2026-01-09 20:12:15"}
+{"level":"info","message":"User disconnected","socketId":"NJMQWOTLS3Jhc7HPAAAR","timestamp":"2026-01-09 20:12:41","userId":"695d5df1ce812e2e91a2681a"}

@@ -1,0 +1,187 @@
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"u0tuF8lTtvtyhhLwAAAk","timestamp":"2025-12-26 06:29:05"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 06:56:44"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 06:56:44"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"_utCzK6ovKWIvCVhAAAB","timestamp":"2025-12-26 06:56:47"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 06:57:29"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 06:57:29"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"lWcAvnbLx_QyffX5AAAB","timestamp":"2025-12-26 06:57:29"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 06:58:46"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 06:58:46"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"WMHr3wdHbraBDo5cAAAB","timestamp":"2025-12-26 06:58:46"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 06:59:33"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 06:59:33"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 06:59:35"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 06:59:35"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"IkWrTBb3H5nBwLXCAAAB","timestamp":"2025-12-26 06:59:35"}
+{"level":"info","message":"User disconnected","socketId":"IkWrTBb3H5nBwLXCAAAB","timestamp":"2025-12-26 07:00:54","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"HV6v8rT7OML0OJfbAAAD","timestamp":"2025-12-26 07:00:54"}
+{"level":"info","message":"User disconnected","socketId":"HV6v8rT7OML0OJfbAAAD","timestamp":"2025-12-26 07:01:27","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"_LR-J0Tc9Kn7wfEmAAAF","timestamp":"2025-12-26 07:01:27"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 07:14:57"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 07:14:57"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"kizMFFsysHgo7Q1WAAAB","timestamp":"2025-12-26 07:14:58"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 07:15:12"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 07:15:12"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"SGcz3Vp7WlUPQ9PRAAAB","timestamp":"2025-12-26 07:15:14"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 07:16:40"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 07:16:40"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"w4F8WHX8zLlYPSYGAAAB","timestamp":"2025-12-26 07:16:41"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 07:17:39"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 07:17:39"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"AXZ82XrE9vjsWMVmAAAB","timestamp":"2025-12-26 07:17:39"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 07:18:04"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 07:18:04"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"q9Vt70AVMKQgouapAAAB","timestamp":"2025-12-26 07:18:05"}
+{"level":"info","message":"User disconnected","socketId":"q9Vt70AVMKQgouapAAAB","timestamp":"2025-12-26 07:29:26","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"iYy3ObpzM83xxL2gAAAD","timestamp":"2025-12-26 07:37:03"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:15:40"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:15:40"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"iV8nVLH0vZTygd7yAAAC","timestamp":"2025-12-26 20:16:13"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:24:39"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:24:39"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"qnQw769Goox5GJa_AAAB","timestamp":"2025-12-26 20:24:40"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:24:41"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:24:41"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"ty4gNGu_QjyzRSbvAAAB","timestamp":"2025-12-26 20:24:42"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:24:57"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:29:05"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:29:05"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"810Z64dIAaORuGiWAAAB","timestamp":"2025-12-26 20:29:05"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:29:06"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:29:06"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"C6tJe8SfPqJRkU8AAAAB","timestamp":"2025-12-26 20:29:07"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:29:47"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:29:47"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"06cO3_P-8HZLB7b1AAAB","timestamp":"2025-12-26 20:29:48"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:37:09"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:37:09"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"XCnJPqEkhxkI7SYwAAAB","timestamp":"2025-12-26 20:37:10"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:38:03"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:38:03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"Kg5SIPxyubulyJSWAAAB","timestamp":"2025-12-26 20:38:04"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:45:23"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:45:23"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"NP7YxFqw6ySO2AXGAAAB","timestamp":"2025-12-26 20:45:24"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:46:15"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"aIBCp5TyiQaRLA8HAAAB","timestamp":"2025-12-26 20:46:15"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:46:15"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:58:45"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"OuTrEc13QeaSlWU_AAAB","timestamp":"2025-12-26 20:58:46"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:58:46"}
+{"error":"المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)","level":"error","stack":"Error: المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:558:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-26 20:59:03"}
+{"error":"المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)","level":"error","stack":"Error: المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:558:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-26 20:59:12"}
+{"error":"المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)","level":"error","stack":"Error: المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:558:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-26 20:59:29"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 20:59:30"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 20:59:30"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"g3S2Am9iF4h79MhYAAAB","timestamp":"2025-12-26 20:59:30"}
+{"error":"المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)","level":"error","stack":"Error: المبلغ المدفوع (330.00000000000006) أكبر من الإجمالي (330)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:558:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-26 20:59:45"}
+{"error":"المبلغ المدفوع (1980.0000000000002) أكبر من الإجمالي (1980)","level":"error","stack":"Error: المبلغ المدفوع (1980.0000000000002) أكبر من الإجمالي (1980)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:558:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-26 20:59:58"}
+{"error":"المبلغ المدفوع (1155.0000000000002) أكبر من الإجمالي (1155)","level":"error","stack":"Error: المبلغ المدفوع (1155.0000000000002) أكبر من الإجمالي (1155)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:558:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-26 21:00:04"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:00:08"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:00:08"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"u-VNxo4BnNiwvWWDAAAB","timestamp":"2025-12-26 21:00:08"}
+{"error":"المبلغ المدفوع (990.0000000000001) أكبر من الإجمالي (990)","level":"error","stack":"Error: المبلغ المدفوع (990.0000000000001) أكبر من الإجمالي (990)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:558:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-26 21:00:11"}
+{"level":"info","message":"🔄 Creating Sales Invoice Journal Entry...","timestamp":"2025-12-26 21:01:05"}
+{"level":"info","message":"✅ Sales JE Created: 694edb7116adf44b1e8d25a1","timestamp":"2025-12-26 21:01:05"}
+{"level":"http","message":"GET /receipts called","timestamp":"2025-12-26 21:02:22"}
+{"level":"info","message":"Fetched 22 receipts (populated)","timestamp":"2025-12-26 21:02:22"}
+{"level":"http","message":"GET /receipts called","timestamp":"2025-12-26 21:02:22"}
+{"level":"info","message":"Fetched 22 receipts (populated)","timestamp":"2025-12-26 21:02:22"}
+{"level":"info","message":"🔄 Creating Receipt Journal Entry...","timestamp":"2025-12-26 21:02:34"}
+{"level":"info","message":"✅ Receipt JE Created: 694edbca16adf44b1e8d2768","timestamp":"2025-12-26 21:02:34"}
+{"level":"http","message":"GET /receipts called","timestamp":"2025-12-26 21:02:34"}
+{"level":"info","message":"Fetched 23 receipts (populated)","timestamp":"2025-12-26 21:02:34"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:08:12"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:08:12"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"KMS9VXmRq7oXyBdNAAAB","timestamp":"2025-12-26 21:08:13"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:09:11"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:09:11"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"PhhowgZ8SZzqCX1TAAAB","timestamp":"2025-12-26 21:09:12"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:09:19"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"enMtlEfA75d0ceLOAAAB","timestamp":"2025-12-26 21:09:20"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:09:23"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:09:24"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:09:24"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"1BCCpy2zUSj6tD09AAAB","timestamp":"2025-12-26 21:09:25"}
+{"level":"info","message":"User disconnected","socketId":"1BCCpy2zUSj6tD09AAAB","timestamp":"2025-12-26 21:12:39","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"m4l4DsDZF1GCxJF6AAAD","timestamp":"2025-12-26 21:32:51"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:37:44"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:37:44"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:37:45"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:37:45"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"ZGaleW7VeMsSLfIUAAAB","timestamp":"2025-12-26 21:37:46"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:37:47"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:37:47"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"aS1UgDzOSmxhR_TFAAAB","timestamp":"2025-12-26 21:37:48"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:38:18"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:38:18"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"EhY7B0JOiRu4yM4tAAAB","timestamp":"2025-12-26 21:38:18"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:38:51"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:38:51"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"YcehUKwse6KgWYx3AAAB","timestamp":"2025-12-26 21:38:52"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:39:44"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:39:44"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"uqLzlEKu2yIZ8P7cAAAB","timestamp":"2025-12-26 21:39:45"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:39:46"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:39:46"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"yH1_jZx4OX1hID5cAAAB","timestamp":"2025-12-26 21:39:47"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:56:15"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:56:15"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"ThzEOjRbSAKO67PzAAAB","timestamp":"2025-12-26 21:56:16"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:56:45"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:56:45"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"1yKzFq5vCWPXe9NcAAAB","timestamp":"2025-12-26 21:56:46"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:57:26"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"p31SgzqpHYf8a3UOAAAB","timestamp":"2025-12-26 21:57:26"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:57:27"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:58:00"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:58:00"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"s3QmMnIyUaJpsokHAAAB","timestamp":"2025-12-26 21:58:01"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:59:28"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:59:28"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"Je5eLEWUsZL_J_pFAAAB","timestamp":"2025-12-26 21:59:29"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 21:59:54"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 21:59:54"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"PeXVBJAnovAZmsHcAAAB","timestamp":"2025-12-26 21:59:54"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:00:23"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:00:23"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"NW3Qa5BA4XDGn4yhAAAB","timestamp":"2025-12-26 22:00:23"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:01:07"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:01:07"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"X_BULT9Te91UzSGZAAAB","timestamp":"2025-12-26 22:01:08"}
+{"level":"info","message":"User disconnected","socketId":"X_BULT9Te91UzSGZAAAB","timestamp":"2025-12-26 22:07:32","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"_cKCPODyUpGA6NRIAAAD","timestamp":"2025-12-26 22:07:34"}
+{"level":"info","message":"User disconnected","socketId":"_cKCPODyUpGA6NRIAAAD","timestamp":"2025-12-26 22:08:57","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"VuIZWyIRW53Z2fp0AAAF","timestamp":"2025-12-26 22:08:59"}
+{"level":"info","message":"User disconnected","socketId":"VuIZWyIRW53Z2fp0AAAF","timestamp":"2025-12-26 22:09:15","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"dhs_UGZPEye6_JC8AAAH","timestamp":"2025-12-26 22:09:18"}
+{"level":"info","message":"User disconnected","socketId":"dhs_UGZPEye6_JC8AAAH","timestamp":"2025-12-26 22:09:33","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"TLnytN0Ro5OP7seVAAAJ","timestamp":"2025-12-26 22:09:36"}
+{"level":"info","message":"User disconnected","socketId":"TLnytN0Ro5OP7seVAAAJ","timestamp":"2025-12-26 22:10:05","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"ZWYIPV_mUyXxuBH5AAAL","timestamp":"2025-12-26 22:10:08"}
+{"level":"info","message":"User disconnected","socketId":"ZWYIPV_mUyXxuBH5AAAL","timestamp":"2025-12-26 22:10:14","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"_aXfJY-0MABRbN1vAAAN","timestamp":"2025-12-26 22:10:15"}
+{"level":"info","message":"User disconnected","socketId":"_aXfJY-0MABRbN1vAAAN","timestamp":"2025-12-26 22:11:20","userId":"693effdd29de2ba4220cfe03"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"LYCLNtS2FmpT6F5FAAAP","timestamp":"2025-12-26 22:20:12"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:25:06"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:25:06"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"Kc8VIrf7QPRCtFkvAAAB","timestamp":"2025-12-26 22:25:07"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:26:10"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:26:10"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"kxfRzAVVGba1Q0jyAAAB","timestamp":"2025-12-26 22:26:12"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:26:13"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:26:13"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"7ba5oocwpoIkCEuGAAAB","timestamp":"2025-12-26 22:26:14"}
+{"level":"http","message":"GET /receipts called","timestamp":"2025-12-26 22:27:31"}
+{"level":"info","message":"Fetched 23 receipts (populated)","timestamp":"2025-12-26 22:27:31"}
+{"level":"http","message":"GET /receipts called","timestamp":"2025-12-26 22:27:31"}
+{"level":"info","message":"Fetched 23 receipts (populated)","timestamp":"2025-12-26 22:27:31"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:42:00"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:42:00"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"XZNn_nh4UFMhrbaPAAAB","timestamp":"2025-12-26 22:42:01"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:42:59"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:42:59"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"OQovPR3cAFPSs9GqAAAB","timestamp":"2025-12-26 22:43:00"}
+{"env":"development","level":"info","message":"✅ Server running on port 4000","port":4000,"timestamp":"2025-12-26 22:43:01"}
+{"database":"erp_mern","level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-26 22:43:01"}
+{"level":"info","message":"✅ User connected: 693effdd29de2ba4220cfe03","role":"admin","socketId":"uul3ztc7DRI1f2YxAAAB","timestamp":"2025-12-26 22:43:02"}
