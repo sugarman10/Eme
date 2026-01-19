@@ -45,14 +45,20 @@ export async function logAudit({
     userName = '',
     ip = '',
     description = '',
-    mandatory = true
+    mandatory = true,
+    session = null,
+    meta = null
 }) {
     try {
         // Sanitize data - keep only essential fields to reduce storage
         const sanitizedBefore = before ? sanitizeForAudit(before, entityType) : null;
         const sanitizedAfter = after ? sanitizeForAudit(after, entityType) : null;
 
-        const auditRecord = await AuditLog.create({
+        if (meta && sanitizedAfter && typeof sanitizedAfter === 'object') {
+            sanitizedAfter._audit = { ...(sanitizedAfter._audit || {}), ...meta };
+        }
+
+        const auditRecord = await AuditLog.create([{
             entityType,
             entityId: String(entityId),
             action,
@@ -62,10 +68,10 @@ export async function logAudit({
             userName,
             ip,
             description
-        });
+        }], session ? { session } : undefined);
 
         logger.info(`📝 Audit: ${action} ${entityType} ${entityId}`);
-        return auditRecord;
+        return Array.isArray(auditRecord) ? auditRecord[0] : auditRecord;
 
     } catch (error) {
         logger.logError('Audit logging failed', {
@@ -144,7 +150,32 @@ function sanitizeForAudit(data, entityType) {
                 customer: obj.customer,
                 amount: obj.amount,
                 method: obj.method,
-                date: obj.date
+                date: obj.date,
+                status: obj.status
+            };
+
+        case 'PURCHASE_ORDER':
+            return {
+                _id: obj._id,
+                supplier: obj.supplier,
+                totalAmount: obj.totalAmount,
+                status: obj.status,
+                receivedAt: obj.receivedAt,
+                warehouse: obj.warehouse
+            };
+
+        case 'SALES_RETURN':
+        case 'PURCHASE_RETURN':
+            return {
+                _id: obj._id,
+                status: obj.status,
+                totalAmount: obj.totalAmount,
+                warehouse: obj.warehouse,
+                customer: obj.customer,
+                supplier: obj.supplier,
+                originalInvoice: obj.originalInvoice,
+                originalPO: obj.originalPO,
+                isRefunded: obj.isRefunded
             };
 
         case 'JOURNAL':
@@ -167,7 +198,7 @@ function sanitizeForAudit(data, entityType) {
  * These WILL throw if audit fails, blocking the operation
  */
 
-export async function auditCreate(entityType, entity, user = null, ip = '') {
+export async function auditCreate(entityType, entity, user = null, ip = '', session = null, meta = null) {
     return logAudit({
         entityType,
         entityId: entity._id || entity.id,
@@ -178,11 +209,13 @@ export async function auditCreate(entityType, entity, user = null, ip = '') {
         userName: user?.name || '',
         ip,
         description: `إنشاء ${entityType}`,
-        mandatory: true
+        mandatory: true,
+        session,
+        meta
     });
 }
 
-export async function auditUpdate(entityType, entityId, before, after, user = null, ip = '') {
+export async function auditUpdate(entityType, entityId, before, after, user = null, ip = '', session = null, meta = null) {
     return logAudit({
         entityType,
         entityId,
@@ -193,11 +226,13 @@ export async function auditUpdate(entityType, entityId, before, after, user = nu
         userName: user?.name || '',
         ip,
         description: `تعديل ${entityType}`,
-        mandatory: true
+        mandatory: true,
+        session,
+        meta
     });
 }
 
-export async function auditDelete(entityType, entity, user = null, ip = '') {
+export async function auditDelete(entityType, entity, user = null, ip = '', session = null, meta = null) {
     return logAudit({
         entityType,
         entityId: entity._id || entity.id,
@@ -208,7 +243,9 @@ export async function auditDelete(entityType, entity, user = null, ip = '') {
         userName: user?.name || '',
         ip,
         description: `حذف ${entityType}`,
-        mandatory: true
+        mandatory: true,
+        session,
+        meta
     });
 }
 

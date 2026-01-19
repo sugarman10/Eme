@@ -44,7 +44,7 @@ const strongPasswordValidator = (req, res, next) => {
 // ============================================================
 router.post('/register',
   body('name').isString().isLength({ min: 2 }).withMessage('الاسم يجب أن يكون حرفين على الأقل'),
-  body('email').isEmail().withMessage('البريد الإلكتروني غير صالح'),
+  body('username').isString().isLength({ min: 3 }).withMessage('اسم المستخدم يجب أن يكون 3 أحرف على الأقل'),
   body('password').isString().withMessage('كلمة المرور مطلوبة'),
   strongPasswordValidator, // Strong password validation
   wrap(async (req, res) => {
@@ -56,32 +56,37 @@ router.post('/register',
       });
     }
 
-    const { name, email, password, role } = req.body;
+    const { name, username, password } = req.body;
 
-    // Check if email exists
-    const exists = await User.findOne({ email: email.toLowerCase() });
+    // Check if username exists
+    const exists = await User.findOne({ username: { $regex: new RegExp(`^${username}$`, 'i') } });
     if (exists) {
       return res.status(409).json({
-        message: 'البريد الإلكتروني مستخدم بالفعل',
-        code: 'EMAIL_EXISTS'
+        message: 'اسم المستخدم مستخدم بالفعل',
+        code: 'USERNAME_EXISTS'
       });
     }
 
-    // First user becomes admin
+    // Bootstrap only: allow registration only if no admin exists
     const adminExists = await User.exists({ role: 'admin' });
-    const _role = adminExists ? (role || 'employee') : 'admin';
+    if (adminExists) {
+      return res.status(403).json({
+        message: 'Registration is disabled after admin bootstrap',
+        code: 'REGISTER_DISABLED'
+      });
+    }
 
     // Hash password with strong salt rounds
     const hash = await bcrypt.hash(password, 12);
 
     const user = await User.create({
       name,
-      email: email.toLowerCase(),
+      username,
       password: hash,
-      role: _role
+      role: 'admin'
     });
 
-    logger.info(`New user registered: ${email}, role: ${_role}`);
+    logger.info(`New user registered: ${username}, role: admin`);
 
     return res.status(201).json({
       id: user._id,
@@ -95,7 +100,7 @@ router.post('/register',
 // LOGIN
 // ============================================================
 router.post('/login',
-  body('email').trim().notEmpty().withMessage('البريد الإلكتروني أو اسم المستخدم مطلوب'),
+  body('username').trim().notEmpty().withMessage('اسم المستخدم مطلوب'),
   body('password').isString().withMessage('كلمة المرور مطلوبة'),
   wrap(async (req, res) => {
     const errors = validationResult(req);
@@ -103,18 +108,15 @@ router.post('/login',
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    // Find user by email OR username (case-insensitive)
+    // Find user by username (case-insensitive)
     const user = await User.findOne({
-      $or: [
-        { email: email.toLowerCase() },
-        { username: { $regex: new RegExp(`^${email}$`, 'i') } }
-      ]
+      username: { $regex: new RegExp(`^${username}$`, 'i') }
     });
 
     if (!user) {
-      logger.logWarning('Login failed: User not found', { identifier: email, ip: req.ip });
+      logger.logWarning('Login failed: User not found', { identifier: username, ip: req.ip });
       return res.status(401).json({
         message: 'بيانات الدخول غير صحيحة',
         code: 'INVALID_CREDENTIALS'
@@ -123,7 +125,7 @@ router.post('/login',
 
     // Check if account is active
     if (user.isActive === false) {
-      logger.logWarning('Login attempt on inactive account', { email, ip: req.ip });
+      logger.logWarning('Login attempt on inactive account', { username, ip: req.ip });
       return res.status(403).json({
         message: 'الحساب معطل. يرجى التواصل مع المسؤول',
         code: 'ACCOUNT_INACTIVE'
@@ -132,7 +134,7 @@ router.post('/login',
 
     const ok = await bcrypt.compare(password, user.password);
     if (!ok) {
-      logger.logWarning('Login failed: Invalid password', { email, ip: req.ip });
+      logger.logWarning('Login failed: Invalid password', { username, ip: req.ip });
       return res.status(401).json({
         message: 'بيانات الدخول غير صحيحة',
         code: 'INVALID_CREDENTIALS'
@@ -146,7 +148,8 @@ router.post('/login',
         id: user._id,
         role: user.role,
         email: user.email,
-        isActive: user.isActive !== false
+        isActive: user.isActive !== false,
+        permissions: user.permissions || []
       },
       process.env.JWT_SECRET,
       { expiresIn }
@@ -156,7 +159,7 @@ router.post('/login',
     user.lastLogin = new Date();
     await user.save();
 
-    logger.info(`User logged in: ${email}`);
+    logger.info(`User logged in: ${username}`);
 
     return res.json({
       token,
@@ -165,7 +168,8 @@ router.post('/login',
         name: user.name,
         role: user.role,
         email: user.email,
-        assignedWarehouse: user.assignedWarehouse
+        assignedWarehouse: user.assignedWarehouse,
+        permissions: user.permissions || []
       }
     });
   })

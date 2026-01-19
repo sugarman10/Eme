@@ -12,7 +12,7 @@ import { Button } from '../components/ui/Button'
 
 // Validation Schema
 const loginSchema = z.object({
-  email: z.string().min(1, 'البريد الإلكتروني أو اسم المستخدم مطلوب'),
+  username: z.string().min(1, 'اسم المستخدم مطلوب'),
   password: z.string().min(6, 'كلمة المرور يجب أن تكون 6 أحرف على الأقل'),
 })
 
@@ -28,7 +28,7 @@ export default function Login() {
   } = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: ''
     }
   })
@@ -79,15 +79,15 @@ export default function Login() {
         <CardContent className="p-8 pt-6">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-bold text-foreground">البريد الإلكتروني أو اسم المستخدم</label>
+              <label className="text-sm font-bold text-foreground">اسم المستخدم</label>
               <Input
                 type="text"
-                placeholder="name@company.com or username"
-                className={`bg-white h-12 ${errors.email ? 'border-destructive' : ''}`}
-                {...register('email')}
+                placeholder="اسم المستخدم"
+                className={`bg-white h-12 ${errors.username ? 'border-destructive' : ''}`}
+                {...register('username')}
               />
-              {errors.email && (
-                <span className="text-xs text-destructive font-medium">{errors.email.message}</span>
+              {errors.username && (
+                <span className="text-xs text-destructive font-medium">{errors.username.message}</span>
               )}
             </div>
             <div className="flex flex-col gap-2">

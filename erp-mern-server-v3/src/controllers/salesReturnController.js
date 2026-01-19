@@ -10,6 +10,9 @@ import Account from '../models/Account.js';
 import { createJournalEntry } from '../services/accountingService.js';
 import { generateCreditNotePdfHtml, generatePdfFromHtml } from '../services/pdfService.js';
 import logger from '../config/logger.js';
+import { auditUpdate } from '../services/auditService.js';
+import { runPostingTransaction } from '../services/postingService.js';
+import { deductStockBulk } from '../services/stockService.js';
 
 // 1. Create Sales Return DRAFT
 export const createSalesReturn = async (req, res) => {
@@ -94,170 +97,310 @@ export const createSalesReturn = async (req, res) => {
 
 // 2. Approve Sales Return (Atomic Transaction)
 export const approveSalesReturn = async (req, res) => {
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
         const { id } = req.params;
 
-        // A. Get the Return
-        const sr = await SalesReturn.findById(id).session(session);
-        if (!sr) throw new Error('مرتجع مبيعات غير موجود');
+        const resultId = await runPostingTransaction(async (session) => {
+            const sr = await SalesReturn.findById(id).session(session);
+            if (!sr) throw new Error('Return not found');
 
-        if (sr.status === 'returned') {
-            throw new Error('تمت الموافقة على هذا المرتجع مسبقاً');
-        }
+            if (sr.status === 'returned') throw new Error('Return already posted');
+            if (sr.status === 'rejected' || sr.status === 'reversed') throw new Error('Return cannot be posted');
+            if (!['draft', 'pending_approval'].includes(sr.status)) throw new Error('Return must be draft or pending');
 
-        if (sr.status === 'rejected') {
-            throw new Error('المرتجع مرفوض');
-        }
+            const beforeState = sr.toObject();
+            const warehouseId = sr.warehouse;
+            const stockLedgerIds = [];
 
-        const warehouseId = sr.warehouse;
+            // B. Process Each Item (Stock Increase)
+            for (const rItem of sr.items) {
+                const product = await Item.findById(rItem.item).session(session);
+                if (!product) throw new Error(`Product not found: ${rItem.item}`);
 
-        // B. Process Each Item (Stock Increase)
-        for (const rItem of sr.items) {
-            const product = await Item.findById(rItem.item).session(session);
-            if (!product) {
-                throw new Error(`الصنف غير موجود: ${rItem.item}`);
+                if (!product.stocks) product.stocks = [];
+                const stockIdx = product.stocks.findIndex(
+                    s => s.warehouse.toString() === warehouseId.toString()
+                );
+
+                if (stockIdx > -1) {
+                    product.stocks[stockIdx].qty += rItem.qty;
+                } else {
+                    product.stocks.push({ warehouse: warehouseId, qty: rItem.qty });
+                }
+
+                product.totalStock += rItem.qty;
+                await product.save({ session });
+
+                const [ledgerDoc] = await StockLedger.create([{
+                    item: product._id,
+                    warehouse: warehouseId,
+                    type: 'SALES_RETURN',
+                    qty: rItem.qty,
+                    ref: `RET-SALE#${sr._id.toString().slice(-6)}`,
+                    note: `Sales return - ${rItem.reason || 'other'}`,
+                    user: req.user?._id,
+                    date: new Date()
+                }], { session });
+                if (ledgerDoc?._id) stockLedgerIds.push(ledgerDoc._id);
             }
 
-            // Ensure stocks array exists
-            if (!product.stocks) product.stocks = [];
-
-            const stockIdx = product.stocks.findIndex(
-                s => s.warehouse.toString() === warehouseId.toString()
-            );
-
-            if (stockIdx > -1) {
-                product.stocks[stockIdx].qty += rItem.qty;
-            } else {
-                product.stocks.push({ warehouse: warehouseId, qty: rItem.qty });
+            // D. Update Customer Balance
+            if (sr.customer) {
+                await Customer.findByIdAndUpdate(sr.customer, {
+                    $inc: { balance: -sr.totalAmount }
+                }, { session });
             }
 
-            product.totalStock += rItem.qty;
-            await product.save({ session });
+            // E. Update Original Invoice (Record Return)
+            const returnRecords = sr.items.map(item => ({
+                item: item.item,
+                qty: item.qty,
+                date: new Date(),
+                note: `Return #${sr._id.toString().slice(-6)}`,
+                returnId: sr._id
+            }));
 
-            // C. Create Stock Ledger Entry (SALES_RETURN)
-            await StockLedger.create([{
-                item: product._id,
-                warehouse: warehouseId,
-                type: 'SALES_RETURN',
-                qty: rItem.qty, // Positive because it comes back IN
-                ref: `RET-SALE#${sr._id.toString().slice(-6)}`,
-                note: `مرتجع مبيعات - ${rItem.reason || 'غير محدد'}`,
-                user: req.user?._id,
-                date: new Date()
-            }], { session });
-        }
-
-        // D. Update Customer Balance (Credit Customer - Reduce Balance)
-        if (sr.customer) {
-            await Customer.findByIdAndUpdate(sr.customer, {
-                $inc: { balance: -sr.totalAmount }
+            await SalesInvoice.findByIdAndUpdate(sr.originalInvoice, {
+                $push: { returns: { $each: returnRecords } }
             }, { session });
-        }
 
-        // E. Update Original Invoice (Record Return)
-        // Store return history in the original invoice for validation of future returns
-        const returnRecords = sr.items.map(item => ({
-            item: item.item,
-            qty: item.qty,
-            date: new Date(),
-            note: `Return #${sr._id.toString().slice(-6)}`
-        }));
+            // F. Double-Entry Journal Entry
+            let journalEntryId = null;
+            try {
+                const accounts = await Account.find({
+                    code: { $in: ['40102', '10105', '11101'] }
+                }).session(session);
 
-        await SalesInvoice.findByIdAndUpdate(sr.originalInvoice, {
-            $push: { returns: { $each: returnRecords } }
-        }, { session });
+                const accMap = accounts.reduce((map, acc) => {
+                    map[acc.code] = acc._id;
+                    return map;
+                }, {});
 
-        // F. Double-Entry Journal Entry
-        try {
-            // Debit: Sales Returns (40102) OR Revenue Reduction
-            // Credit: Customer Control (10105) (Accounts Receivable)
+                const salesReturnAcc = accMap['40102'];
+                const arAccount = accMap['10105'] || accMap['11101'];
 
-            const accounts = await Account.find({
-                code: { $in: ['40102', '10105', '11101'] }
-            }).session(session);
+                if (salesReturnAcc && arAccount) {
+                    const customerName = sr.customer ? `Customer ${sr.customer}` : 'Walk-in Customer';
 
-            const accMap = accounts.reduce((map, acc) => {
-                map[acc.code] = acc._id;
-                return map;
-            }, {});
-
-            const salesReturnAcc = accMap['40102'];
-            const arAccount = accMap['10105'] || accMap['11101'];
-
-            if (salesReturnAcc && arAccount) {
-                // If customer exists, credit AR. If walking customer (null), what do we credit?
-                // Usually Walking Customers paid Cash, so we should Credit Cash (Refund) or Liability?
-                // For now, assuming Credit Note logic -> Credit AR implies we owe them OR we reduce what they owe.
-                // If they have no account, we can't reduce what they owe. 
-                // We should probably just log the return revenue reduction. 
-                // BUT double entry requires balance.
-                // Assuming for now we still credit AR (or a Cash Customer clearing account).
-                // If sr.customer is null, we might need to skip AR part of JE or use a generic one.
-                // For safety to avoid breakage:
-
-                const customerName = sr.customer ? `عميل ${sr.customer}` : 'زبوون عام (نقدي)';
-
-                await createJournalEntry(session, {
-                    date: new Date(),
-                    reference: `RET-SALE#${sr._id.toString().slice(-6)}`,
-                    description: `مرتجع مبيعات - ${customerName}`,
-                    entries: [
-                        // Debit: Sales Returns (Revenue Contra)
-                        {
-                            accountId: salesReturnAcc,
-                            debit: sr.totalAmount,
-                            credit: 0,
-                            note: 'مردودات مبيعات'
-                        },
-                        // Credit: AR (Reduce Asset) - This reduces the "Balance" we expect to collect.
-                        // For cash customer, this balance doesn't exist technically, but accounting-wise
-                        // the initial sale debited AR/Cash. If it was Cash sale, it debited Cash.
-                        // So here we should probably Credit CASH if it was a Cash Sale?
-                        // Complexity: We don't know if original was Cash/Credit easily here without checking invoice payment method.
-                        // Sticking to AR for consistency with "Credit Note" model, can be adjusted later.
-                        {
-                            accountId: arAccount,
-                            debit: 0,
-                            credit: sr.totalAmount,
-                            note: `تخفيض رصيد ${customerName}`
-                        }
-                    ]
-                });
-                // Log removed for production
-            } else {
-                console.warn('⚠️ Accounting Sync Skipped: Missing 40102 or AR account');
+                    const journalEntry = await createJournalEntry(session, {
+                        date: new Date(),
+                        reference: `RET-SALE#${sr._id.toString().slice(-6)}`,
+                        description: `Sales return - ${customerName}`,
+                        entries: [
+                            {
+                                accountId: salesReturnAcc,
+                                debit: sr.totalAmount,
+                                credit: 0,
+                                note: 'Sales return'
+                            },
+                            {
+                                accountId: arAccount,
+                                debit: 0,
+                                credit: sr.totalAmount,
+                                note: `AR reduction - ${customerName}`
+                            }
+                        ]
+                    });
+                    journalEntryId = journalEntry?._id || null;
+                } else {
+                    console.warn('Accounting Sync Skipped: Missing 40102 or AR account');
+                }
+            } catch (jeError) {
+                console.error('Journal Entry Failed (Sales Return):', jeError.message);
             }
-        } catch (jeError) {
-            console.error('❌ Journal Entry Failed (Sales Return):', jeError.message);
-        }
 
-        // G. Update Return Status
-        sr.status = 'returned';
-        sr.approvedBy = req.user?._id;
-        sr.approvedAt = new Date();
-        await sr.save({ session });
+            // G. Update Return Status
+            sr.status = 'returned';
+            sr.approvedBy = req.user?._id;
+            sr.approvedAt = new Date();
+            await sr.save({ session });
 
-        await session.commitTransaction();
+            await auditUpdate('SALES_RETURN', sr._id, beforeState, sr, req.user, req.ip, session, {
+                action: 'POST',
+                journalEntryId,
+                stockLedgerIds
+            });
 
-        const populated = await SalesReturn.findById(sr._id)
+            return sr._id;
+        });
+
+        const populated = await SalesReturn.findById(resultId)
             .populate('customer', 'name')
             .populate('warehouse', 'name')
             .populate('approvedBy', 'name');
 
         res.status(200).json({
-            message: 'تمت الموافقة على المرتجع بنجاح',
+            message: 'Return posted successfully',
             return: populated
         });
 
     } catch (error) {
-        await session.abortTransaction();
         console.error('Approve Sales Return Error:', error);
         res.status(400).json({ message: error.message });
-    } finally {
-        session.endSession();
+    }
+};
+
+// 2.1 Void Sales Return (Draft/Pending only)
+export const voidSalesReturn = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultId = await runPostingTransaction(async (session) => {
+            const sr = await SalesReturn.findById(id).session(session);
+            if (!sr) throw new Error('Return not found');
+
+            if (!['draft', 'pending_approval'].includes(sr.status)) {
+                throw new Error('Only draft or pending returns can be voided');
+            }
+
+            const beforeState = sr.toObject();
+            sr.status = 'rejected';
+            if (req.body?.note) {
+                sr.note = (sr.note || '') + `\n[Void]: ${req.body.note}`;
+            }
+            await sr.save({ session });
+
+            await auditUpdate('SALES_RETURN', sr._id, beforeState, sr, req.user, req.ip, session, {
+                action: 'VOID'
+            });
+
+            return sr._id;
+        });
+
+        const populated = await SalesReturn.findById(resultId)
+            .populate('customer', 'name')
+            .populate('warehouse', 'name')
+            .populate('approvedBy', 'name');
+
+        res.json({ message: 'Return voided', return: populated });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+// 2.2 Reverse Sales Return (Undo posted return)
+export const reverseSalesReturn = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultId = await runPostingTransaction(async (session) => {
+            const sr = await SalesReturn.findById(id).session(session);
+            if (!sr) throw new Error('Return not found');
+
+            if (sr.status !== 'returned') {
+                throw new Error('Only returned sales returns can be reversed');
+            }
+
+            if (sr.isRefunded) {
+                throw new Error('Refunded returns cannot be reversed');
+            }
+
+            const beforeState = sr.toObject();
+            const warehouseId = sr.warehouse;
+            const stockLedgerIds = [];
+
+            const deductItems = sr.items.map(item => ({
+                item: item.item,
+                qty: item.qty
+            }));
+
+            await deductStockBulk(deductItems, warehouseId, session);
+
+            const ledgerDocs = await StockLedger.insertMany(sr.items.map(item => ({
+                item: item.item,
+                warehouse: warehouseId,
+                type: 'OUT',
+                qty: -Math.abs(Number(item.qty || 0)),
+                ref: `RET-SALE-REV#${sr._id.toString().slice(-6)}`,
+                note: 'Sales return reversal',
+                user: req.user?._id,
+                date: new Date()
+            })), { session });
+
+            ledgerDocs.forEach(doc => {
+                if (doc?._id) stockLedgerIds.push(doc._id);
+            });
+
+            if (sr.customer) {
+                await Customer.findByIdAndUpdate(sr.customer, {
+                    $inc: { balance: sr.totalAmount }
+                }, { session });
+            }
+
+            const invoice = await SalesInvoice.findById(sr.originalInvoice).session(session);
+            if (invoice) {
+                const retId = sr._id.toString();
+                const shortId = retId.slice(-6);
+                invoice.returns = (invoice.returns || []).filter(r => {
+                    if (r.returnId && r.returnId.toString() === retId) return false;
+                    const note = r.note || '';
+                    if (note.includes(shortId) && note.includes('Return #')) return false;
+                    return true;
+                });
+                await invoice.save({ session });
+            }
+
+            let journalEntryId = null;
+            try {
+                const accounts = await Account.find({
+                    code: { $in: ['40102', '10105', '11101'] }
+                }).session(session);
+
+                const accMap = accounts.reduce((map, acc) => {
+                    map[acc.code] = acc._id;
+                    return map;
+                }, {});
+
+                const salesReturnAcc = accMap['40102'];
+                const arAccount = accMap['10105'] || accMap['11101'];
+
+                if (salesReturnAcc && arAccount) {
+                    const customerName = sr.customer ? `Customer ${sr.customer}` : 'Walk-in Customer';
+                    const journalEntry = await createJournalEntry(session, {
+                        date: new Date(),
+                        reference: `RET-SALE-REV#${sr._id.toString().slice(-6)}`,
+                        description: `Sales return reversal - ${customerName}`,
+                        entries: [
+                            {
+                                accountId: arAccount,
+                                debit: sr.totalAmount,
+                                credit: 0,
+                                note: 'Reversal of sales return'
+                            },
+                            {
+                                accountId: salesReturnAcc,
+                                debit: 0,
+                                credit: sr.totalAmount,
+                                note: 'Reversal of sales return'
+                            }
+                        ]
+                    });
+                    journalEntryId = journalEntry?._id || null;
+                } else {
+                    console.warn('Accounting Sync Skipped: Missing 40102 or AR account');
+                }
+            } catch (jeError) {
+                console.error('Journal Entry Failed (Sales Return Reverse):', jeError.message);
+            }
+
+            sr.status = 'reversed';
+            await sr.save({ session });
+
+            await auditUpdate('SALES_RETURN', sr._id, beforeState, sr, req.user, req.ip, session, {
+                action: 'REVERSE',
+                journalEntryId,
+                stockLedgerIds
+            });
+
+            return sr._id;
+        });
+
+        const populated = await SalesReturn.findById(resultId)
+            .populate('customer', 'name')
+            .populate('warehouse', 'name')
+            .populate('approvedBy', 'name');
+
+        res.json({ message: 'Return reversed', return: populated });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 };
 
@@ -273,10 +416,26 @@ export const updateReturnStatus = async (req, res) => {
         if (status === 'returned') {
             return approveSalesReturn(req, res);
         }
+        if (status === 'rejected') {
+            if (rejectionReason) req.body.note = rejectionReason;
+            return voidSalesReturn(req, res);
+        }
+
+        const validTransitions = {
+            'draft': ['pending_approval', 'rejected'],
+            'pending_approval': ['rejected', 'returned'],
+            'rejected': ['draft'],
+            'returned': [],
+            'reversed': []
+        };
+
+        if (!validTransitions[sr.status] || !validTransitions[sr.status].includes(status)) {
+            return res.status(400).json({ message: 'Invalid status transition' });
+        }
 
         sr.status = status;
         if (status === 'rejected' && rejectionReason) {
-            sr.note = (sr.note || '') + `\n[رفض]: ${rejectionReason}`;
+            sr.note = (sr.note || '') + `\n[Reason]: ${rejectionReason}`;
         }
         await sr.save();
         res.json({ message: 'Status updated', return: sr });

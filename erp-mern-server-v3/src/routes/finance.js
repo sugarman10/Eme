@@ -1,7 +1,7 @@
 import express from 'express';
 import { body, query, validationResult } from 'express-validator';
 import { requireAuth } from '../middleware/auth.js';
-import { requireRole } from '../middleware/rbac.js';
+import { requireRole, requirePermission } from '../middleware/rbac.js';
 import Account from '../models/Account.js';
 import JournalEntry from '../models/JournalEntry.js';
 import { wrap } from '../middleware/asyncHandler.js';
@@ -10,7 +10,7 @@ import '../models/Customer.js'; // Ensure schema registration
 import '../models/SalesInvoice.js'; // Ensure schema registration
 
 // Import Receipt Controller
-import { createReceipt, getReceipts, getTrialBalance } from '../controllers/financeController.js';
+import { createReceipt, getReceipts, voidReceipt, reverseReceipt, getTrialBalance } from '../controllers/financeController.js';
 
 const router = express.Router();
 
@@ -20,6 +20,7 @@ const router = express.Router();
 router.post('/accounts',
   requireAuth(['admin', 'accountant']),
   requireRole(['admin', 'accountant']),
+  requirePermission(['coa_manage'], ['admin', 'accountant']),
   body('code').isString().isLength({ min: 1 }),
   body('name').isString().isLength({ min: 2 }),
   body('type').isIn(['asset', 'liability', 'equity', 'revenue', 'expense']),
@@ -49,6 +50,7 @@ router.get('/accounts',
 router.put('/accounts/:id',
   requireAuth(['admin', 'accountant']),
   requireRole(['admin', 'accountant']),
+  requirePermission(['coa_manage'], ['admin', 'accountant']),
   wrap(async (req, res) => {
     const { id } = req.params;
     const { name, isActive } = req.body;
@@ -145,6 +147,19 @@ router.get('/receipts',
   requireAuth(['admin', 'accountant', 'sales']),
   requireRole(['admin', 'accountant', 'sales']),
   wrap(getReceipts)
+);
+
+// Receipt void/reverse
+router.post('/receipts/:id/void',
+  requireAuth(['admin', 'accountant', 'manager']),
+  requireRole(['admin', 'accountant', 'manager']),
+  wrap(voidReceipt)
+);
+
+router.post('/receipts/:id/reverse',
+  requireAuth(['admin', 'accountant', 'manager']),
+  requireRole(['admin', 'accountant', 'manager']),
+  wrap(reverseReceipt)
 );
 
 // ============================================================

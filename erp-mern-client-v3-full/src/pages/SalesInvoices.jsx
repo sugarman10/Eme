@@ -26,7 +26,6 @@ import {
   DialogBody,
   DialogFooter,
 } from '../components/ui/Dialog'
-import { NativeSelect } from '../components/ui/Select'
 
 // Extracted Components
 import {
@@ -56,7 +55,6 @@ export default function SalesInvoices() {
   // Modal States
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [actionModal, setActionModal] = useState({ show: false, type: '', order: null })
-  const [actionForm, setActionForm] = useState({ treasuryId: '', processPayment: true })
   const [returnModal, setReturnModal] = useState({ show: false, invoice: null })
   const [returnItems, setReturnItems] = useState([])
   const [returnWarehouse, setReturnWarehouse] = useState('')
@@ -202,46 +200,29 @@ export default function SalesInvoices() {
 
   const handleActionClick = (order, type) => {
     setActionModal({ show: true, type, order })
-    setActionForm({ treasuryId: '', processPayment: true })
   }
 
   const executeAction = async () => {
     const { type, order } = actionModal
-    const { treasuryId, processPayment } = actionForm
 
-    if (processPayment && !treasuryId) return push('error', 'اختر الخزينة')
+    if (!type || !order?._id) return
 
     setLoading(true)
     try {
-      await api.patch(`/sales/invoice/${order._id}/status`, { status: type })
+      await api.post(`/sales/invoice/${order._id}/${type}`)
 
-      if (processPayment) {
-        const amount = order.totals?.grand || order.items.reduce((acc, item) => acc + (item.qty * item.price), 0)
-
-        if (type === 'confirmed') {
-          await api.post('/finance/receipts', {
-            customer: order.customer?._id || order.customer,
-            date: new Date().toISOString().split('T')[0],
-            amount, method: 'cash', accountId: treasuryId,
-            note: `تحصيل تلقائي من فاتورة مبيعات #${order._id.slice(-6)}`,
-            invoices: [order._id]
-          })
-        } else if (type === 'cancelled') {
-          await api.post('/finance/payments', {
-            supplier: null, beneficiary: order.customer?.name || 'Customer',
-            date: new Date().toISOString().split('T')[0],
-            amount, method: 'cash', accountId: treasuryId,
-            note: `استرجاع قيمة فاتورة مبيعات #${order._id.slice(-6)}`
-          })
-        }
+      const messages = {
+        post: 'Invoice posted',
+        void: 'Invoice voided',
+        reverse: 'Invoice reversed'
       }
 
-      push('success', type === 'confirmed' ? 'تم تأكيد الفاتورة' : 'تم إلغاء الفاتورة')
+      push('success', messages[type] || 'Invoice updated')
       setActionModal({ show: false, type: '', order: null })
       await loadAll()
     } catch (e) {
       console.error(e)
-      push('error', 'حدث خطأ أثناء تنفيذ العملية')
+      push('error', e?.response?.data?.message || 'Failed to update invoice')
     } finally {
       setLoading(false)
     }
@@ -277,8 +258,11 @@ export default function SalesInvoices() {
 
     setLoading(true)
     try {
-      await api.post(`/sales/invoice/${returnModal.invoice._id}/return`, {
-        items: itemsToReturn, warehouse: returnWarehouse, note: returnNote
+      await api.post('/sales/returns', {
+        invoiceId: returnModal.invoice._id,
+        items: itemsToReturn.map(item => ({ ...item, reason: 'other' })),
+        warehouse: returnWarehouse,
+        note: returnNote
       })
       push('success', 'تم استرجاع الأصناف بنجاح')
       setReturnModal({ show: false, invoice: null })
@@ -409,8 +393,9 @@ export default function SalesInvoices() {
             onSelectInvoice={setSelectedInvoices}
             onView={(inv) => setViewModal({ show: true, invoice: inv })}
             onPrint={handlePrint}
-            onConfirm={(inv) => handleActionClick(inv, 'confirmed')}
-            onCancel={(inv) => handleActionClick(inv, 'cancelled')}
+            onPost={(inv) => handleActionClick(inv, 'post')}
+            onVoid={(inv) => handleActionClick(inv, 'void')}
+            onReverse={(inv) => handleActionClick(inv, 'reverse')}
             onReturn={handleOpenReturn}
           />
 
@@ -447,33 +432,23 @@ export default function SalesInvoices() {
         <DialogContent className="max-w-sm" onClose={() => setActionModal({ show: false, type: '', order: null })}>
           <DialogHeader>
             <DialogTitle className="text-center">
-              {actionModal.type === 'confirmed' ? 'تأكيد الفاتورة' : 'إلغاء الفاتورة'}
+              {actionModal.type === 'post' ? 'Post Invoice' : actionModal.type === 'void' ? 'Void Invoice' : 'Reverse Invoice'}
             </DialogTitle>
           </DialogHeader>
           <DialogBody className="space-y-4">
-            <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200">
-              <input
-                type="checkbox"
-                id="processPayment"
-                className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
-                checked={actionForm.processPayment}
-                onChange={e => setActionForm({ ...actionForm, processPayment: e.target.checked })}
-              />
-              <label htmlFor="processPayment" className="font-medium text-slate-700 cursor-pointer">
-                {actionModal.type === 'confirmed' ? 'تحصيل للخزينة' : 'استرجاع المبلغ'}
-              </label>
+            <p className="text-sm text-slate-600">
+              {actionModal.type === 'post'
+                ? 'Post this invoice?'
+                : actionModal.type === 'void'
+                  ? 'Void this invoice?'
+                  : 'Reverse this invoice?'}
+            </p>
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+              <div className="font-bold text-slate-800">
+                #{actionModal.order?._id?.slice(-6) || '--'}
+              </div>
+              <div>{actionModal.order?.customer?.name || '-'}</div>
             </div>
-            {actionForm.processPayment && (
-              <NativeSelect
-                value={actionForm.treasuryId}
-                onChange={e => setActionForm({ ...actionForm, treasuryId: e.target.value })}
-              >
-                <option value="">اختر الخزينة...</option>
-                {accounts.filter(a => a.type === 'asset').map(acc => (
-                  <option key={acc._id} value={acc._id}>{acc.name}</option>
-                ))}
-              </NativeSelect>
-            )}
           </DialogBody>
           <DialogFooter>
             <Button
@@ -483,11 +458,11 @@ export default function SalesInvoices() {
               إلغاء
             </Button>
             <Button
-              variant={actionModal.type === 'confirmed' ? 'default' : 'destructive'}
+              variant={actionModal.type === 'post' ? 'default' : 'destructive'}
               onClick={executeAction}
               loading={loading}
             >
-              {actionModal.type === 'confirmed' ? 'تأكيد' : 'إلغاء الفاتورة'}
+              {actionModal.type === 'post' ? 'Post' : actionModal.type === 'void' ? 'Void' : 'Reverse'}
             </Button>
           </DialogFooter>
         </DialogContent>

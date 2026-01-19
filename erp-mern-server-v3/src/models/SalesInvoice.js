@@ -23,7 +23,8 @@ const SalesInvoiceSchema = new mongoose.Schema({
     item: { type: ObjectId, ref: 'Item' },
     qty: { type: Number, default: 0 },
     date: { type: Date, default: Date.now },
-    note: { type: String, default: '' }
+    note: { type: String, default: '' },
+    returnId: { type: ObjectId, ref: 'SalesReturn', default: null }
   }],
   discountValue: { type: Number, default: 0 },
   totals: {

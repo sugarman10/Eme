@@ -6,8 +6,8 @@
 
 import React from 'react'
 import {
-    FileText, Printer, Check, X, RotateCcw,
-    ChevronUp, ChevronDown, CheckSquare, Square, Wallet, User
+    FileText, Printer, Check, X, RotateCcw, Undo2,
+    ChevronUp, ChevronDown, CheckSquare, Square, User
 } from 'lucide-react'
 import StatusBadge from './StatusBadge'
 
@@ -27,8 +27,9 @@ export default function InvoicesTable({
     onSelectInvoice,
     onView,
     onPrint,
-    onConfirm,
-    onCancel,
+    onPost,
+    onVoid,
+    onReverse,
     onReturn
 }) {
     const toggleSelectAll = () => {
@@ -129,6 +130,10 @@ export default function InvoicesTable({
                                 const paid = inv.totals?.paid || 0
                                 const remaining = Math.max(0, total - paid)
                                 const invDate = inv.date || inv.createdAt
+                                const canPost = ['draft', 'pending', 'confirmed'].includes(inv.status)
+                                const canVoid = ['draft', 'pending'].includes(inv.status)
+                                const canReturn = ['confirmed', 'posted'].includes(inv.status)
+                                const canReverse = ['posted'].includes(inv.status)
 
                                 return (
                                     <tr key={inv._id} className="hover:bg-slate-50 transition-colors">
@@ -262,34 +267,43 @@ export default function InvoicesTable({
                                                     <Printer size={14} />
                                                 </button>
 
-                                                {inv.status === 'draft' && (
-                                                    <>
-                                                        <button
-                                                            onClick={() => onConfirm(inv)}
-                                                            className="p-1.5 hover:bg-blue-100 rounded-lg text-blue-600 transition-colors"
-                                                            title="تأكيد"
-                                                        >
-                                                            <Check size={14} />
-                                                        </button>
-                                                        {canDelete && (
-                                                            <button
-                                                                onClick={() => onCancel(inv)}
-                                                                className="p-1.5 hover:bg-red-100 rounded-lg text-red-600 transition-colors"
-                                                                title="إلغاء"
-                                                            >
-                                                                <X size={14} />
-                                                            </button>
-                                                        )}
-                                                    </>
+                                                {canPost && (
+                                                    <button
+                                                        onClick={() => onPost(inv)}
+                                                        className="p-1.5 hover:bg-blue-100 rounded-lg text-blue-600 transition-colors"
+                                                        title="Post"
+                                                    >
+                                                        <Check size={14} />
+                                                    </button>
                                                 )}
 
-                                                {inv.status === 'confirmed' && (
+                                                {canVoid && canDelete && (
+                                                    <button
+                                                        onClick={() => onVoid(inv)}
+                                                        className="p-1.5 hover:bg-red-100 rounded-lg text-red-600 transition-colors"
+                                                        title="Void"
+                                                    >
+                                                        <X size={14} />
+                                                    </button>
+                                                )}
+
+                                                {canReturn && (
                                                     <button
                                                         onClick={() => onReturn(inv)}
                                                         className="p-1.5 hover:bg-purple-100 rounded-lg text-purple-600 transition-colors"
-                                                        title="استرجاع"
+                                                        title="Return"
                                                     >
                                                         <RotateCcw size={14} />
+                                                    </button>
+                                                )}
+
+                                                {canReverse && (
+                                                    <button
+                                                        onClick={() => onReverse(inv)}
+                                                        className="p-1.5 hover:bg-amber-100 rounded-lg text-amber-600 transition-colors"
+                                                        title="Reverse"
+                                                    >
+                                                        <Undo2 size={14} />
                                                     </button>
                                                 )}
 

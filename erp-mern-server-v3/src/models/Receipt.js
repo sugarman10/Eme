@@ -5,6 +5,7 @@ const receiptSchema = new mongoose.Schema({
     date: { type: Date, required: true, default: Date.now },
     amount: { type: Number, required: true, min: 0 },
     method: { type: String, enum: ['cash', 'bank', 'check', 'split', 'wallet'], default: 'cash' },
+    status: { type: String, enum: ['posted', 'void', 'reversed'], default: 'posted' },
     note: { type: String },
     // Changed from SalesOrder to SalesInvoice
     invoices: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SalesInvoice' }],

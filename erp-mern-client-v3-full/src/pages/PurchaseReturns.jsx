@@ -11,7 +11,8 @@ const StatusBadge = ({ status }) => {
         draft: { label: 'مسودة', className: 'bg-slate-100 text-slate-700' },
         pending_approval: { label: 'بانتظار الموافقة', className: 'bg-yellow-100 text-yellow-700' },
         returned: { label: 'تم الإرجاع', className: 'bg-green-100 text-green-700' },
-        rejected: { label: 'مرفوض', className: 'bg-red-100 text-red-700' }
+        rejected: { label: 'مرفوض', className: 'bg-red-100 text-red-700' },
+        reversed: { label: 'reversed', className: 'bg-purple-100 text-purple-700' }
     };
     const { label, className } = config[status] || { label: status, className: 'bg-slate-100' };
     return <span className={`px-2 py-1 rounded-full text-xs font-medium ${className}`}>{label}</span>;
@@ -46,7 +47,7 @@ export default function PurchaseReturns() {
 
         setApproving(returnId);
         try {
-            await api.post(`/procurement/returns/${returnId}/approve`);
+            await api.post(`/procurement/returns/${returnId}/post`);
             alert('✅ تمت الموافقة بنجاح');
             fetchReturns();
         } catch (error) {
@@ -57,18 +58,30 @@ export default function PurchaseReturns() {
     };
 
     const handleReject = async (returnId) => {
-        const reason = prompt('سبب الرفض (اختياري):');
+        const reason = prompt('Void reason:');
         if (reason === null) return; // canceled
 
         try {
-            await api.patch(`/procurement/returns/${returnId}/status`, {
-                status: 'rejected',
-                rejectionReason: reason
-            });
-            alert('تم الرفض');
+            await api.post(`/procurement/returns/${returnId}/void`, { note: reason });
+            alert('Return voided');
             fetchReturns();
         } catch (error) {
-            alert('فشل: ' + (error.response?.data?.message || error.message));
+            alert('Error: ' + (error.response?.data?.message || error.message));
+        }
+    };
+
+    const handleReverse = async (returnId) => {
+        if (!confirm('Reverse this return?')) return;
+
+        setApproving(returnId);
+        try {
+            await api.post(`/procurement/returns/${returnId}/reverse`);
+            alert('Return reversed');
+            fetchReturns();
+        } catch (error) {
+            alert('Error: ' + (error.response?.data?.message || error.message));
+        } finally {
+            setApproving(null);
         }
     };
 
@@ -101,6 +114,7 @@ export default function PurchaseReturns() {
                             <option value="pending_approval">بانتظار الموافقة</option>
                             <option value="returned">تم الإرجاع</option>
                             <option value="rejected">مرفوض</option>
+                            <option value="reversed">reversed</option>
                         </select>
                     </div>
                     <div className="text-sm text-muted-foreground">
@@ -173,11 +187,30 @@ export default function PurchaseReturns() {
                                                             </Button>
                                                         </>
                                                     )}
-                                                    {ret.status === 'returned' && !ret.isRefunded && (
-                                                        <span className="text-xs text-muted-foreground">لم يُسترد المبلغ</span>
+                                                    {ret.status === 'returned' && (
+                                                        <>
+                                                            {!ret.isRefunded ? (
+                                                                <Button
+                                                                    size="sm"
+                                                                    variant="secondary"
+                                                                    onClick={() => handleReverse(ret._id)}
+                                                                    disabled={approving === ret._id}
+                                                                    className="gap-1 text-xs"
+                                                                >
+                                                                    {approving === ret._id ? (
+                                                                        <Clock size={14} className="animate-spin" />
+                                                                    ) : (
+                                                                        <RotateCcw size={14} />
+                                                                    )}
+                                                                    Reverse
+                                                                </Button>
+                                                            ) : (
+                                                                <span className="text-xs text-green-600 font-medium">Refunded</span>
+                                                            )}
+                                                        </>
                                                     )}
-                                                    {ret.status === 'returned' && ret.isRefunded && (
-                                                        <span className="text-xs text-green-600 font-medium">✅ تم الاسترداد</span>
+                                                    {ret.status === 'reversed' && (
+                                                        <span className="text-xs text-purple-600 font-medium">Reversed</span>
                                                     )}
                                                 </div>
                                             </td>

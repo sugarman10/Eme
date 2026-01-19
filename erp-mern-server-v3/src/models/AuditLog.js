@@ -11,7 +11,18 @@ const AuditLogSchema = new mongoose.Schema({
     // Entity being audited
     entityType: {
         type: String,
-        enum: ['INVOICE', 'RECEIPT', 'PRODUCT', 'ACCOUNT', 'JOURNAL'],
+        enum: [
+            'INVOICE',
+            'RECEIPT',
+            'PRODUCT',
+            'ACCOUNT',
+            'JOURNAL',
+            'PURCHASE_ORDER',
+            'SALES_RETURN',
+            'PURCHASE_RETURN',
+            'TREASURY',
+            'SUPPLIER_PAYMENT'
+        ],
         required: true,
         index: true
     },

@@ -84,8 +84,11 @@ export default function InvoiceFilters({
                         <option value="all">جميع الحالات</option>
                         <option value="draft">مسودة</option>
                         <option value="confirmed">مؤكدة</option>
+                        <option value="posted">posted</option>
+                        <option value="pending">pending</option>
                         <option value="fulfilled">مدفوعة</option>
                         <option value="cancelled">ملغاة</option>
+                        <option value="void">void</option>
                         <option value="refund">مُرتجعة</option>
                     </select>
                 </div>

@@ -1,7 +1,7 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 import { requireAuth } from '../middleware/auth.js';
-import { requireRole } from '../middleware/rbac.js';
+import { requireRole, requirePermission } from '../middleware/rbac.js';
 import Treasury from '../models/Treasury.js';
 import { wrap } from '../middleware/asyncHandler.js';
 
@@ -11,6 +11,7 @@ const router = express.Router();
 router.post('/',
     requireAuth(['admin', 'manager']),
     requireRole(['admin', 'manager']),
+    requirePermission(['treasury_manage'], ['admin', 'manager']),
     body('name').isString().isLength({ min: 2 }),
     body('type').isIn(['safe', 'bank']),
     body('balance').optional().isFloat({ min: 0 }),
@@ -71,6 +72,7 @@ router.get('/:id',
 router.put('/:id',
     requireAuth(['admin', 'manager']),
     requireRole(['admin', 'manager']),
+    requirePermission(['treasury_manage'], ['admin', 'manager']),
     body('name').optional().isString().isLength({ min: 2 }),
     body('type').optional().isIn(['safe', 'bank']),
     body('balance').optional().isFloat({ min: 0 }),
@@ -99,6 +101,7 @@ router.put('/:id',
 router.delete('/:id',
     requireAuth(['admin']),
     requireRole(['admin']),
+    requirePermission(['treasury_manage'], ['admin']),
     wrap(async (req, res) => {
         const treasury = await Treasury.findByIdAndDelete(req.params.id);
         if (!treasury) {

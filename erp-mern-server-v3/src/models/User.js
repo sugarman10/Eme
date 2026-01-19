@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 const UserSchema = new mongoose.Schema({
-  username: { type: String, unique: true, sparse: true, trim: true }, // Optional for backward compatibility
+  username: { type: String, required: true, unique: true, trim: true },
   name: { type: String, required: true, trim: true },
-  email: { type: String, required: true, unique: true, lowercase: true, trim: true },
+  email: { type: String, unique: true, sparse: true, lowercase: true, trim: true }, // Optional
   password: { type: String, required: true },
   role: { type: String, enum: ['admin', 'manager', 'cashier'], default: 'cashier' },
   permissions: [{ type: String }],

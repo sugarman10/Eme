@@ -33,10 +33,8 @@ export default function Users() {
   const [editingId, setEditingId] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     username: '',
     password: '',
-    role: 'cashier',
     role: 'cashier',
     department: '',
     assignedWarehouse: ''
@@ -70,10 +68,8 @@ export default function Users() {
       setEditingId(user._id)
       setFormData({
         name: user.name,
-        email: user.email,
         username: user.username || '',
         password: '', // Leave empty for updates implies no change
-        role: user.role,
         role: user.role,
         department: user.department?._id || '',
         assignedWarehouse: user.assignedWarehouse?._id || ''
@@ -82,10 +78,8 @@ export default function Users() {
       setEditingId(null)
       setFormData({
         name: '',
-        email: '',
         username: '',
         password: '',
-        role: 'cashier',
         role: 'cashier',
         department: '',
         assignedWarehouse: ''
@@ -132,7 +126,6 @@ export default function Users() {
   // Filter
   const filtered = users.filter(u =>
     u.name.toLowerCase().includes(search.toLowerCase()) ||
-    u.email.toLowerCase().includes(search.toLowerCase()) ||
     (u.username || '').toLowerCase().includes(search.toLowerCase())
   )
 
@@ -172,7 +165,7 @@ export default function Users() {
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
               <Input
                 className="!pr-14 bg-white"
-                placeholder="بحث بالاسم، البريد أو اسم المستخدم..."
+                placeholder="بحث بالاسم أو اسم المستخدم..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
@@ -205,7 +198,6 @@ export default function Users() {
                           </div>
                           <div>
                             <div className="font-bold text-gray-900">{user.name}</div>
-                            <div className="text-xs text-gray-500">{user.email}</div>
                           </div>
                         </div>
                       </TableCell>
@@ -265,15 +257,12 @@ export default function Users() {
                       <Input required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} placeholder="الاسم" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">اسم المستخدم (للدخول)</label>
-                      <Input value={formData.username} onChange={e => setFormData({ ...formData, username: e.target.value })} placeholder="username" />
+                      <label className="text-sm font-medium">اسم المستخدم (للدخول) <span className="text-red-500">*</span></label>
+                      <Input required value={formData.username} onChange={e => setFormData({ ...formData, username: e.target.value })} placeholder="username" />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">البريد الإلكتروني</label>
-                    <Input type="email" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="email@example.com" />
-                  </div>
+
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../services/api';
 import { useToast } from '../context/ToastContext';
 import { useWarehouse } from '../context/WarehouseContext';
-import { Plus, Eye, CheckCircle, Truck, Calendar, ShoppingCart, Package } from 'lucide-react';
+import { Plus, Eye, CheckCircle, Truck, ShoppingCart, Package, RotateCcw, XCircle, X } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -122,7 +122,7 @@ export default function PurchaseOrders() {
 
         try {
             // ✅ Call V2 Endpoint for Atomic Receive
-            await api.post(`/procurement/orders/${receivingOrder._id}/receive`, {
+            await api.post(`/procurement/orders/${receivingOrder._id}/post`, {
                 warehouse: targetWarehouse
             });
 
@@ -133,6 +133,40 @@ export default function PurchaseOrders() {
             push('error', err.response?.data?.message || 'فشل الاستلام');
         }
     };
+
+    const statusConfig = {
+        pending: { label: 'pending', className: 'bg-yellow-100 text-yellow-700' },
+        approved: { label: 'approved', className: 'bg-blue-100 text-blue-700' },
+        received: { label: 'received', className: 'bg-green-100 text-green-700' },
+        cancelled: { label: 'cancelled', className: 'bg-red-100 text-red-700' },
+        returned: { label: 'returned', className: 'bg-purple-100 text-purple-700' }
+    };
+
+
+    const handleVoid = async (order) => {
+        if (!confirm('Void this order?')) return;
+
+        try {
+            await api.post(`/procurement/orders/${order._id}/void`);
+            push('success', 'Order voided');
+            loadData();
+        } catch (err) {
+            push('error', err.response?.data?.message || 'Failed to void order');
+        }
+    };
+
+    const handleReverse = async (order) => {
+        if (!confirm('Reverse this order?')) return;
+
+        try {
+            await api.post(`/procurement/orders/${order._id}/reverse`);
+            push('success', 'Order reversed');
+            loadData();
+        } catch (err) {
+            push('error', err.response?.data?.message || 'Failed to reverse order');
+        }
+    };
+
 
     return (
         <div className="p-6 space-y-6">
@@ -158,40 +192,52 @@ export default function PurchaseOrders() {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map(order => (
-                            <tr key={order._id} className="border-b hover:bg-slate-50">
-                                <td className="p-4 font-mono">#{order.number || order._id.slice(-6)}</td>
-                                <td className="p-4 text-sm text-gray-500">{new Date(order.createdAt).toLocaleDateString('ar-LY')}</td>
-                                <td className="p-4">{order.supplier?.name}</td>
-                                <td className="p-4">
-                                    <span className={`px-2 py-1 rounded text-xs font-bold ${order.status === 'received' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-                                        }`}>
-                                        {order.status === 'received' ? 'مستلم' : 'انتظار'}
-                                    </span>
-                                </td>
-                                <td className="p-4">{order.totalAmount} د.ل</td>
-                                <td className="p-4 text-sm text-gray-500">
-                                    {order.warehouse?.name || '-'}
-                                </td>
-                                <td className="p-4 flex gap-2 justify-end">
-                                    <Button size="sm" variant="ghost" onClick={() => openDetailsModal(order)} title="عرض التفاصيل">
-                                        <Eye size={16} className="text-gray-600" />
-                                    </Button>
-                                    {order.status !== 'received' && (
-                                        <Button size="sm" onClick={() => openReceiveModal(order)} className="bg-blue-600 hover:bg-blue-700 text-white">
-                                            <Truck size={16} className="ml-2" /> استلام
+                        {orders.map(order => {
+                            const status = statusConfig[order.status] || { label: order.status, className: 'bg-slate-100 text-slate-700' };
+                            return (
+                                <tr key={order._id} className="border-b hover:bg-slate-50">
+                                    <td className="p-4 font-mono">#{order.number || order._id.slice(-6)}</td>
+                                    <td className="p-4 text-sm text-gray-500">{new Date(order.createdAt).toLocaleDateString('ar-LY')}</td>
+                                    <td className="p-4">{order.supplier?.name}</td>
+                                    <td className="p-4">
+                                        <span className={`px-2 py-1 rounded text-xs font-bold ${status.className}`}>
+                                            {status.label}
+                                        </span>
+                                    </td>
+                                    <td className="p-4">{order.totalAmount} د.ل</td>
+                                    <td className="p-4 text-sm text-gray-500">
+                                        {order.warehouse?.name || '-'}
+                                    </td>
+                                    <td className="p-4 flex gap-2 justify-end">
+                                        <Button size="sm" variant="ghost" onClick={() => openDetailsModal(order)} title="عرض التفاصيل">
+                                            <Eye size={16} className="text-gray-600" />
                                         </Button>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
+                                        {['pending', 'approved'].includes(order.status) && (
+                                            <>
+                                                <Button size="sm" onClick={() => openReceiveModal(order)} className="bg-blue-600 hover:bg-blue-700 text-white">
+                                                    <Truck size={16} className="ml-2" /> ??????
+                                                </Button>
+                                                <Button size="sm" variant="destructive" onClick={() => handleVoid(order)} className="gap-1">
+                                                    <XCircle size={16} className="ml-2" /> Void
+                                                </Button>
+                                            </>
+                                        )}
+                                        {order.status === 'received' && (
+                                            <Button size="sm" variant="secondary" onClick={() => handleReverse(order)} className="gap-1">
+                                                <RotateCcw size={16} className="ml-2" /> Reverse
+                                            </Button>
+                                        )}
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             </Card>
 
             {/* Create Order Dialog - Spreadsheet Style */}
             <Dialog open={showCreate} onOpenChange={setShowCreate}>
-                <DialogContent className="max-w-[95vw] lg:max-w-[1400px]" onClose={() => setShowCreate(false)}>
+                <DialogContent className="max-w-[65vw] lg:max-w-[1000px] max-h-[10vh] overflow-y-auto" onClose={() => setShowCreate(false)}>
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white">

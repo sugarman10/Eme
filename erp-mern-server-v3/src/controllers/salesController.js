@@ -13,7 +13,8 @@ import { getOrgTaxRate } from '../services/settingService.js';
 import { add, sub, mul, round } from '../utils/mathUtils.js';
 import { sendNotification } from '../socket.js';
 import logger from '../config/logger.js';
-import { auditCreate, AuditError } from '../services/auditService.js';
+import { auditCreate, auditUpdate, AuditError } from '../services/auditService.js';
+import { runPostingTransaction } from '../services/postingService.js';
 import { startOfDay, endOfDay } from '../utils/dateUtils.js';
 import { useCredit } from './walletController.js';
 
@@ -797,8 +798,23 @@ export async function getInvoiceById(req, res) {
 
 export async function updateInvoiceStatus(req, res) {
     const { status } = req.body;
+    const allowedStatuses = ['draft', 'pending'];
+
+    if (!allowedStatuses.includes(status)) {
+        return res.status(400).json({
+            message: 'Direct status changes are restricted. Use /post, /void, or /reverse.'
+        });
+    }
+
     const invoice = await SalesInvoice.findById(req.params.id);
     if (!invoice) return res.status(404).json({ message: 'Invoice not found' });
+
+    const editableStatuses = ['draft', 'pending'];
+    if (!editableStatuses.includes(invoice.status)) {
+        return res.status(409).json({
+            message: 'Invoice status is locked. Use /post, /void, or /reverse.'
+        });
+    }
 
     invoice.status = status;
     await invoice.save();
@@ -812,84 +828,124 @@ export async function updateInvoiceStatus(req, res) {
     res.json(updated);
 }
 
-export async function returnInvoiceItems(req, res) {
-    const { items, warehouse, note = '' } = req.body;
-
-    const invoice = await SalesInvoice.findById(req.params.id);
-    if (!invoice) return res.status(404).json({ message: 'Invoice not found' });
-
-    // Map sold items
-    const soldMap = new Map();
-    invoice.items.forEach(it => {
-        const key = String(it.item);
-        soldMap.set(key, (soldMap.get(key) || 0) + Number(it.qty || 0));
-    });
-
-    // Map already returned items
-    const returnedMap = new Map();
-    (invoice.returns || []).forEach(r => {
-        const key = String(r.item);
-        returnedMap.set(key, (returnedMap.get(key) || 0) + Number(r.qty || 0));
-    });
-
-    const now = new Date();
-
-    // Verify quantities
-    for (const row of items) {
-        const key = String(row.item);
-        const sold = soldMap.get(key) || 0;
-        const already = returnedMap.get(key) || 0;
-        const qty = Number(row.qty || 0);
-
-        if (qty <= 0) continue;
-
-        if (already + qty > sold + 1e-9) {
-            return res.status(400).json({
-                message: 'كمية الإرجاع أكبر من الكمية المباعة لأحد الأصناف.'
-            });
+export async function postInvoice(req, res) {
+    const resultId = await runPostingTransaction(async (session) => {
+        const invoice = await SalesInvoice.findById(req.params.id).session(session);
+        if (!invoice) {
+            const err = new Error('Invoice not found');
+            err.status = 404;
+            throw err;
         }
-    }
 
-    // Apply returns
-    let refundTotal = 0;
-    for (const row of items) {
-        const qty = Number(row.qty || 0);
-        if (qty <= 0) continue;
+        if (invoice.status === 'posted') {
+            return invoice._id;
+        }
 
-        const orig = invoice.items.find(i => String(i.item) === String(row.item));
-        const price = Number(orig?.price || 0);
-        const lineAmount = price * qty;
-        refundTotal += lineAmount;
+        const beforeState = invoice.toObject();
 
-        invoice.returns.push({
+        if (invoice.status === 'confirmed') {
+            invoice.status = 'posted';
+            await invoice.save({ session });
+            await auditUpdate('INVOICE', invoice._id, beforeState, invoice, req.user, req.ip, session, {
+                action: 'POST',
+                mode: 'confirmed'
+            });
+            return invoice._id;
+        }
+
+        if (invoice.status !== 'draft') {
+            const err = new Error('Only draft or confirmed invoices can be posted');
+            err.status = 409;
+            throw err;
+        }
+
+        if (invoice.type === 'proforma') {
+            const err = new Error('Proforma invoices cannot be posted');
+            err.status = 400;
+            throw err;
+        }
+
+        const paidAmount = Number(invoice.totals?.paid || 0);
+        if (paidAmount > 0) {
+            const err = new Error('Draft invoices with payments must be re-issued');
+            err.status = 400;
+            throw err;
+        }
+
+        if (!invoice.warehouse) {
+            const err = new Error('Warehouse is required to post invoice');
+            err.status = 400;
+            throw err;
+        }
+
+        // Deduct stock and create ledger entries
+        await deductStockBulk(invoice.items, invoice.warehouse, session);
+
+        const ledgerEntries = invoice.items.map(row => ({
             item: row.item,
-            qty,
-            date: now,
-            note
+            warehouse: invoice.warehouse,
+            type: 'OUT',
+            qty: -Math.abs(Number(row.qty || 0)),
+            ref: `INV#${invoice._id}`,
+            note: `Sales invoice ${invoice.number || invoice._id.toString().slice(-6)}`,
+            date: invoice.date
+        }));
+
+        const ledgerDocs = await StockLedger.insertMany(ledgerEntries, { session });
+        const stockLedgerIds = ledgerDocs.map(doc => doc._id);
+
+        const grand = Number(invoice.totals?.grand || 0);
+        const tax = Number(invoice.totals?.tax || 0);
+        let remaining = Number(invoice.totals?.remaining);
+        if (!Number.isFinite(remaining) || remaining < 0) {
+            remaining = grand - paidAmount;
+        }
+        if (paidAmount === 0 && remaining === 0 && grand > 0) {
+            remaining = grand;
+        }
+
+        let customerDoc = null;
+        if (invoice.customer) {
+            customerDoc = await Customer.findById(invoice.customer).session(session);
+            if (!customerDoc) {
+                const err = new Error('Customer not found');
+                err.status = 400;
+                throw err;
+            }
+        }
+
+        if (customerDoc && remaining > 0) {
+            customerDoc.balance = (customerDoc.balance || 0) + remaining;
+            await customerDoc.save({ session });
+        }
+
+        const journalEntry = await _createSalesJournalEntry({
+            invoiceId: invoice._id,
+            invoiceNumber: invoice.number || invoice._id.toString().slice(-6),
+            date: invoice.date,
+            paidAmount: 0,
+            remaining: remaining,
+            grand: grand,
+            tax: tax,
+            customerName: customerDoc?.name || 'Customer',
+            paymentMethod: invoice.paymentMethod || 'cash',
+            splitDetails: [],
+            userId: req.user?._id || req.user?.id
+        }, session);
+
+        invoice.status = 'posted';
+        await invoice.save({ session });
+
+        await auditUpdate('INVOICE', invoice._id, beforeState, invoice, req.user, req.ip, session, {
+            action: 'POST',
+            journalEntryId: journalEntry?._id,
+            stockLedgerIds
         });
 
-        if (warehouse) {
-            await StockLedger.create({
-                item: row.item,
-                warehouse,
-                type: 'IN',
-                qty: Math.abs(qty),
-                ref: `RET#${invoice._id}`,
-                note: 'Sales return'
-            });
-        }
-    }
+        return invoice._id;
+    });
 
-    invoice.totals.subtotal = Math.max(0, Number(invoice.totals.subtotal || 0) - refundTotal);
-    invoice.totals.paid = Math.max(0, Number(invoice.totals.paid || 0) - refundTotal);
-    const tax = Number(invoice.totals.tax || 0);
-    const discount = Number(invoice.totals.discount || 0);
-    invoice.totals.grand = Math.max(0, invoice.totals.subtotal - discount + tax);
-
-    invoice.status = 'refund';
-    await invoice.save();
-
-    const updated = await SalesInvoice.findById(invoice._id)
+    const updated = await SalesInvoice.findById(resultId)
         .populate('customer', 'name code phone')
         .populate('items.item', 'name sku')
         .populate('returns.item', 'name sku')
@@ -897,3 +953,102 @@ export async function returnInvoiceItems(req, res) {
 
     res.json(updated);
 }
+
+export async function voidInvoice(req, res) {
+    const resultId = await runPostingTransaction(async (session) => {
+        const invoice = await SalesInvoice.findById(req.params.id).session(session);
+        if (!invoice) {
+            const err = new Error('Invoice not found');
+            err.status = 404;
+            throw err;
+        }
+
+        const allowed = ['draft', 'pending'];
+        if (!allowed.includes(invoice.status)) {
+            const err = new Error('Only draft or pending invoices can be voided');
+            err.status = 409;
+            throw err;
+        }
+
+        const beforeState = invoice.toObject();
+        invoice.status = 'void';
+        await invoice.save({ session });
+
+        await auditUpdate('INVOICE', invoice._id, beforeState, invoice, req.user, req.ip, session, {
+            action: 'VOID'
+        });
+
+        return invoice._id;
+    });
+
+    const updated = await SalesInvoice.findById(resultId)
+        .populate('customer', 'name code phone')
+        .populate('items.item', 'name sku')
+        .populate('returns.item', 'name sku')
+        .lean();
+
+    res.json(updated);
+}
+
+export async function reverseInvoice(req, res) {
+    const resultId = await runPostingTransaction(async (session) => {
+        const invoice = await SalesInvoice.findById(req.params.id).session(session);
+        if (!invoice) {
+            const err = new Error('Invoice not found');
+            err.status = 404;
+            throw err;
+        }
+
+        if (!['confirmed', 'posted'].includes(invoice.status)) {
+            const err = new Error('Only confirmed or posted invoices can be reversed');
+            err.status = 409;
+            throw err;
+        }
+
+        const soldMap = new Map();
+        invoice.items.forEach(it => {
+            const key = String(it.item);
+            soldMap.set(key, (soldMap.get(key) || 0) + Number(it.qty || 0));
+        });
+
+        const returnedMap = new Map();
+        (invoice.returns || []).forEach(r => {
+            const key = String(r.item);
+            returnedMap.set(key, (returnedMap.get(key) || 0) + Number(r.qty || 0));
+        });
+
+        for (const [key, soldQty] of soldMap.entries()) {
+            const returnedQty = returnedMap.get(key) || 0;
+            if (returnedQty + 1e-9 < soldQty) {
+                const err = new Error('Invoice must be fully returned before reversal');
+                err.status = 400;
+                throw err;
+            }
+        }
+
+        const beforeState = invoice.toObject();
+        invoice.status = 'refund';
+        await invoice.save({ session });
+
+        await auditUpdate('INVOICE', invoice._id, beforeState, invoice, req.user, req.ip, session, {
+            action: 'REVERSE'
+        });
+
+        return invoice._id;
+    });
+
+    const updated = await SalesInvoice.findById(resultId)
+        .populate('customer', 'name code phone')
+        .populate('items.item', 'name sku')
+        .populate('returns.item', 'name sku')
+        .lean();
+
+    res.json(updated);
+}
+
+export async function returnInvoiceItems(req, res) {
+    return res.status(410).json({
+        message: 'This endpoint is deprecated. Use /api/sales/returns.'
+    });
+}
+

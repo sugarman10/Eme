@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import mongoose from 'mongoose';
-import { checkStockAvailability, deductStock, addStock } from '../services/stockService.js';
-import Item from '../models/Item.js';
+import { checkStockAvailability, deductStock, addStock } from '../stockService.js';
+import Item from '../../models/Item.js';
 
 /**
  * Unit Tests for Stock Service

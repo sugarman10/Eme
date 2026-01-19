@@ -83,7 +83,7 @@ export async function deductStock(itemId, warehouseId, qty, session = null) {
         if (!warehouseStock) throw new Error('Item not available in warehouse');
 
         // If we are here, it means stock < qty (Concurrency caught this, or just logic)
-        throw new Error(`Insufficient stock for ${item.name}. Available: ${warehouseStock.qty}, Required: ${qty}`);
+        throw new Error(`رصيد غير كافٍ (Insufficient stock) for ${item.name}. Available: ${warehouseStock.qty}, Required: ${qty}`);
     }
 
     // Return updated document for reference (optional, requires another read if needed)

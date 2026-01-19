@@ -77,7 +77,7 @@ const dailyClosureSchema = new mongoose.Schema({
 });
 
 // Index for fast date lookups
-dailyClosureSchema.index({ date: 1 });
+// NOTE: `unique: true` on date already creates an index. Avoid duplicate index warnings.
 dailyClosureSchema.index({ status: 1 });
 
 const DailyClosure = mongoose.model('DailyClosure', dailyClosureSchema);

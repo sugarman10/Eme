@@ -1,7 +1,7 @@
 import express from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 import { requireAuth } from '../middleware/auth.js';
-import { requireRole } from '../middleware/rbac.js';
+import { requireRole, requirePermission } from '../middleware/rbac.js';
 import Item from '../models/Item.js';
 import Warehouse from '../models/Warehouse.js';
 import StockLedger from '../models/StockLedger.js';
@@ -121,6 +121,7 @@ router.delete('/warehouses/:id',
 router.post('/stock/adjust',
   requireAuth(['admin', 'manager']),
   requireRole(['admin', 'manager']),
+  requirePermission(['inventory_adjust'], ['admin', 'manager']),
   body('item').isMongoId(),
   body('warehouse').isMongoId(),
   body('qty').isFloat({ gt: 0 }),
@@ -146,6 +147,7 @@ router.post('/stock/adjust',
 router.post('/stock/transfer',
   requireAuth(['admin', 'manager']),
   requireRole(['admin', 'manager']),
+  requirePermission(['inventory_adjust'], ['admin', 'manager']),
   body('item').isMongoId(),
   body('fromWarehouse').isMongoId(),
   body('toWarehouse').isMongoId(),
@@ -285,6 +287,7 @@ router.get('/movements',
 router.post('/movements',
   requireAuth(['admin', 'manager']),
   requireRole(['admin', 'manager']),
+  requirePermission(['inventory_adjust'], ['admin', 'manager']),
   body('item').isMongoId(),
   body('warehouse').isMongoId(),
   body('qty').isFloat({ gt: 0 }),

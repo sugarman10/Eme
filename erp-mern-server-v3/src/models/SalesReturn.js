@@ -42,7 +42,7 @@ const SalesReturnSchema = new mongoose.Schema({
     // ============ STATUS WORKFLOW ============
     status: {
         type: String,
-        enum: ['draft', 'pending_approval', 'returned', 'rejected'],
+        enum: ['draft', 'pending_approval', 'returned', 'rejected', 'reversed'],
         default: 'draft'
     },
 

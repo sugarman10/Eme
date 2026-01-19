@@ -28,47 +28,55 @@ export async function createTransaction(data, session = null) {
         date = new Date()
     } = data;
 
-    // Validate treasury exists (with or without session)
-    const treasuryDoc = session
-        ? await Treasury.findById(treasury).session(session)
-        : await Treasury.findById(treasury);
-
-    if (!treasuryDoc) {
-        throw new Error('الخزينة غير موجودة (Treasury not found)');
+    const safeAmount = Number(amount);
+    if (!safeAmount || safeAmount <= 0) {
+        throw new Error('Invalid transaction amount');
     }
 
-    // Create transaction (with or without session)
+    let treasuryDoc = null;
+
+    if (flow === 'out') {
+        treasuryDoc = await Treasury.findOneAndUpdate(
+            { _id: treasury, balance: { $gte: safeAmount } },
+            { $inc: { balance: -safeAmount } },
+            { new: true, session }
+        );
+
+        if (!treasuryDoc) {
+            const existingQuery = Treasury.findById(treasury);
+            if (session) existingQuery.session(session);
+            const existing = await existingQuery;
+            if (!existing) {
+                throw new Error('Treasury not found');
+            }
+            throw new Error(`Insufficient treasury balance. Available: ${existing.balance}, Required: ${safeAmount}`);
+        }
+    } else if (flow === 'in') {
+        treasuryDoc = await Treasury.findByIdAndUpdate(
+            treasury,
+            { $inc: { balance: safeAmount } },
+            { new: true, session }
+        );
+
+        if (!treasuryDoc) {
+            throw new Error('Treasury not found');
+        }
+    } else {
+        throw new Error('Invalid transaction flow');
+    }
+
     const createOptions = session ? { session } : {};
     const transaction = await Transaction.create([{
         type,
         flow,
         category,
-        amount,
+        amount: safeAmount,
         treasury,
         relatedId,
         relatedModel,
         description,
         date
     }], createOptions);
-
-    // Update treasury balance
-    if (flow === 'in') {
-        treasuryDoc.balance += amount;
-    } else if (flow === 'out') {
-        treasuryDoc.balance -= amount;
-
-        // Optional: Prevent negative balance
-        if (treasuryDoc.balance < 0) {
-            throw new Error(`رصيد الخزينة غير كافٍ. الحالي: ${treasuryDoc.balance + amount}, المطلوب: ${amount}`);
-        }
-    }
-
-    // Save with or without session
-    if (session) {
-        await treasuryDoc.save({ session });
-    } else {
-        await treasuryDoc.save();
-    }
 
     return transaction[0];
 }

@@ -7,6 +7,8 @@ import Treasury from '../models/Treasury.js';
 import Transaction from '../models/Transaction.js';
 import { createJournalEntry } from '../services/accountingService.js';
 import Account from '../models/Account.js';
+import { auditUpdate } from '../services/auditService.js';
+import { runPostingTransaction } from '../services/postingService.js';
 
 // 1. Create Draft PO
 export const createPurchaseOrder = async (req, res) => {
@@ -32,120 +34,148 @@ export const createPurchaseOrder = async (req, res) => {
 
 // 2. Receive PO (Atomic Transaction)
 export const receivePurchaseOrder = async (req, res) => {
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
         const { id } = req.params;
-        const { warehouse } = req.body; // The ACTUAL target warehouse
+        const { warehouse } = req.body;
 
         if (!warehouse) {
             throw new Error('Target warehouse is required for receiving');
         }
 
-        // A. Get the PO
-        const po = await PurchaseOrder.findById(id).session(session);
-        if (!po) throw new Error('Order not found');
-        if (po.status === 'received') throw new Error('Order already received');
+        const poId = await runPostingTransaction(async (session) => {
+            const po = await PurchaseOrder.findById(id).session(session);
+            if (!po) throw new Error('Order not found');
+            if (po.status === 'received' || po.status === 'returned') throw new Error('Order already received');
+            if (po.status === 'cancelled') throw new Error('Order is cancelled');
 
-        // B. Process Each Item (Costing & Stock)
-        for (const lineItem of po.items) {
-            const product = await Item.findById(lineItem.item).session(session);
+            const beforeState = po.toObject();
+            const stockLedgerIds = [];
 
-            if (product) {
-                // 1. Calculate Weighted Average Cost
-                const currentTotalQty = product.totalStock || 0;
-                const currentCost = product.cost || 0;
-                const newQty = lineItem.qty;
-                const newCost = lineItem.cost;
+            // B. Process Each Item (Costing & Stock)
+            for (const lineItem of po.items) {
+                const product = await Item.findById(lineItem.item).session(session);
 
-                const totalValue = (currentTotalQty * currentCost) + (newQty * newCost);
-                const totalQty = currentTotalQty + newQty;
+                if (product) {
+                    const currentTotalQty = product.totalStock || 0;
+                    const currentCost = product.cost || 0;
+                    const newQty = lineItem.qty;
+                    const newCost = lineItem.cost;
 
-                // Avoid division by zero
-                const weightedAvgCost = totalQty > 0 ? (totalValue / totalQty) : newCost;
+                    const totalValue = (currentTotalQty * currentCost) + (newQty * newCost);
+                    const totalQty = currentTotalQty + newQty;
 
-                // 2. Update Product (Global Cost + Specific Warehouse Stock)
-                // Check if warehouse exists in stocks array
-                // Ensure stocks array exists
-                if (!product.stocks) product.stocks = [];
+                    const weightedAvgCost = totalQty > 0 ? (totalValue / totalQty) : newCost;
 
-                const stockIndex = product.stocks.findIndex(
-                    s => s.warehouse.toString() === warehouse.toString()
-                );
+                    if (!product.stocks) product.stocks = [];
 
-                if (stockIndex > -1) {
-                    // Warehouse exists, increment
-                    product.stocks[stockIndex].qty += newQty;
-                } else {
-                    // New warehouse entry
-                    product.stocks.push({ warehouse, qty: newQty });
+                    const stockIndex = product.stocks.findIndex(
+                        s => s.warehouse.toString() === warehouse.toString()
+                    );
+
+                    if (stockIndex > -1) {
+                        product.stocks[stockIndex].qty += newQty;
+                    } else {
+                        product.stocks.push({ warehouse, qty: newQty });
+                    }
+
+                    product.cost = weightedAvgCost;
+                    product.totalStock = (product.totalStock || 0) + newQty;
+
+                    await product.save({ session });
+
+                    const [ledgerDoc] = await StockLedger.create([{
+                        item: product._id,
+                        warehouse: warehouse,
+                        type: 'IN',
+                        qty: newQty,
+                        ref: `PO#${po.number || po._id}`,
+                        note: 'Purchase Order Receive',
+                        date: new Date()
+                    }], { session });
+                    if (ledgerDoc?._id) stockLedgerIds.push(ledgerDoc._id);
                 }
-
-                product.cost = weightedAvgCost; // Update global cost
-                product.totalStock += newQty;   // Update total
-
-                await product.save({ session });
-
-                // 3. Create Stock Ledger Entry
-                await StockLedger.create([{
-                    item: product._id,
-                    warehouse: warehouse,
-                    type: 'IN', // Purchase
-                    qty: newQty,
-                    ref: `PO#${po.number || po._id}`,
-                    note: 'Purchase Order Receive',
-                    date: new Date()
-                }], { session });
             }
-        }
 
-        // C. Update Supplier Balance (Credit)
-        // We owe the supplier money now
-        await Supplier.findByIdAndUpdate(po.supplier, {
-            $inc: { balance: po.totalAmount }
-        }, { session });
+            // C. Update Supplier Balance (Credit)
+            await Supplier.findByIdAndUpdate(po.supplier, {
+                $inc: { balance: po.totalAmount }
+            }, { session });
 
-        // D. Mark PO as Received
-        po.status = 'received';
-        po.warehouse = warehouse; // Record where it actually went
-        po.receivedAt = new Date();
-        await po.save({ session });
+            // D. Mark PO as Received
+            po.status = 'received';
+            po.warehouse = warehouse;
+            po.receivedAt = new Date();
+            await po.save({ session });
 
-        // ===== AUTO-ACCOUNTING (Journal Entry) =====
-        try {
-            // 1. Fetch Accounts (Inventory Asset: 10103, AP: 20101)
-            const accounts = await Account.find({ code: { $in: ['10103', '20101'] } }).session(session);
-            const accMap = accounts.reduce((map, acc) => { map[acc.code] = acc._id; return map; }, {});
+            // E. Auto-Accounting (Journal Entry)
+            let journalEntryId = null;
+            try {
+                const accounts = await Account.find({ code: { $in: ['10103', '20101'] } }).session(session);
+                const accMap = accounts.reduce((map, acc) => { map[acc.code] = acc._id; return map; }, {});
 
-            if (accMap['10103'] && accMap['20101']) {
-                await createJournalEntry(session, {
-                    date: new Date(),
-                    reference: `PO#${po.number || po._id}`,
-                    description: `استلام طلب شراء - مورد ${po.supplier}`,
-                    entries: [
-                        // Dr Inventory (10103)
-                        { accountId: accMap['10103'], debit: po.totalAmount, credit: 0, note: 'استلام مخزني' },
-                        // Cr AP (20101)
-                        { accountId: accMap['20101'], debit: 0, credit: po.totalAmount, note: 'استحقاق مورد' }
-                    ]
-                });
-            } else {
-                console.warn('⚠️ Accounting Sync Skipped: Missing Accounts 10103 or 20101');
+                if (accMap['10103'] && accMap['20101']) {
+                    const journalEntry = await createJournalEntry(session, {
+                        date: new Date(),
+                        reference: `PO#${po.number || po._id}`,
+                        description: `Purchase Order Receive - ${po.supplier}`,
+                        entries: [
+                            { accountId: accMap['10103'], debit: po.totalAmount, credit: 0, note: 'Inventory received' },
+                            { accountId: accMap['20101'], debit: 0, credit: po.totalAmount, note: 'AP accrued' }
+                        ]
+                    });
+                    journalEntryId = journalEntry?._id || null;
+                } else {
+                    console.warn('Accounting Sync Skipped: Missing Accounts 10103 or 20101');
+                }
+            } catch (jeError) {
+                console.error('Accounting Sync Failed (Procurement):', jeError.message);
             }
-        } catch (jeError) {
-            console.error('❌ Accounting Sync Failed (Procurement):', jeError.message);
-        }
 
-        await session.commitTransaction();
+            await auditUpdate('PURCHASE_ORDER', po._id, beforeState, po, req.user, req.ip, session, {
+                action: 'POST',
+                journalEntryId,
+                stockLedgerIds
+            });
+
+            return po._id;
+        });
+
+        const po = await PurchaseOrder.findById(poId);
         res.status(200).json({ message: 'Received successfully', po });
 
     } catch (error) {
-        await session.abortTransaction();
         console.error('Receive Error:', error);
         res.status(400).json({ message: error.message });
-    } finally {
-        session.endSession();
+    }
+};
+
+// 2.1 Void Purchase Order (Pending/Approved only)
+export const voidPurchaseOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const poId = await runPostingTransaction(async (session) => {
+            const po = await PurchaseOrder.findById(id).session(session);
+            if (!po) throw new Error('Order not found');
+
+            if (!['pending', 'approved'].includes(po.status)) {
+                throw new Error('Only pending or approved orders can be voided');
+            }
+
+            const beforeState = po.toObject();
+            po.status = 'cancelled';
+            await po.save({ session });
+
+            await auditUpdate('PURCHASE_ORDER', po._id, beforeState, po, req.user, req.ip, session, {
+                action: 'VOID'
+            });
+
+            return po._id;
+        });
+
+        const po = await PurchaseOrder.findById(poId);
+        res.json({ message: 'Order voided', po });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 };
 
@@ -196,6 +226,26 @@ export const createSupplierPayment = async (req, res) => {
             description: note || `Payment to Supplier: ${supplier.name}`
         }], { session });
 
+        // 6. Journal Entry (Dr AP / Cr Cash or Bank)
+        const cashCode = treasury.type === 'bank' ? '1020' : '1010';
+        const accounts = await Account.find({ code: { $in: ['20101', cashCode] } }).session(session);
+        const apAcc = accounts.find(a => a.code === '20101');
+        const cashAcc = accounts.find(a => a.code === cashCode);
+
+        if (!apAcc || !cashAcc) {
+            throw new Error('Missing AP or treasury account for supplier payment');
+        }
+
+        await createJournalEntry(session, {
+            date: new Date(),
+            reference: `SUPPAY#${supplier._id.toString().slice(-6)}`,
+            description: `Supplier payment - ${supplier.name}`,
+            entries: [
+                { accountId: apAcc._id, debit: payAmount, credit: 0, note: 'AP settlement' },
+                { accountId: cashAcc._id, debit: 0, credit: payAmount, note: 'Treasury payment' }
+            ]
+        });
+
         await session.commitTransaction();
         res.status(200).json({ message: 'Payment successful', newBalance: supplier.balance });
 
@@ -209,69 +259,108 @@ export const createSupplierPayment = async (req, res) => {
 
 // 4. Return PO logic
 export const returnPurchaseOrder = async (req, res) => {
-    const session = await mongoose.startSession();
-    session.startTransaction();
     try {
-        // Handle input: req.params.id (Express) or req (Service direct ID)
         const id = (req.params && req.params.id) ? req.params.id : req;
 
-        const po = await PurchaseOrder.findById(id).session(session);
-        if (!po) throw new Error('Order not found');
-        if (po.status !== 'received') throw new Error('Order is not received, cannot return');
+        const poId = await runPostingTransaction(async (session) => {
+            const po = await PurchaseOrder.findById(id).session(session);
+            if (!po) throw new Error('Order not found');
+            if (po.status !== 'received') throw new Error('Order is not received, cannot return');
 
-        // Reverse Stock Logic
-        for (const lineItem of po.items) {
-            const product = await Item.findById(lineItem.item).session(session);
-            if (product) {
-                // Determine warehouse from PO
-                const warehouseId = po.warehouse;
+            const beforeState = po.toObject();
+            const warehouseId = po.warehouse;
+            const stockLedgerIds = [];
 
-                // Remove form specific warehouse stock
-                if (product.stocks) {
-                    const stockIndex = product.stocks.findIndex(s => s.warehouse.toString() === warehouseId.toString());
-                    if (stockIndex > -1) {
-                        product.stocks[stockIndex].qty = Math.max(0, product.stocks[stockIndex].qty - lineItem.qty);
-                    }
+            // Reverse Stock Logic
+            for (const lineItem of po.items) {
+                const product = await Item.findById(lineItem.item).session(session);
+                if (!product) continue;
+
+                if (!product.stocks) product.stocks = [];
+                const stockIndex = product.stocks.findIndex(s => s.warehouse.toString() === warehouseId.toString());
+                if (stockIndex === -1) {
+                    throw new Error(`Item not found in warehouse: ${lineItem.item}`);
+                }
+                if (product.stocks[stockIndex].qty < lineItem.qty) {
+                    throw new Error(`Insufficient stock for return: ${product.name}`);
                 }
 
-                // Remove from total stock
-                product.totalStock = Math.max(0, product.totalStock - lineItem.qty);
-
+                product.stocks[stockIndex].qty -= lineItem.qty;
+                product.totalStock = Math.max(0, (product.totalStock || 0) - lineItem.qty);
                 await product.save({ session });
 
-                // Add Stock Ledger OUT
-                await StockLedger.create([{
+                const [ledgerDoc] = await StockLedger.create([{
                     item: product._id,
                     warehouse: warehouseId,
                     type: 'OUT',
-                    qty: -lineItem.qty, // Negative for OUT? Or Positive with type OUT?
+                    qty: -lineItem.qty,
                     ref: `PO#${po.number || po._id}`,
                     note: 'Purchase Order Return',
                     date: new Date()
                 }], { session });
+                if (ledgerDoc?._id) stockLedgerIds.push(ledgerDoc._id);
             }
+
+            // Reverse Balance (Debit Supplier)
+            await Supplier.findByIdAndUpdate(po.supplier, {
+                $inc: { balance: -po.totalAmount }
+            }, { session });
+
+            // Journal Entry (Reverse PO)
+            let journalEntryId = null;
+            try {
+                const accounts = await Account.find({
+                    code: { $in: ['10103', '20101'] }
+                }).session(session);
+
+                const accMap = accounts.reduce((map, acc) => {
+                    map[acc.code] = acc._id;
+                    return map;
+                }, {});
+
+                const inventoryAccount = accMap['10103'];
+                const apAccount = accMap['20101'];
+
+                if (inventoryAccount && apAccount) {
+                    const journalEntry = await createJournalEntry(session, {
+                        date: new Date(),
+                        reference: `PO-RET#${po.number || po._id}`,
+                        description: `Purchase Order Return - ${po.supplier}`,
+                        entries: [
+                            { accountId: apAccount, debit: po.totalAmount, credit: 0, note: 'AP reversal' },
+                            { accountId: inventoryAccount, debit: 0, credit: po.totalAmount, note: 'Inventory reversal' }
+                        ]
+                    });
+                    journalEntryId = journalEntry?._id || null;
+                } else {
+                    console.warn('Accounting Sync Skipped: Missing Account 10103 or 20101');
+                }
+            } catch (jeError) {
+                console.error('Journal Entry Failed (PO Return):', jeError.message);
+            }
+
+            // Update PO Status
+            po.status = 'returned';
+            await po.save({ session });
+
+            await auditUpdate('PURCHASE_ORDER', po._id, beforeState, po, req.user, req.ip, session, {
+                action: 'REVERSE',
+                journalEntryId,
+                stockLedgerIds
+            });
+
+            return po._id;
+        });
+
+        if (res && res.json) {
+            const po = await PurchaseOrder.findById(poId);
+            return res.json({ message: 'Returned successfully', po });
         }
-
-        // Reverse Balance (Debit Supplier)
-        await Supplier.findByIdAndUpdate(po.supplier, {
-            $inc: { balance: -po.totalAmount }
-        }, { session });
-
-        // Update PO Status
-        po.status = 'returned';
-        await po.save({ session });
-
-        await session.commitTransaction();
-
-        if (res && res.json) return res.json({ message: 'Returned successfully', po });
-        return po; // Service Usage
+        return poId;
 
     } catch (e) {
-        await session.abortTransaction();
         if (res && res.status) return res.status(400).json({ message: e.message });
         throw e;
-    } finally {
-        session.endSession();
     }
 };
 
@@ -454,144 +543,283 @@ export const createPurchaseReturn = async (req, res) => {
 
 // 8. Approve Purchase Return (Atomic Transaction)
 export const approvePurchaseReturn = async (req, res) => {
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
         const { id } = req.params;
 
-        // A. Get the Return
-        const pr = await PurchaseReturn.findById(id).session(session);
-        if (!pr) throw new Error('مرتجع غير موجود');
+        const resultId = await runPostingTransaction(async (session) => {
+            const pr = await PurchaseReturn.findById(id).session(session);
+            if (!pr) throw new Error('Return not found');
 
-        if (pr.status === 'returned') {
-            throw new Error('هذا المرتجع تمت الموافقة عليه مسبقاً');
-        }
+            if (pr.status === 'returned') throw new Error('Return already posted');
+            if (pr.status === 'rejected' || pr.status === 'reversed') throw new Error('Return cannot be posted');
+            if (!['draft', 'pending_approval'].includes(pr.status)) throw new Error('Return must be draft or pending');
 
-        if (pr.status === 'rejected') {
-            throw new Error('هذا المرتجع مرفوض ولا يمكن الموافقة عليه');
-        }
+            const beforeState = pr.toObject();
+            const warehouseId = pr.warehouse;
+            const stockLedgerIds = [];
 
-        const warehouseId = pr.warehouse;
+            // B. Process Each Item (Stock Deduction)
+            for (const rItem of pr.items) {
+                const product = await Item.findById(rItem.item).session(session);
+                if (!product) {
+                    throw new Error(`Product not found: ${rItem.item}`);
+                }
 
-        // B. Process Each Item (Stock Deduction)
-        for (const rItem of pr.items) {
-            const product = await Item.findById(rItem.item).session(session);
-            if (!product) {
-                throw new Error(`الصنف غير موجود: ${rItem.item}`);
+                const stockIdx = product.stocks?.findIndex(
+                    s => s.warehouse.toString() === warehouseId.toString()
+                ) ?? -1;
+
+                if (stockIdx === -1) {
+                    throw new Error(`Item not found in warehouse: ${product.name}`);
+                }
+
+                if (product.stocks[stockIdx].qty < rItem.qty) {
+                    throw new Error(`Insufficient stock for return: ${product.name}`);
+                }
+
+                product.stocks[stockIdx].qty -= rItem.qty;
+                product.totalStock = Math.max(0, (product.totalStock || 0) - rItem.qty);
+                await product.save({ session });
+
+                const [ledgerDoc] = await StockLedger.create([{
+                    item: product._id,
+                    warehouse: warehouseId,
+                    type: 'PURCHASE_RETURN',
+                    qty: -rItem.qty,
+                    ref: `RET#${pr._id.toString().slice(-6)}`,
+                    note: `Purchase return - ${rItem.reason || 'other'}`,
+                    user: req.user?._id,
+                    date: new Date()
+                }], { session });
+                if (ledgerDoc?._id) stockLedgerIds.push(ledgerDoc._id);
             }
 
-            // Check stock availability
-            const stockIdx = product.stocks?.findIndex(
-                s => s.warehouse.toString() === warehouseId.toString()
-            ) ?? -1;
+            // D. Update Supplier Balance (Reduce debt)
+            await Supplier.findByIdAndUpdate(pr.supplier, {
+                $inc: { balance: -pr.totalAmount }
+            }, { session });
 
-            if (stockIdx === -1) {
-                throw new Error(`الصنف ${product.name} غير موجود في المستودع المحدد`);
+            // E. Double-Entry Journal Entry
+            let journalEntryId = null;
+            try {
+                const accounts = await Account.find({
+                    code: { $in: ['10103', '20101'] }
+                }).session(session);
+
+                const accMap = accounts.reduce((map, acc) => {
+                    map[acc.code] = acc._id;
+                    return map;
+                }, {});
+
+                const inventoryAccount = accMap['10103'];
+                const apAccount = accMap['20101'];
+
+                if (inventoryAccount && apAccount) {
+                    const journalEntry = await createJournalEntry(session, {
+                        date: new Date(),
+                        reference: `RET#${pr._id.toString().slice(-6)}`,
+                        description: `Purchase return - ${pr.supplier}`,
+                        entries: [
+                            {
+                                accountId: apAccount,
+                                debit: pr.totalAmount,
+                                credit: 0,
+                                note: 'AP reversal'
+                            },
+                            {
+                                accountId: inventoryAccount,
+                                debit: 0,
+                                credit: pr.totalAmount,
+                                note: 'Inventory reduction'
+                            }
+                        ]
+                    });
+                    journalEntryId = journalEntry?._id || null;
+                } else {
+                    console.warn('Accounting Sync Skipped: Missing Account 10103 or 20101');
+                }
+            } catch (jeError) {
+                console.error('Journal Entry Failed (Purchase Return):', jeError.message);
             }
 
-            if (product.stocks[stockIdx].qty < rItem.qty) {
-                throw new Error(
-                    `رصيد غير كافٍ للصنف: ${product.name}. ` +
-                    `المتوفر: ${product.stocks[stockIdx].qty}, ` +
-                    `المطلوب: ${rItem.qty}`
-                );
-            }
+            // F. Update Return Status
+            pr.status = 'returned';
+            pr.approvedBy = req.user?._id;
+            pr.approvedAt = new Date();
+            await pr.save({ session });
 
-            // Deduct stock
-            product.stocks[stockIdx].qty -= rItem.qty;
-            product.totalStock = Math.max(0, product.totalStock - rItem.qty);
-            await product.save({ session });
+            await auditUpdate('PURCHASE_RETURN', pr._id, beforeState, pr, req.user, req.ip, session, {
+                action: 'POST',
+                journalEntryId,
+                stockLedgerIds
+            });
 
-            // C. Create Stock Ledger Entry (PURCHASE_RETURN type)
-            await StockLedger.create([{
-                item: product._id,
-                warehouse: warehouseId,
-                type: 'PURCHASE_RETURN',
-                qty: -rItem.qty,
-                ref: `RET#${pr._id.toString().slice(-6)}`,
-                note: `مرتجع مشتريات - ${rItem.reason || 'غير محدد'}`,
-                user: req.user?._id,
-                date: new Date()
-            }], { session });
-        }
+            return pr._id;
+        });
 
-        // D. Update Supplier Balance (Reduce debt - we're owed money back)
-        await Supplier.findByIdAndUpdate(pr.supplier, {
-            $inc: { balance: -pr.totalAmount }
-        }, { session });
-
-        // E. Double-Entry Journal Entry (Critical for Accounting)
-        // Debit: Accounts Payable (Liability ↓) - we owe less
-        // Credit: Inventory Asset (Asset ↓) - we have less inventory
-        try {
-            const accounts = await Account.find({
-                code: { $in: ['10103', '20101'] }
-            }).session(session);
-
-            const accMap = accounts.reduce((map, acc) => {
-                map[acc.code] = acc._id;
-                return map;
-            }, {});
-
-            const inventoryAccount = accMap['10103']; // المخزون (Inventory Asset)
-            const apAccount = accMap['20101'];        // ذمم الموردين (Accounts Payable)
-
-            if (inventoryAccount && apAccount) {
-                await createJournalEntry(session, {
-                    date: new Date(),
-                    reference: `RET#${pr._id.toString().slice(-6)}`,
-                    description: `مرتجع مشتريات - المورد: ${pr.supplier}`,
-                    entries: [
-                        // Debit: Accounts Payable (reduce liability)
-                        {
-                            accountId: apAccount,
-                            debit: pr.totalAmount,
-                            credit: 0,
-                            note: 'تخفيض ذمم الموردين - مرتجع'
-                        },
-                        // Credit: Inventory (reduce asset)
-                        {
-                            accountId: inventoryAccount,
-                            debit: 0,
-                            credit: pr.totalAmount,
-                            note: 'نقص المخزون - مرتجع مشتريات'
-                        }
-                    ]
-                });
-                // Log removed for production
-            } else {
-                console.warn('⚠️ Accounting Sync Skipped: Missing Account 10103 or 20101');
-            }
-        } catch (jeError) {
-            console.error('❌ Journal Entry Failed (Purchase Return):', jeError.message);
-            // Don't fail the transaction, just log - accounting can be fixed later
-        }
-
-        // F. Update Return Status
-        pr.status = 'returned';
-        pr.approvedBy = req.user?._id;
-        pr.approvedAt = new Date();
-        await pr.save({ session });
-
-        await session.commitTransaction();
-
-        const populated = await PurchaseReturn.findById(pr._id)
+        const populated = await PurchaseReturn.findById(resultId)
             .populate('supplier', 'name code')
             .populate('warehouse', 'name')
             .populate('approvedBy', 'name');
 
         res.status(200).json({
-            message: 'تمت الموافقة على المرتجع بنجاح',
+            message: 'Return posted successfully',
             return: populated
         });
 
     } catch (error) {
-        await session.abortTransaction();
         console.error('Approve Return Error:', error);
         res.status(400).json({ message: error.message });
-    } finally {
-        session.endSession();
+    }
+};
+
+// 8.1 Void Purchase Return (Draft/Pending only)
+export const voidPurchaseReturn = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultId = await runPostingTransaction(async (session) => {
+            const pr = await PurchaseReturn.findById(id).session(session);
+            if (!pr) throw new Error('Return not found');
+
+            if (!['draft', 'pending_approval'].includes(pr.status)) {
+                throw new Error('Only draft or pending returns can be voided');
+            }
+
+            const beforeState = pr.toObject();
+            pr.status = 'rejected';
+            if (req.body?.note) {
+                pr.note = (pr.note || '') + `\n[Void]: ${req.body.note}`;
+            }
+            await pr.save({ session });
+
+            await auditUpdate('PURCHASE_RETURN', pr._id, beforeState, pr, req.user, req.ip, session, {
+                action: 'VOID'
+            });
+
+            return pr._id;
+        });
+
+        const populated = await PurchaseReturn.findById(resultId)
+            .populate('supplier', 'name code')
+            .populate('warehouse', 'name')
+            .populate('approvedBy', 'name');
+
+        res.json({ message: 'Return voided', return: populated });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+// 8.2 Reverse Purchase Return (Undo posted return)
+export const reversePurchaseReturn = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const resultId = await runPostingTransaction(async (session) => {
+            const pr = await PurchaseReturn.findById(id).session(session);
+            if (!pr) throw new Error('Return not found');
+
+            if (pr.status !== 'returned') {
+                throw new Error('Only returned purchase returns can be reversed');
+            }
+
+            if (pr.isRefunded) {
+                throw new Error('Refunded returns cannot be reversed');
+            }
+
+            const beforeState = pr.toObject();
+            const warehouseId = pr.warehouse;
+            const stockLedgerIds = [];
+
+            // Re-add stock
+            for (const rItem of pr.items) {
+                const product = await Item.findById(rItem.item).session(session);
+                if (!product) throw new Error(`Product not found: ${rItem.item}`);
+
+                if (!product.stocks) product.stocks = [];
+                const stockIdx = product.stocks.findIndex(
+                    s => s.warehouse.toString() === warehouseId.toString()
+                );
+
+                if (stockIdx > -1) {
+                    product.stocks[stockIdx].qty += rItem.qty;
+                } else {
+                    product.stocks.push({ warehouse: warehouseId, qty: rItem.qty });
+                }
+
+                product.totalStock = (product.totalStock || 0) + rItem.qty;
+                await product.save({ session });
+
+                const [ledgerDoc] = await StockLedger.create([{
+                    item: product._id,
+                    warehouse: warehouseId,
+                    type: 'IN',
+                    qty: rItem.qty,
+                    ref: `RET-REV#${pr._id.toString().slice(-6)}`,
+                    note: 'Purchase return reversal',
+                    user: req.user?._id,
+                    date: new Date()
+                }], { session });
+                if (ledgerDoc?._id) stockLedgerIds.push(ledgerDoc._id);
+            }
+
+            // Restore Supplier Balance
+            await Supplier.findByIdAndUpdate(pr.supplier, {
+                $inc: { balance: pr.totalAmount }
+            }, { session });
+
+            // Reverse Journal Entry (Dr Inventory / Cr AP)
+            let journalEntryId = null;
+            try {
+                const accounts = await Account.find({
+                    code: { $in: ['10103', '20101'] }
+                }).session(session);
+
+                const accMap = accounts.reduce((map, acc) => {
+                    map[acc.code] = acc._id;
+                    return map;
+                }, {});
+
+                const inventoryAccount = accMap['10103'];
+                const apAccount = accMap['20101'];
+
+                if (inventoryAccount && apAccount) {
+                    const journalEntry = await createJournalEntry(session, {
+                        date: new Date(),
+                        reference: `RET-REV#${pr._id.toString().slice(-6)}`,
+                        description: `Purchase return reversal - ${pr.supplier}`,
+                        entries: [
+                            { accountId: inventoryAccount, debit: pr.totalAmount, credit: 0, note: 'Inventory restore' },
+                            { accountId: apAccount, debit: 0, credit: pr.totalAmount, note: 'AP restore' }
+                        ]
+                    });
+                    journalEntryId = journalEntry?._id || null;
+                } else {
+                    console.warn('Accounting Sync Skipped: Missing Account 10103 or 20101');
+                }
+            } catch (jeError) {
+                console.error('Journal Entry Failed (Purchase Return Reverse):', jeError.message);
+            }
+
+            pr.status = 'reversed';
+            await pr.save({ session });
+
+            await auditUpdate('PURCHASE_RETURN', pr._id, beforeState, pr, req.user, req.ip, session, {
+                action: 'REVERSE',
+                journalEntryId,
+                stockLedgerIds
+            });
+
+            return pr._id;
+        });
+
+        const populated = await PurchaseReturn.findById(resultId)
+            .populate('supplier', 'name code')
+            .populate('warehouse', 'name')
+            .populate('approvedBy', 'name');
+
+        res.json({ message: 'Return reversed', return: populated });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 };
 
@@ -603,36 +831,36 @@ export const updateReturnStatus = async (req, res) => {
 
         const pr = await PurchaseReturn.findById(id);
         if (!pr) {
-            return res.status(404).json({ message: 'مرتجع غير موجود' });
+            return res.status(404).json({ message: 'Return not found' });
         }
 
-        // Validate status transition
-        const validTransitions = {
-            'draft': ['pending_approval', 'rejected'],
-            'pending_approval': ['returned', 'rejected'],
-            'returned': [], // Final state
-            'rejected': ['draft'] // Can revert to draft
-        };
-
-        if (!validTransitions[pr.status]?.includes(status)) {
-            return res.status(400).json({
-                message: `لا يمكن تغيير الحالة من ${pr.status} إلى ${status}`
-            });
-        }
-
-        // If approving, use the atomic function
         if (status === 'returned') {
             return approvePurchaseReturn(req, res);
         }
+        if (status === 'rejected') {
+            if (rejectionReason) req.body.note = rejectionReason;
+            return voidPurchaseReturn(req, res);
+        }
 
-        // Otherwise, simple status update
+        const validTransitions = {
+            'draft': ['pending_approval', 'rejected'],
+            'pending_approval': ['returned', 'rejected'],
+            'returned': [],
+            'rejected': ['draft'],
+            'reversed': []
+        };
+
+        if (!validTransitions[pr.status] || !validTransitions[pr.status].includes(status)) {
+            return res.status(400).json({ message: 'Invalid status transition' });
+        }
+
         pr.status = status;
         if (status === 'rejected' && rejectionReason) {
-            pr.note = (pr.note || '') + `\n[رفض]: ${rejectionReason}`;
+            pr.note = (pr.note || '') + `\n[Reason]: ${rejectionReason}`;
         }
         await pr.save();
 
-        res.json({ message: 'تم تحديث الحالة', return: pr });
+        res.json({ message: 'Status updated', return: pr });
 
     } catch (error) {
         res.status(500).json({ message: error.message });

@@ -9,7 +9,10 @@ import {
     getInvoices,
     getInvoiceById,
     updateInvoiceStatus,
-    returnInvoiceItems
+    returnInvoiceItems,
+    postInvoice,
+    voidInvoice,
+    reverseInvoice
 } from '../controllers/salesController.js';
 
 const router = express.Router();
@@ -64,13 +67,35 @@ router.get('/invoice', requireAuth(), wrap(getInvoices));
 router.get('/invoice/:id', requireAuth(), wrap(getInvoiceById));
 
 // ===== UPDATE OPERATIONS =====
-const allowedStatuses = ['draft', 'posted', 'void', 'refund', 'cancelled'];
+const allowedStatuses = ['draft', 'pending'];
 router.patch('/invoice/:id/status',
     requireAuth(['admin', 'manager', 'sales']),
     requireRole(['admin', 'manager', 'sales']),
     param('id').isMongoId(),
     body('status').isIn(allowedStatuses),
     wrap(updateInvoiceStatus)
+);
+
+// ===== POSTING OPERATIONS =====
+router.post('/invoice/:id/post',
+    requireAuth(['admin', 'manager', 'sales']),
+    requireRole(['admin', 'manager', 'sales']),
+    param('id').isMongoId(),
+    wrap(postInvoice)
+);
+
+router.post('/invoice/:id/void',
+    requireAuth(['admin', 'manager']),
+    requireRole(['admin', 'manager']),
+    param('id').isMongoId(),
+    wrap(voidInvoice)
+);
+
+router.post('/invoice/:id/reverse',
+    requireAuth(['admin', 'manager']),
+    requireRole(['admin', 'manager']),
+    param('id').isMongoId(),
+    wrap(reverseInvoice)
 );
 
 // ===== DELETE OPERATIONS =====
@@ -93,6 +118,13 @@ router.delete('/invoice/:id',
         const invoice = await SalesInvoice.findById(id);
         if (!invoice) {
             return res.status(404).json({ message: 'الفاتورة غير موجودة' });
+        }
+
+        const deletableStatuses = ['draft', 'pending', 'void', 'cancelled'];
+        if (!deletableStatuses.includes(invoice.status)) {
+            return res.status(409).json({
+                message: 'لا يمكن حذف فاتورة مرحّلة أو مؤكدة'
+            });
         }
 
         // Keep before state for audit
@@ -121,10 +153,6 @@ router.post('/invoice/:id/return',
     requireAuth(['admin', 'manager', 'sales']),
     requireRole(['admin', 'manager', 'sales']),
     param('id').isMongoId(),
-    body('items').isArray({ min: 1 }),
-    body('items.*.item').isMongoId(),
-    body('items.*.qty').isFloat({ gt: 0 }),
-    body('warehouse').optional().isMongoId(),
     wrap(returnInvoiceItems)
 );
 
@@ -132,6 +160,8 @@ router.post('/invoice/:id/return',
 import {
     createSalesReturn,
     approveSalesReturn,
+    voidSalesReturn,
+    reverseSalesReturn,
     getSalesReturns,
     getSalesReturnById,
     updateReturnStatus,
@@ -160,6 +190,24 @@ router.get('/returns/:id',
 router.post('/returns/:id/approve',
     requireAuth(['admin', 'manager']),
     wrap(approveSalesReturn)
+);
+
+// 8.1 Post Return
+router.post('/returns/:id/post',
+    requireAuth(['admin', 'manager']),
+    wrap(approveSalesReturn)
+);
+
+// 8.2 Void Return
+router.post('/returns/:id/void',
+    requireAuth(['admin', 'manager']),
+    wrap(voidSalesReturn)
+);
+
+// 8.3 Reverse Return
+router.post('/returns/:id/reverse',
+    requireAuth(['admin', 'manager']),
+    wrap(reverseSalesReturn)
 );
 
 // 5. Update Status

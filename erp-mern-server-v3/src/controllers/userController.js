@@ -8,7 +8,6 @@ export const getUsers = async (req, res) => {
     const filter = q ? {
         $or: [
             { name: { $regex: q, $options: 'i' } },
-            { email: { $regex: q, $options: 'i' } },
             { username: { $regex: q, $options: 'i' } }
         ]
     } : {};
@@ -30,24 +29,23 @@ export const getUsers = async (req, res) => {
 
 // POST /api/users
 export const createUser = async (req, res) => {
-    let { name, email, username, password, role = 'cashier', department = null, assignedWarehouse = null } = req.body;
+    let { name, username, password, role = 'cashier', department = null, assignedWarehouse = null } = req.body;
 
     // Sanitize inputs
     name = (name || '').trim();
-    email = (email || '').trim().toLowerCase();
     username = (username || '').trim();
     password = (password || '').trim();
     if (!department) department = null;
     if (!assignedWarehouse) assignedWarehouse = null;
 
-    // Custom validation for uniqueness
-    const existsEmail = await User.findOne({ email });
-    if (existsEmail) return res.status(409).json({ message: 'Email already in use' });
-
-    if (username) {
-        const existsUsername = await User.findOne({ username });
-        if (existsUsername) return res.status(409).json({ message: 'Username already in use' });
+    // Validate username is provided
+    if (!username) {
+        return res.status(400).json({ message: 'اسم المستخدم مطلوب' });
     }
+
+    // Custom validation for username uniqueness
+    const existsUsername = await User.findOne({ username: { $regex: new RegExp(`^${username}$`, 'i') } });
+    if (existsUsername) return res.status(409).json({ message: 'اسم المستخدم مستخدم بالفعل' });
 
     if (department) {
         const dep = await Department.findById(department);
@@ -55,21 +53,19 @@ export const createUser = async (req, res) => {
     }
 
     const hash = await bcrypt.hash(password, 10);
-    const user = await User.create({ name, email, username, password: hash, role, department, assignedWarehouse });
+    const user = await User.create({ name, username, password: hash, role, department, assignedWarehouse });
 
     res.status(201).json({ id: user._id });
 };
 
 // PUT /api/users/:id
 export const updateUser = async (req, res) => {
-    const { name, email, username, role, department, password, assignedWarehouse } = req.body;
+    const { name, username, role, department, password, assignedWarehouse } = req.body;
 
     // If password provided, hash it. If not, don't include in update
-    let updateData = { ...req.body };
+    let updateData = { name, username, role, department, assignedWarehouse };
     if (password) {
         updateData.password = await bcrypt.hash(password, 10);
-    } else {
-        delete updateData.password;
     }
 
     // Sanitize ObjectId fields: empty string -> null
@@ -78,13 +74,11 @@ export const updateUser = async (req, res) => {
 
     // Ensure username uniqueness if changed
     if (username) {
-        const exists = await User.findOne({ username, _id: { $ne: req.params.id } });
-        if (exists) return res.status(409).json({ message: 'Username already in use' });
-    }
-    // Ensure email uniqueness if changed
-    if (email) {
-        const exists = await User.findOne({ email, _id: { $ne: req.params.id } });
-        if (exists) return res.status(409).json({ message: 'Email already in use' });
+        const exists = await User.findOne({
+            username: { $regex: new RegExp(`^${username}$`, 'i') },
+            _id: { $ne: req.params.id }
+        });
+        if (exists) return res.status(409).json({ message: 'اسم المستخدم مستخدم بالفعل' });
     }
 
     if (department) {

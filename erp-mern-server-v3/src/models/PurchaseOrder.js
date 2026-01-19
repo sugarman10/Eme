@@ -9,7 +9,7 @@ const PurchaseOrderSchema = new mongoose.Schema({
     cost: { type: Number, required: true }
   }],
   warehouse: { type: ObjectId, ref: 'Warehouse', default: null }, // Target warehouse for stock
-  status: { type: String, enum: ['pending', 'approved', 'received', 'cancelled'], default: 'pending' },
+  status: { type: String, enum: ['pending', 'approved', 'received', 'cancelled', 'returned'], default: 'pending' },
   totalAmount: { type: Number, default: 0 },
   paidAmount: { type: Number, default: 0 },
   note: { type: String, default: '' },

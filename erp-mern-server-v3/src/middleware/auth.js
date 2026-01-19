@@ -14,7 +14,7 @@ import logger from '../config/logger.js';
  * - Token blacklist check (for logout/revocation)
  * - isActive check for banned users
  */
-export function requireAuth() {
+export function requireAuth(roles = []) {
   return async (req, res, next) => {
     const h = req.headers.authorization || '';
     const token = h.startsWith('Bearer ') ? h.slice(7) : '';
@@ -45,6 +45,14 @@ export function requireAuth() {
         return res.status(403).json({
           message: 'Account is banned or inactive',
           code: 'ACCOUNT_INACTIVE'
+        });
+      }
+
+      const allowedRoles = Array.isArray(roles) ? roles : [roles];
+      if (allowedRoles.length > 0 && !allowedRoles.includes(payload.role)) {
+        return res.status(403).json({
+          message: 'Forbidden: Insufficient role',
+          code: 'ROLE_FORBIDDEN'
         });
       }
 

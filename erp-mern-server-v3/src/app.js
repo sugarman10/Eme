@@ -23,6 +23,7 @@ import dashboardRoutes from './routes/dashboard.js';
 import dailyClosuresRoutes from './routes/dailyClosures.js';
 import settingsRoutes from './routes/settings.js';
 import walletRoutes from './routes/wallet.js';
+import auditRoutes from './routes/audit.js';
 import { errorHandler, notFound } from './middleware/errors.js'
 import { apiLimiter, authLimiter, heavyLimiter } from './middleware/rateLimiter.js'
 
@@ -102,6 +103,7 @@ app.use('/api/notifications', notificationsRoutes)
 app.use('/api/settings', settingsRoutes)
 app.use('/api/daily-closures', dailyClosuresRoutes) // الإغلاق اليومي
 app.use('/api/wallet', walletRoutes) // محفظة العميل (Store Credit)
+app.use('/api/audit', auditRoutes)
 
 // 404 + أخطاء
 app.use(notFound)

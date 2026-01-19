@@ -9,10 +9,13 @@
 import mongoose from 'mongoose';
 import Receipt from '../models/Receipt.js';
 import Account from '../models/Account.js';
+import Transaction from '../models/Transaction.js';
+import WalletTransaction from '../models/WalletTransaction.js';
 import logger from '../config/logger.js';
 import { postJournalEntry, JournalValidationError } from '../services/journalEntryService.js';
-import { auditCreate, AuditError } from '../services/auditService.js';
+import { auditCreate, auditUpdate, AuditError } from '../services/auditService.js';
 import { startOfDay, endOfDay } from '../utils/dateUtils.js';
+import { runPostingTransaction } from '../services/postingService.js';
 
 // ============================================================
 // SYSTEM ACCOUNTS CACHE
@@ -75,8 +78,8 @@ const getModels = async () => {
 };
 
 const getServices = async () => {
-    const { createIncomeTransaction } = await import('../services/transactionService.js');
-    return { createIncomeTransaction };
+    const { createIncomeTransaction, createExpenseTransaction } = await import('../services/transactionService.js');
+    return { createIncomeTransaction, createExpenseTransaction };
 };
 
 // ============================================================
@@ -139,43 +142,46 @@ async function _processInvoiceAllocations(session, invoices, amount, SalesInvoic
  */
 async function _processTreasuryTransactions(session, params, createIncomeTransaction) {
     const { method, amount, splitDetails, treasury, receiptId, date } = params;
+    const transactions = [];
 
     if (method === 'split' && splitDetails && splitDetails.length > 0) {
-        // Validate split total
         const splitTotal = splitDetails.reduce((sum, s) => sum + (Number(s.amount) || 0), 0);
         if (Math.abs(splitTotal - amount) > 0.1) {
-            throw new Error(`مجموع الدفعات (${splitTotal}) لا يطابق المبلغ الكلي (${amount})`);
+            throw new Error('Split total mismatch');
         }
 
         for (const split of splitDetails) {
             if (Number(split.amount) > 0 && split.treasury) {
-                await createIncomeTransaction({
+                const tx = await createIncomeTransaction({
                     amount: split.amount,
                     treasury: split.treasury,
                     relatedId: receiptId,
                     relatedModel: 'Receipt',
-                    description: `دفعة سند قبض #${receiptId.toString().slice(-6)} (${split.method})`,
+                    description: `Receipt #${receiptId.toString().slice(-6)} (${split.method})`,
                     category: 'sales',
                     date
                 }, session);
+                if (tx) transactions.push(tx);
             }
         }
     } else {
-        // Single treasury
         if (!treasury) {
-            throw new Error('الخزينة مطلوبة (Treasury is required)');
+            throw new Error('Treasury is required');
         }
 
-        await createIncomeTransaction({
+        const tx = await createIncomeTransaction({
             amount: amount,
             treasury: treasury,
             relatedId: receiptId,
             relatedModel: 'Receipt',
-            description: `سند قبض #${receiptId.toString().slice(-6)}`,
+            description: `Receipt #${receiptId.toString().slice(-6)}`,
             category: 'sales',
             date
         }, session);
+        if (tx) transactions.push(tx);
     }
+
+    return transactions;
 }
 
 /**
@@ -257,6 +263,76 @@ async function _createReceiptJournalEntry(session, params) {
     return journalEntry;
 }
 
+/**
+ * Create reversing journal entry for receipt
+ * - Dr: Accounts Receivable (1030)
+ * - Cr: Cash/Bank/Wallet (based on method)
+ */
+async function _createReceiptReversalJournalEntry(session, params) {
+    const { date, receiptId, method, customerName, amount, userId } = params;
+
+    logger.info('🔄 Creating Receipt Reversal Journal Entry...');
+
+    const systemAccounts = await getSystemAccounts(session);
+
+    if (!systemAccounts.ar) {
+        throw new Error('Accounts Receivable (1030) is missing');
+    }
+
+    let creditAccount;
+    let creditMemo;
+
+    if (method === 'bank' || method === 'transfer') {
+        if (!systemAccounts.bank) {
+            throw new Error('Bank account (1020) is missing');
+        }
+        creditAccount = systemAccounts.bank;
+        creditMemo = `Receipt reversal - ${customerName}`;
+    } else if (method === 'wallet') {
+        if (!systemAccounts.wallet) {
+            throw new Error('Wallet account (2030) is missing');
+        }
+        creditAccount = systemAccounts.wallet;
+        creditMemo = `Receipt reversal (wallet) - ${customerName}`;
+    } else {
+        if (!systemAccounts.cash) {
+            throw new Error('Cash account (1010) is missing');
+        }
+        creditAccount = systemAccounts.cash;
+        creditMemo = `Receipt reversal - ${customerName}`;
+    }
+
+    const options = session
+        ? { session, updateBalances: true }
+        : { updateBalances: true };
+
+    const journalEntry = await postJournalEntry({
+        date,
+        referenceType: 'RECEIPT',
+        referenceId: receiptId.toString(),
+        ref: `RCT-REV-${receiptId.toString().slice(-6)}`,
+        note: `Receipt reversal - ${customerName}`,
+        createdBy: userId,
+        lines: [
+            {
+                accountId: systemAccounts.ar._id,
+                debit: amount,
+                credit: 0,
+                memo: `AR restore - ${customerName}`
+            },
+            {
+                accountId: creditAccount._id,
+                debit: 0,
+                credit: amount,
+                memo: creditMemo
+            }
+        ]
+    }, options);
+
+    logger.logSuccess(`Receipt Reversal JE Created: ${journalEntry._id}`);
+    return journalEntry;
+}
+
 // ============================================================
 // PUBLIC CONTROLLER FUNCTIONS
 // ============================================================
@@ -331,85 +407,96 @@ export async function createReceipt(req, res) {
         return res.status(400).json({ message: 'فشل التحقق من الحسابات: ' + accErr.message });
     }
 
-    // ============ EXECUTE WITHOUT TRANSACTION (Standalone MongoDB Compatible) ============
-    // NOTE: MongoDB transactions require a replica set. For standalone mode, we run without transactions.
-    // This is acceptable for development. In production, use a replica set for data integrity.
-
+    // ============ EXECUTE WITH TRANSACTION (REPLICA SET REQUIRED) ============
     try {
+        const populated = await runPostingTransaction(async (session) => {
+            const customerDocTx = await Customer.findById(customer).session(session);
+            if (!customerDocTx) {
+                throw new Error('Customer not found');
+            }
 
-        // 1. Process invoice allocations (without session)
-        const { allocations } = await _processInvoiceAllocations(
-            null, invoices, amount, SalesInvoice
-        );
+            if (customerDocTx.isCashCustomer) {
+                throw new Error('Cash customer receipts are not allowed');
+            }
 
-        // 2. Create Receipt Document
-        const receipt = await Receipt.create([{
-            customer,
-            date,
-            amount,
-            method,
-            note,
-            invoices: allocations.map(a => a.invoice),
-            allocations
-        }]);
+            // 1. Process invoice allocations (with session)
+            const { allocations } = await _processInvoiceAllocations(
+                session, invoices, amount, SalesInvoice
+            );
 
-        const receiptId = receipt[0]._id;
+            // 2. Create Receipt Document
+            const [receiptDoc] = await Receipt.create([{
+                customer,
+                date,
+                amount,
+                method,
+                note,
+                status: 'posted',
+                invoices: allocations.map(a => a.invoice),
+                allocations
+            }], { session });
 
-        // 3. Process Treasury Transactions
-        await _processTreasuryTransactions(null, {
-            method,
-            amount,
-            splitDetails,
-            treasury,
-            receiptId,
-            date
-        }, createIncomeTransaction);
+            const receiptId = receiptDoc._id;
 
-        // 4. Update Customer Balance - With Wallet Excess Logic
-        // إذا دفع العميل أكثر من دينه، يُضاف الزائد للمحفظة
-        const currentBalance = customerDoc.balance || 0;
-        const newBalance = currentBalance - amount;
+            // 3. Process Treasury Transactions
+            const treasuryTransactions = await _processTreasuryTransactions(session, {
+                method,
+                amount,
+                splitDetails,
+                treasury,
+                receiptId,
+                date
+            }, createIncomeTransaction);
+            const transactionIds = (treasuryTransactions || []).map(tx => tx._id);
 
-        if (newBalance < 0) {
-            // العميل دفع أكثر من دينه - الزائد يذهب للمحفظة
-            const excessAmount = Math.abs(newBalance);
-            customerDoc.balance = 0; // صفّر الدين
-            customerDoc.walletBalance = (customerDoc.walletBalance || 0) + excessAmount;
+            // 4. Update Customer Balance - With Wallet Excess Logic
+            const currentBalance = customerDocTx.balance || 0;
+            const newBalance = currentBalance - amount;
 
-            // سجّل معاملة المحفظة
-            const { addCredit } = await import('./walletController.js');
-            await addCredit(customerDoc._id, excessAmount, 'deposit', {
-                type: 'Receipt',  // Must match WalletTransaction reference.type enum
-                id: receiptId,
-                number: `RCT-${receiptId.toString().slice(-6)}`
-            }, `رصيد زائد من سند قبض - دفع ${amount} على دين ${currentBalance}`, req.user?._id);
+            if (newBalance < 0) {
+                const excessAmount = Math.abs(newBalance);
+                customerDocTx.balance = 0;
+                customerDocTx.walletBalance = (customerDocTx.walletBalance || 0) + excessAmount;
 
-            logger.info(`💰 Excess ${excessAmount} transferred to wallet for customer ${customerDoc.name}`);
-        } else {
-            customerDoc.balance = newBalance;
-        }
-        await customerDoc.save();
+                const { addCredit } = await import('./walletController.js');
+                await addCredit(customerDocTx._id, excessAmount, 'deposit', {
+                    type: 'Receipt',
+                    id: receiptId,
+                    number: `RCT-${receiptId.toString().slice(-6)}`
+                }, 'Overpayment converted to wallet credit', req.user?._id, session);
+            } else {
+                customerDocTx.balance = newBalance;
+            }
+            await customerDocTx.save({ session });
 
-        // 5. Create Journal Entry (using journalEntryService)
-        await _createReceiptJournalEntry(null, {
-            date,
-            receiptId,
-            method,
-            customerName: customerDoc.name,
-            amount,
-            userId: req.user?._id
+            // 5. Create Journal Entry
+            const journalEntry = await _createReceiptJournalEntry(session, {
+                date,
+                receiptId,
+                method,
+                customerName: customerDocTx.name,
+                amount,
+                userId: req.user?._id
+            });
+
+            // 6. Return populated receipt (API response unchanged)
+            const populatedReceipt = await Receipt.findById(receiptId)
+                .session(session)
+                .populate('customer', 'name code')
+                .populate('allocations.invoice', '_id totals')
+                .lean();
+
+            // 7. Audit trail (in-transaction)
+            await auditCreate('RECEIPT', populatedReceipt, req.user, req.ip, session, {
+                action: 'POST',
+                journalEntryId: journalEntry?._id,
+                transactionIds
+            });
+
+            return populatedReceipt;
         });
 
-        // Return populated receipt (API response unchanged)
-        const populated = await Receipt.findById(receiptId)
-            .populate('customer', 'name code')
-            .populate('allocations.invoice', '_id totals')
-            .lean();
-
-        // Audit trail
-        await auditCreate('RECEIPT', populated, req.user, req.ip);
-
-        logger.info(`✅ Receipt created successfully: ${receiptId}`);
+        logger.info(`Receipt created successfully: ${populated?._id}`);
         res.status(201).json(populated);
 
     } catch (error) {
@@ -426,8 +513,144 @@ export async function createReceipt(req, res) {
             });
         }
 
-        res.status(400).json({ message: error.message || 'فشل إنشاء السند' });
+        res.status(400).json({ message: error.message || 'Failed to create receipt' });
     }
+}
+
+// ============================================================
+// RECEIPT REVERSAL / VOID
+// ============================================================
+
+async function _reverseReceipt(req, res, targetStatus) {
+    const { SalesInvoice, Customer } = await getModels();
+    const { createExpenseTransaction } = await getServices();
+
+    try {
+        const { id } = req.params;
+
+        const receiptId = await runPostingTransaction(async (session) => {
+            const receipt = await Receipt.findById(id).session(session);
+            if (!receipt) {
+                throw new Error('Receipt not found');
+            }
+
+            if (receipt.status !== 'posted') {
+                throw new Error('Only posted receipts can be reversed or voided');
+            }
+
+            const beforeState = receipt.toObject();
+
+            // Reverse invoice allocations
+            if (Array.isArray(receipt.allocations)) {
+                for (const alloc of receipt.allocations) {
+                    const invoice = await SalesInvoice.findById(alloc.invoice).session(session);
+                    if (!invoice) continue;
+                    const paid = invoice.totals?.paid || 0;
+                    invoice.totals.paid = Math.max(0, paid - (Number(alloc.amount) || 0));
+                    await invoice.save({ session });
+                }
+            }
+
+            // Reverse treasury transactions
+            const receiptTransactions = await Transaction.find({
+                relatedModel: 'Receipt',
+                relatedId: receipt._id
+            }).session(session);
+
+            const reversalTransactions = [];
+            for (const tx of receiptTransactions) {
+                const reverseTx = await createExpenseTransaction({
+                    amount: tx.amount,
+                    treasury: tx.treasury,
+                    relatedId: receipt._id,
+                    relatedModel: 'Receipt',
+                    description: `Receipt reversal #${receipt._id.toString().slice(-6)}`,
+                    category: 'sales',
+                    date: new Date()
+                }, session);
+                if (reverseTx) reversalTransactions.push(reverseTx);
+            }
+            const reversalTransactionIds = reversalTransactions.map(tx => tx._id);
+
+            // Reverse wallet credit (if any)
+            let walletCredit = 0;
+            if (receipt.customer) {
+                const walletTxs = await WalletTransaction.find({
+                    'reference.type': 'Receipt',
+                    'reference.id': receipt._id,
+                    amount: { $gt: 0 }
+                }).session(session);
+
+                walletCredit = walletTxs.reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
+                if (walletCredit > 0) {
+                    const { useCredit } = await import('./walletController.js');
+                    await useCredit(
+                        receipt.customer,
+                        walletCredit,
+                        { type: 'Receipt', id: receipt._id, number: `RCT-${receipt._id.toString().slice(-6)}` },
+                        'Receipt reversal wallet rollback',
+                        req.user?._id,
+                        session
+                    );
+                }
+            }
+
+            // Restore customer balance
+            if (receipt.customer) {
+                const balanceDelta = Number(receipt.amount || 0) - walletCredit;
+                if (balanceDelta !== 0) {
+                    await Customer.findByIdAndUpdate(receipt.customer, {
+                        $inc: { balance: balanceDelta }
+                    }, { session });
+                }
+            }
+
+            const customerDoc = receipt.customer
+                ? await Customer.findById(receipt.customer).session(session)
+                : null;
+
+            const journalEntry = await _createReceiptReversalJournalEntry(session, {
+                date: new Date(),
+                receiptId: receipt._id,
+                method: receipt.method,
+                customerName: customerDoc?.name || 'Customer',
+                amount: receipt.amount,
+                userId: req.user?._id
+            });
+
+            receipt.status = targetStatus;
+            await receipt.save({ session });
+
+            await auditUpdate('RECEIPT', receipt._id, beforeState, receipt, req.user, req.ip, session, {
+                action: targetStatus === 'void' ? 'VOID' : 'REVERSE',
+                journalEntryId: journalEntry?._id,
+                transactionIds: reversalTransactionIds,
+                walletReversalAmount: walletCredit
+            });
+
+            return receipt._id;
+        });
+
+        const populated = await Receipt.findById(receiptId)
+            .populate('customer', 'name code')
+            .populate('allocations.invoice', '_id totals')
+            .lean();
+
+        res.json({
+            message: targetStatus === 'void' ? 'Receipt voided' : 'Receipt reversed',
+            receipt: populated
+        });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
+export async function voidReceipt(req, res) {
+    return _reverseReceipt(req, res, 'void');
+}
+
+export async function reverseReceipt(req, res) {
+    return _reverseReceipt(req, res, 'reversed');
 }
 
 /**

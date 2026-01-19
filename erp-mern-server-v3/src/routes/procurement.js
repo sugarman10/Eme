@@ -5,7 +5,7 @@ import { requireRole } from '../middleware/rbac.js';
 import Supplier from '../models/Supplier.js';
 import PurchaseOrder from '../models/PurchaseOrder.js';
 import { wrap } from '../middleware/asyncHandler.js';
-import { createPurchaseOrder, receivePurchaseOrder, createSupplierPayment, getSupplierUnpaidOrders, returnPurchaseOrder, getSupplierStatement, createPurchaseReturn, getPurchaseReturns } from '../controllers/procurementController.js';
+import { createPurchaseOrder, receivePurchaseOrder, voidPurchaseOrder, createSupplierPayment, getSupplierUnpaidOrders, returnPurchaseOrder, getSupplierStatement, createPurchaseReturn, getPurchaseReturns } from '../controllers/procurementController.js';
 
 const router = express.Router();
 
@@ -90,6 +90,18 @@ router.post('/orders/:id/receive',
   wrap(receivePurchaseOrder)
 );
 
+// 2.1 Post Purchase Order (alias)
+router.post('/orders/:id/post',
+  requireAuth(['admin', 'manager', 'storekeeper']),
+  wrap(receivePurchaseOrder)
+);
+
+// 2.2 Void Purchase Order
+router.post('/orders/:id/void',
+  requireAuth(['admin', 'manager']),
+  wrap(voidPurchaseOrder)
+);
+
 // 3. Supplier Payment
 router.post('/orders/payments',
   requireAuth(['admin', 'manager', 'accountant']),
@@ -98,6 +110,12 @@ router.post('/orders/payments',
 
 // 4. Return Purchase Order
 router.post('/orders/:id/return',
+  requireAuth(['admin', 'manager']),
+  wrap(returnPurchaseOrder)
+);
+
+// 4.1 Reverse Purchase Order (alias)
+router.post('/orders/:id/reverse',
   requireAuth(['admin', 'manager']),
   wrap(returnPurchaseOrder)
 );
@@ -125,7 +143,7 @@ router.get('/returns',
 );
 
 // Import new controller functions
-import { approvePurchaseReturn, updateReturnStatus, markReturnRefunded, getPurchaseReturnById } from '../controllers/procurementController.js';
+import { approvePurchaseReturn, voidPurchaseReturn, reversePurchaseReturn, updateReturnStatus, markReturnRefunded, getPurchaseReturnById } from '../controllers/procurementController.js';
 
 // 7. Get Single Return
 router.get('/returns/:id',
@@ -137,6 +155,24 @@ router.get('/returns/:id',
 router.post('/returns/:id/approve',
   requireAuth(['admin', 'manager']),
   wrap(approvePurchaseReturn)
+);
+
+// 8.1 Post Return
+router.post('/returns/:id/post',
+  requireAuth(['admin', 'manager']),
+  wrap(approvePurchaseReturn)
+);
+
+// 8.2 Void Return
+router.post('/returns/:id/void',
+  requireAuth(['admin', 'manager']),
+  wrap(voidPurchaseReturn)
+);
+
+// 8.3 Reverse Return
+router.post('/returns/:id/reverse',
+  requireAuth(['admin', 'manager']),
+  wrap(reversePurchaseReturn)
 );
 
 // 9. Update Return Status (reject, pending, etc.)
