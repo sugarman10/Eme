@@ -1,1 +1,0 @@
-import{h as a}from"./index-BUIuOq4L.js";const o=()=>{const{user:r}=a(),s=r?.role||"guest",t=r?.permissions||[],e=(n,i=null)=>r?s==="admin"?!0:!(n&&s!==n||i&&!t.includes(i)):!1;return{isAdmin:s==="admin",isManager:s==="manager",isCashier:s==="cashier",role:s,canDelete:e(null,"delete_invoices"),canViewReports:e("manager")||e("admin"),hasPermission:n=>e(null,n)}};export{o as u};

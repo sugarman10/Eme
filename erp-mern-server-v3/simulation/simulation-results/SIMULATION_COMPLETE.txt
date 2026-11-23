@@ -1,2 +1,0 @@
-Simulation completed successfully at 2025-11-28T20:44:45.075Z
-Duration: 6.74 seconds

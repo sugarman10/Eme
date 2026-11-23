@@ -1,0 +1,1 @@
+import{r as t,j as o,z as b}from"./index-BGuOUKj3.js";const m=t.forwardRef(({className:a,required:e=!1,children:r,...s},l)=>o.jsx("label",{ref:l,className:b("label",e&&"label-required",a),...s,children:r}));m.displayName="Label";export{m as L};

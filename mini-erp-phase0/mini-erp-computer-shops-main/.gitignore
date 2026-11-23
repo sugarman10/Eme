@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment Variables
+.env
+.env.*
+!**/.env.example
+
+# Build & Release Artifacts
+dist/
+build/
+release/
+out/
+*.jsc
+
+# Logs & Runtime Data
+logs/
+**/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Temporary Test Outputs
+erp-mern-server-v3/*_out.txt
+erp-mern-server-v3/*_output*.txt
+erp-mern-server-v3/*_results.txt
+erp-mern-server-v3/test_*.txt
+erp-mern-server-v3/full_test_suite.txt
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+desktop-app/dist-package/
+dist/
+node_modules/
+*.exe
+.env
+
+# Phase 0 (2026-11-23): test outputs, user uploads, simulation results
+erp-mern-server-v3/*.txt
+erp-mern-server-v3/uploads/*
+!erp-mern-server-v3/uploads/.gitkeep
+erp-mern-server-v3/simulation/simulation-results/

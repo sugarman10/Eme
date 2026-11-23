@@ -1,3 +1,0 @@
-{"error":"المبلغ المدفوع (3190.0000000000005) أكبر من الإجمالي (3190)","level":"error","timestamp":"2025-12-27 19:27:03"}
-{"error":"المبلغ المدفوع (3190.0000000000005) أكبر من الإجمالي (3190)","level":"error","stack":"Error: المبلغ المدفوع (3190.0000000000005) أكبر من الإجمالي (3190)\n    at createInvoiceWithTransaction (file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/controllers/salesController.js:563:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///C:/Users/HP/Desktop/erp%20system/erp-mern-server-v3/src/routes/salesV2.js:43:29","timestamp":"2025-12-27 19:27:03"}
-{"error":"العميل غير موجود","level":"error","timestamp":"2025-12-27 19:49:59"}

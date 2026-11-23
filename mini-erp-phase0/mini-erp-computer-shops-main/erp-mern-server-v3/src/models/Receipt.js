@@ -1,0 +1,40 @@
+import mongoose from 'mongoose';
+
+const receiptSchema = new mongoose.Schema(
+  {
+    customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', required: true },
+    date: { type: Date, required: true, default: Date.now },
+    amount: { type: Number, required: true, min: 0 },
+    method: { type: String, enum: ['cash', 'bank', 'check', 'split', 'wallet'], default: 'cash' },
+    status: { type: String, enum: ['posted', 'void', 'reversed'], default: 'posted' },
+    note: { type: String },
+    // Changed from SalesOrder to SalesInvoice
+    invoices: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SalesInvoice' }],
+    // New field: detailed allocation of payment to invoices
+    allocations: [
+      {
+        invoice: { type: mongoose.Schema.Types.ObjectId, ref: 'SalesInvoice', required: true },
+        amount: { type: Number, required: true, min: 0 },
+      },
+    ],
+    treasury: { type: mongoose.Schema.Types.ObjectId, ref: 'Treasury' },
+    splitDetails: [
+      {
+        method: { type: String },
+        amount: { type: Number },
+        treasury: { type: mongoose.Schema.Types.ObjectId, ref: 'Treasury' },
+      },
+    ],
+    journalEntry: { type: mongoose.Schema.Types.ObjectId, ref: 'JournalEntry' },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+// Performance Indexes
+receiptSchema.index({ customer: 1 }); // Customer receipt lookups
+receiptSchema.index({ date: -1 }); // Date range queries
+receiptSchema.index({ customer: 1, date: -1 }); // Combined customer + date queries
+
+export default mongoose.model('Receipt', receiptSchema);

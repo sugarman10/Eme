@@ -1,0 +1,13 @@
+node_modules
+.env
+.DS_Store
+.vscode
+coverage
+
+# Phase 0 (2026-11-23)
+uploads/*
+!uploads/.gitkeep
+simulation/simulation-results/
+*.txt
+dist/
+*.exe

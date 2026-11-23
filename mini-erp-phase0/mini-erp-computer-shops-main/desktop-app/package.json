@@ -1,0 +1,88 @@
+{
+  "name": "erp-core-system",
+  "version": "1.0.0",
+  "description": "Enterprise Resource Planning & POS Core System",
+  "main": "src/main.js",
+  "author": "CORE SYSTEM",
+  "scripts": {
+    "start": "electron .",
+    "compile:bytecode": "electron scripts/compile-bytecode.js",
+    "build:client": "cd ../erp-mern-client-v3-full && npm run build",
+    "build:dist": "node scripts/build-desktop.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "dist:all": "electron-builder -mwl"
+  },
+  "dependencies": {
+    "bytenode": "^1.5.5",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8",
+    "javascript-obfuscator": "^4.1.1"
+  },
+  "build": {
+    "appId": "com.coresystem.erp",
+    "productName": "CORE SYSTEM ERP",
+    "copyright": "Copyright © 2026 CORE SYSTEM",
+    "directories": {
+      "output": "dist-package"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.business",
+      "icon": "assets/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Office",
+      "icon": "assets/icon.png"
+    },
+    "extraResources": [
+      {
+        "from": "server",
+        "to": "server",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "client",
+        "to": "client",
+        "filter": ["**/*"]
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "CORE SYSTEM ERP"
+    }
+  }
+}

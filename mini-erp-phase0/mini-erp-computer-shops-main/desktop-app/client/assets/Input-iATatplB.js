@@ -1,0 +1,1 @@
+import{r as e,j as n,z as o}from"./index-BGuOUKj3.js";const u=e.forwardRef(({className:t,type:r="text",error:s=!1,...a},p)=>n.jsx("input",{type:r,ref:p,className:o("input input-glow",s&&"input-error",t),...a}));u.displayName="Input";export{u as I};

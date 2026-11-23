@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-package/
+*.exe
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
